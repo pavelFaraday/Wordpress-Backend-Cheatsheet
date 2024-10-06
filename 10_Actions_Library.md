@@ -136,11 +136,11 @@ In summary, `wp_enqueue_scripts` is an essential function for WordPress develope
 
 ### 2. 📌  `after_setup_theme`
 
-The `after_setup_theme` action hook in WordPress is an essential tool for theme developers. It is triggered after the theme is initialized but before most other setup tasks, like rendering content. This makes it an ideal place to define essential theme features, load text domains for translation, register navigation menus, add theme support for features like post thumbnails, and more. Let’s dive into the details, core concepts, purpose, and practical use cases.
+The `after_setup_theme` action hook in WordPress is an essential tool for theme developers. **It is triggered after the theme is initialized but before most other setup tasks, like rendering content.** This makes it an ideal place to define essential theme features, load text domains for translation, register navigation menus, add theme support for features like post thumbnails, and more. Let’s dive into the details, core concepts, purpose, and practical use cases.
 
 ### 1. **Purpose of `after_setup_theme`**
 
-The `after_setup_theme` hook is primarily used to set up the basic structure and features of a WordPress theme. It provides developers with a safe point to add actions and filters or declare theme support before the WordPress front end or back end is fully initialized. Since this hook runs early in the theme’s loading process, it is the go-to place for any kind of functionality that should be initialized before content is rendered.
+The `after_setup_theme` hook is primarily used to set up the basic structure and features of a WordPress theme. It provides developers with a safe point to add actions and filters or declare theme support before the WordPress front end or back end is fully initialized. **Since this hook runs early in the theme’s loading process, it is the go-to place for any kind of functionality that should be initialized before content is rendered.**
 
 **Key Purpose:**
 - Initialize theme support for core WordPress features.
@@ -151,16 +151,16 @@ The `after_setup_theme` hook is primarily used to set up the basic structure and
 ### 2. **Core Concepts**
 
 #### a. **Theme Initialization**:
-The `after_setup_theme` action is fired during the initialization phase of the theme. This means it runs just after the theme has been loaded but before any content (such as posts or pages) is rendered. This allows you to hook into WordPress early to define features that affect how the theme functions or interacts with WordPress.
+**The `after_setup_theme` action is fired during the initialization phase of the theme. This means it runs just after the theme has been loaded but before any content (such as posts or pages) is rendered. This allows you to hook into WordPress early to define features that affect how the theme functions or interacts with WordPress.**
 
 #### b. **Theme Support**:
-WordPress comes with various built-in features, like custom logos, post thumbnails, or custom headers. The `after_setup_theme` hook is where you can add support for these features using the `add_theme_support()` function. This is a key concept, as it allows WordPress to know which features your theme supports and enables them accordingly.
+**WordPress comes with various built-in features, like custom logos, post thumbnails, or custom headers. The `after_setup_theme` hook is where you can add support for these features using the `add_theme_support()` function. This is a key concept, as it allows WordPress to know which features your theme supports and enables them accordingly.**
 
 #### c. **Localization**:
 Localization allows you to make your theme translation-ready. By using the `load_theme_textdomain()` function inside the `after_setup_theme` hook, you ensure your theme is ready for translation into multiple languages.
 
 #### d. **Timing**:
-The timing of this hook is crucial. Because it fires after the theme is set up but before WordPress continues with other tasks, it ensures that theme-related actions (such as registering menus, custom features, etc.) are ready before WordPress starts rendering content.
+**The timing of this hook is crucial. Because it fires after the theme is set up but before WordPress continues with other tasks, it ensures that theme-related actions (such as registering menus, custom features, etc.) are ready before WordPress starts rendering content.**
 
 ### 3. **How It Works (Code Breakdown)**
 
@@ -187,7 +187,9 @@ add_action('after_setup_theme', 'mytheme_setup');
 ### 4. **Practical Use Cases**
 
 #### a. **Adding Theme Support**:
-The most common use of `after_setup_theme` is to add support for WordPress features that need to be defined at theme setup. For example:
+**The most common use of `after_setup_theme` is to add support for WordPress features that need to be defined at theme setup.** 
+
+For example:
 
 ```php
 function custom_theme_setup() {
