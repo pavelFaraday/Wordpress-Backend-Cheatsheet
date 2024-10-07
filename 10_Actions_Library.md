@@ -264,6 +264,11 @@ When used properly, this hook ensures that the theme is fully functional and rea
 
 The `pre_get_posts` action in WordPress is a powerful tool that developers use to modify the main query before it is executed. It's a core action hook that allows you to change various aspects of the query that WordPress runs to retrieve posts, pages, or other content types. Here's a detailed look at its purpose, core concepts, and practical use cases.
 
+Right before WordPress sends its query to the database, 'pre_get_posts' hook will give our function the last word to execute/run. It will give us a chance to adjust the query, hence the name of the event. 
+📌 `pre_get_posts` hook works GLOBALLY - for all posts Queries/listings!!! So, Rules will be expand/apply on all posts & custom posts. It is too universal, because it will customize every single query on website. 
+📌 It adds pagination to post lists as well. 
+📌 It applies on Backend Queries as well !
+
 ### 1. **Purpose of `pre_get_posts`**
 The `pre_get_posts` action hook is used to modify the parameters of the WordPress query object (`$query`) before the query is executed. By hooking into this action, developers can influence what content is retrieved from the database, including altering post types, taxonomies, meta queries, and more. This helps to customize and optimize the content displayed on a website without directly modifying the theme's template files or the WordPress core.
 
@@ -283,6 +288,7 @@ The `pre_get_posts` action hook is used to modify the parameters of the WordPres
 
 Below is a sample code snippet illustrating how to use `pre_get_posts`:
 
+**Example 1:**
 ```php
 function my_custom_pre_get_posts( $query ) {
     // Check if it's the main query and not in the admin dashboard
@@ -302,6 +308,40 @@ function my_custom_pre_get_posts( $query ) {
 }
 add_action( 'pre_get_posts', 'my_custom_pre_get_posts' );
 ```
+
+**Example 2:**
+```php
+function university_adjust_queries ($query) {
+  if(!is_admin() AND is_post_type_archive('events') AND $query->is_main_query()){
+    $query->set('posts_per_page', '1');
+  }
+}
+add_action('pre_get_posts', 'university_adjust_queries');
+```
+
+
+**Example 3:**
+```php
+function university_adjust_queries ($query) {
+  $today = date('Ymd');
+
+  if(!is_admin() AND is_post_type_archive('events') AND $query->is_main_query()){
+    $query->set('meta_key', 'event_date');
+    $query->set('orderby', 'meta_value_num');
+    $query->set('order', 'ASC');
+    $query->set('meta_query', array(
+      array(
+        'key' => 'event_date',
+        'compare' => '>=', 
+        'value' => $today,
+        'type' => 'numeric'
+      )
+    ));
+  }
+}
+add_action('pre_get_posts', 'university_adjust_queries');
+```
+---
 
 ### 4. **Use Cases for `pre_get_posts`**
 
