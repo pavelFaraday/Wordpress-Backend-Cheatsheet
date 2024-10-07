@@ -2,7 +2,7 @@
 
 
 
-### 1. 📌  `wp_enqueue_scripts` 
+## 1. 📌  `wp_enqueue_scripts` 
 
 `wp_enqueue_scripts` is a key WordPress function that allows developers to properly load scripts (JavaScript files) and styles (CSS files) into a theme or plugin. It helps ensure that assets are added in the correct way, avoiding conflicts, improving performance, and maintaining compatibility with WordPress standards.
 
@@ -134,7 +134,7 @@ In summary, `wp_enqueue_scripts` is an essential function for WordPress develope
 
 ---
 
-### 2. 📌  `after_setup_theme`
+## 2. 📌  `after_setup_theme`
 
 The `after_setup_theme` action hook in WordPress is an essential tool for theme developers. **It is triggered after the theme is initialized but before most other setup tasks, like rendering content.** This makes it an ideal place to define essential theme features, load text domains for translation, register navigation menus, add theme support for features like post thumbnails, and more. Let’s dive into the details, core concepts, purpose, and practical use cases.
 
@@ -257,5 +257,106 @@ The `after_setup_theme` hook is critical for WordPress theme development, servin
 - Define theme behavior early in the WordPress loading process.
 
 When used properly, this hook ensures that the theme is fully functional and ready to interact with WordPress, providing a smooth and optimized user experience.
+
+---
+
+## 3. 📌  `pre_get_posts`
+
+The `pre_get_posts` action in WordPress is a powerful tool that developers use to modify the main query before it is executed. It's a core action hook that allows you to change various aspects of the query that WordPress runs to retrieve posts, pages, or other content types. Here's a detailed look at its purpose, core concepts, and practical use cases.
+
+### 1. **Purpose of `pre_get_posts`**
+The `pre_get_posts` action hook is used to modify the parameters of the WordPress query object (`$query`) before the query is executed. By hooking into this action, developers can influence what content is retrieved from the database, including altering post types, taxonomies, meta queries, and more. This helps to customize and optimize the content displayed on a website without directly modifying the theme's template files or the WordPress core.
+
+### 2. **Core Concepts**
+
+- **Main Query vs. Secondary Query**: 
+  - The **main query** is the query that WordPress runs automatically to determine what content to display on the current page. This could be a list of posts on the homepage, a single post view, an archive, or a search results page.
+  - **Secondary queries** are custom queries created with `WP_Query` or functions like `get_posts()` that are used in specific template files or plugin functionalities. `pre_get_posts` primarily affects the main query.
+
+- **Hook Priority**: 
+  - The hook fires after the query object has been created but before it has been executed. This makes it the perfect place to modify the query before fetching the results from the database.
+
+- **Conditional Tag Usage**: 
+  - When using `pre_get_posts`, it’s important to target specific types of pages using conditional tags like `is_home()`, `is_archive()`, `is_search()`, `is_admin()`, and so on. This ensures that the modifications only apply to the desired sections of the site.
+
+### 3. **How to Use `pre_get_posts` in Practice**
+
+Below is a sample code snippet illustrating how to use `pre_get_posts`:
+
+```php
+function my_custom_pre_get_posts( $query ) {
+    // Check if it's the main query and not in the admin dashboard
+    if ( $query->is_main_query() && !is_admin() ) {
+        // Customize the query for the main blog page
+        if ( is_home() ) {
+            $query->set( 'posts_per_page', 5 ); // Show 5 posts per page
+            $query->set( 'category_name', 'news' ); // Show only posts from the 'news' category
+        }
+
+        // Customize the query for search results
+        if ( is_search() ) {
+            $query->set( 'post_type', 'product' ); // Only show products in search results
+            $query->set( 'posts_per_page', 10 ); // Display 10 products per page in search results
+        }
+    }
+}
+add_action( 'pre_get_posts', 'my_custom_pre_get_posts' );
+```
+
+### 4. **Use Cases for `pre_get_posts`**
+
+- **Altering the Number of Posts Displayed on the Homepage**
+  - You can use `pre_get_posts` to change how many posts are shown on the homepage without altering your theme’s settings.
+  
+- **Displaying Custom Post Types on Search Pages**
+  - By default, WordPress only searches posts and pages. You can modify the query to include custom post types like products, events, or any other post type you've registered.
+  
+- **Filtering Posts by Custom Fields or Taxonomies**
+  - You can filter posts by custom taxonomies or meta values, which is useful for e-commerce sites or blogs with complex content types.
+  
+- **Limiting Search Results to Specific Post Types**
+  - This allows you to ensure that search results show only relevant content, like products or services, based on user queries.
+
+### 5. **Best Practices and Tips**
+
+- **Use Conditional Tags with Caution**
+  - Ensure that you're using `is_main_query()` to target only the main query. This prevents unintended side effects on other custom queries.
+  
+- **Avoid Running on Admin Pages**
+  - Use `!is_admin()` to prevent your changes from affecting admin area queries, which could interfere with dashboard functionality.
+  
+- **Performance Considerations**
+  - Since this hook modifies the query, avoid using overly complex logic that could slow down query performance.
+
+- **Debugging the Query**
+  - Use the `WP_Query` debug functions, like `var_dump($query);`, within your `pre_get_posts` function to inspect how your modifications are affecting the query.
+
+### 6. **Advanced Example: Filtering by Custom Taxonomy**
+
+Here's an advanced example where you filter posts by a custom taxonomy named `genre` on the archive page:
+
+```php
+function filter_posts_by_genre( $query ) {
+    if ( $query->is_main_query() && !is_admin() && is_archive() ) {
+        // Check if the 'genre' taxonomy is set in the query
+        if ( isset( $_GET['genre'] ) && !empty( $_GET['genre'] ) ) {
+            $query->set( 'tax_query', array(
+                array(
+                    'taxonomy' => 'genre',
+                    'field'    => 'slug',
+                    'terms'    => sanitize_text_field( $_GET['genre'] ),
+                ),
+            ));
+        }
+    }
+}
+add_action( 'pre_get_posts', 'filter_posts_by_genre' );
+```
+
+This code checks if the `genre` query parameter is set and then filters the archive page to show only the posts belonging to that specific genre.
+
+### Conclusion
+
+The `pre_get_posts` hook is a versatile tool for customizing WordPress queries and tailoring content display across your site. It’s a must-know action for WordPress developers looking to create more dynamic and user-specific experiences. By leveraging this hook properly, you can significantly enhance how content is presented without affecting the core of WordPress or theme files.
 
 ---
