@@ -12,3 +12,5 @@
 8. [MU Plugins](8-MU_plugins.md)
 9. [Taxonomies](9-taxonomies.md)
 10. [WP Actions Library](10_Actions_Library.md)
+11. [wp_enqueue_style()](11-wp_enqueue_style.md)
+12. [wp_enqueue_script()](12-wp_enqueue_script.md)
