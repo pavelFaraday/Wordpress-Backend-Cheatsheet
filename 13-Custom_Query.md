@@ -1,7 +1,8 @@
 ## Custom Queries
+
 Custom Queries allow us to load whatever we want, wherever we want.
 
-### Understanding Custom Queries in WordPress
+#### Understanding Custom Queries in WordPress
 
 In WordPress, a Custom Query refers to a query that retrieves specific data from the WordPress database beyond the default set of posts or pages. It allows developers to fetch data based on custom criteria such as custom post types, specific taxonomies, meta fields, or a particular date range. Custom queries give you the flexibility to control what content is displayed and how it is organized, making them an essential feature for any WordPress developer looking to create a more dynamic and customized user experience.
 
