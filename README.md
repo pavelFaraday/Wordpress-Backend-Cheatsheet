@@ -14,3 +14,5 @@
 10. [WP Actions Library](10_Actions_Library.md)
 11. [wp_enqueue_style()](11-wp_enqueue_style.md)
 12. [wp_enqueue_script()](12-wp_enqueue_script.md)
+13. [Custom Query](13-Custom_Query.md)
+14. [Meta Query](14-Meta_Query.md)
