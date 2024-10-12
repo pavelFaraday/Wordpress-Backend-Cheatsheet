@@ -1,6 +1,6 @@
 # Wordpress-Backend-Cheatsheet
 
-#### List of Markdown Files:
+#### Topics:
 
 1. [single.php VS page.php](1-single_php-page_php.md)
 2. [wp_head() function](2-wp_head.md)
@@ -16,3 +16,4 @@
 12. [wp_enqueue_script()](12-wp_enqueue_script.md)
 13. [Custom Query](13-Custom_Query.md)
 14. [Meta Query](14-Meta_Query.md)
+15. [get_stylesheet_uri()](15-get_stylesheet_uri.md)
