@@ -1,4 +1,4 @@
-## Metadata
+## 📌 Metadata
 
 Metadata in WordPress refers to the data that provides extra or custom additional data/information your website. This includes things like post titles, descriptions, publication dates, categories, and tags. WordPress automatically generates and stores metadata to help organize content and make it easier for search engines and visitors to understand your site's structure. 
 

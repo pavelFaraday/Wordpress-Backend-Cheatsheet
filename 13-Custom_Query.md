@@ -1,4 +1,4 @@
-## Custom Queries
+## 📌 Custom Queries
 
 Custom Queries allow us to load whatever we want, wherever we want.
 

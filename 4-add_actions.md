@@ -1,4 +1,4 @@
-## **Actions in WordPress**
+## 📌 **Actions in WordPress**
 
 **Actions** in WordPress are a fundamental part of the WordPress **hook system**, allowing developers to execute custom code at specific points during the WordPress lifecycle. By using actions, you can tap into various points of WordPress’s process (e.g., when a post is published, a theme is loaded, or a comment is posted) to run your own functions.
 

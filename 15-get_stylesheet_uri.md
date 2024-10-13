@@ -1,4 +1,4 @@
-## `get_stylesheet_uri()`
+## 📌 `get_stylesheet_uri()`
 
 `get_stylesheet_uri()` is a commonly used function in WordPress that automatically retrieves the URI (Uniform Resource Identifier) of the active theme's stylesheet. This function is essential when enqueueing styles in WordPress or when you need to directly reference the main CSS file of your theme. The stylesheet file name must be 'style.css' which is appended to the stylesheet directory URI path.
 

@@ -1,4 +1,4 @@
-## Custom Post Types
+## 📌 Custom Post Types
 
 In WordPress, a Custom Post Type (CPT) allows you to create and manage different types of content beyond the default types like Posts and Pages. Essentially, it's a way to extend WordPress’s functionality to handle content more suited to your needs.
 

@@ -1,4 +1,4 @@
-## Must Use Plugins (MU-Plugins) in WordPress
+## 📌 Must Use Plugins (MU-Plugins) in WordPress
 
 In WordPress, "Must-Use Plugins" (also known as MU-Plugins) are special types of plugins that are automatically enabled for a site without needing to be manually activated. These plugins are different from regular plugins in the following ways:
 

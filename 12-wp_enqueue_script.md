@@ -1,4 +1,4 @@
-## `wp_enqueue_script`
+## 📌 `wp_enqueue_script`
 
 `wp_enqueue_script` is a fundamental function in WordPress used to manage and load JavaScript files efficiently. Understanding its purpose, core concepts, and use cases will help you manage scripts in WordPress better. Let’s break down these aspects in detail.
 

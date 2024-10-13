@@ -1,3 +1,5 @@
+## 📌 `wp_enqueue_style()`
+
 `wp_enqueue_style()` is a function in WordPress that is used to properly load (enqueue) stylesheets in your themes or plugins. It is an essential function for adding CSS files to your WordPress site in a way that avoids conflicts and ensures that styles are loaded in the correct order. Let's dive into its details, purpose, core concepts, and use cases.
 
 ### Purpose of `wp_enqueue_style()`

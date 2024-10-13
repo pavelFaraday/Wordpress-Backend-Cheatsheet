@@ -1,4 +1,4 @@
-## Meta Queries
+## 📌 Meta Queries
 
 #### Understanding Meta Queries in WordPress
 
