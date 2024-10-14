@@ -20,3 +20,4 @@
 16. [get_theme_file_uri()](16-get_theme_file_uri.md)
 17. [get_template_directory_uri()](17-get_template_directory_uri.md)
 18. [get_template_directory_uri()](18-get_theme_file_path.md)
+19. [Wordpress Theme Functions](19-WordPress_Theme_Functions.md)
