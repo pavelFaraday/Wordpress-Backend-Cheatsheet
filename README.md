@@ -1,4 +1,4 @@
-# Wordpress-Backend-Cheatsheet
+# Wordpress Backend cheat sheet
 
 #### Topics:
 
