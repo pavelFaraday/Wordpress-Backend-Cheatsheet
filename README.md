@@ -18,3 +18,4 @@
 14. [Meta Query](14-Meta_Query.md)
 15. [get_stylesheet_uri()](15-get_stylesheet_uri.md)
 16. [get_theme_file_uri()](16-get_theme_file_uri.md)
+17. [get_template_directory_uri()](17-get_template_directory_uri.md)
