@@ -21,3 +21,4 @@
 17. [get_template_directory_uri()](17-get_template_directory_uri.md)
 18. [get_template_directory_uri()](18-get_theme_file_path.md)
 19. [Wordpress Theme Functions](19-WordPress_Theme_Functions.md)
+20. [Difference between prebuilt wordpress functions `get_` & `the_`](20-the_VS_get.md)
