@@ -23,3 +23,4 @@
 19. [Wordpress Theme Functions](19-WordPress_Theme_Functions.md)
 20. [Difference between prebuilt wordpress functions `get_` & `the_`](20-the_VS_get.md)
 21. [`wp_footer()`](21-wp_footer.md)
+22. [Post Specific functions](22-post_specific_functions.md)
