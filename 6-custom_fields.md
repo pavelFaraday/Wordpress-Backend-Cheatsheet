@@ -1,6 +1,6 @@
 ## 📌 Custom Fields in WordPress
 
-Custom fields in WordPress allow you to add extra information, or metadata, to your posts, pages, or custom post types. They are a flexible way to store additional data beyond the default content provided by WordPress. Here are the core concepts you should understand about custom fields:
+Custom fields in WordPress allow you to add extra information, or metadata, to your posts, pages, or custom post types. They are a flexible way to store additional data beyond the default content provided by WordPress. Here are the core concepts you should understand about custom fields.
 
 #### 1. What Are Custom Fields?
 Custom fields are key-value pairs used to store additional information about a post or page. WordPress stores this metadata in the `wp_postmeta` database table. For example, if you're building a real estate site, you could use custom fields to add details like price, location, and square footage to each property post.
