@@ -4,7 +4,7 @@
 
 ### 1. **Purpose of `add_theme_support()`**
 
-The purpose of the `add_theme_support()` function is to enable built-in WordPress features and integrate them into your theme. It modifies WordPress’s default behavior to accommodate a theme's capabilities, enhancing flexibility and customization options. By defining the supported features in your theme’s `functions.php` file, you ensure that these features work seamlessly when users activate the theme.
+The purpose of the `add_theme_support()` function is **to enable built-in WordPress features and integrate them into your theme.** It modifies WordPress’s default behavior to accommodate a theme's capabilities, enhancing flexibility and customization options. **By defining the supported features in your theme’s `functions.php` file, you ensure that these features work seamlessly when users activate the theme.**
 
 ### 2. **Core Concepts of `add_theme_support()`**
 
