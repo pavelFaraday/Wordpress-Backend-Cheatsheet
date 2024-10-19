@@ -25,3 +25,4 @@
 21. [`wp_footer()`](21-wp_footer.md)
 22. [Post Specific functions](22-post_specific_functions.md)
 23. [`add_theme_support()`](23-add_theme_support.md)
+24. [`site_url()`](24-site_url.md)
