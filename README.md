@@ -28,3 +28,4 @@
 24. [`site_url()`](24-site_url.md)
 25. [`wp_list_pages()`](25-wp_list_pages.md)
 26. [`wp_nav_menu()`](26.-wp_nav_menu.md)
+27. [`bloginfo()`](27-bloginfo.md)
