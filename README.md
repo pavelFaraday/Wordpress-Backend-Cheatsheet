@@ -29,3 +29,4 @@
 25. [`wp_list_pages()`](25-wp_list_pages.md)
 26. [`wp_nav_menu()`](26.-wp_nav_menu.md)
 27. [`bloginfo()`](27-bloginfo.md)
+28. [`language_attributes()`](28-language_attributes.md)
