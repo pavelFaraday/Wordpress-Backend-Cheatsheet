@@ -32,3 +32,4 @@
 28. [language_attributes()](28-language_attributes.md)
 29. [body_class()](29-body_class.md)
 30. [get_query_var()](30-get_query_var.md)
+31. [Difference between `get_pages()` and `wp_list_pages()`](31-wp_list_pages-VS-get_pages.md)
