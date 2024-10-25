@@ -2,7 +2,6 @@
 
 In WordPress, both `get_pages()` and `wp_list_pages()` are functions used to retrieve and display pages. However, they serve slightly different purposes and are used in different scenarios.
 
-
 `get_pages()` is very similar to `wp_list_pages();`. **The only difference is that `wp_list_pages();` --> will handle <u>outputting the pages onto the screen</u>, whereas `get_pages();` --> just returns the pages in memory.**
 
 ### `get_pages()`
