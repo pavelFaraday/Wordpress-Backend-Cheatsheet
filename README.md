@@ -33,3 +33,4 @@
 29. [body_class()](29-body_class.md)
 30. [get_query_var()](30-get_query_var.md)
 31. [Difference between `get_pages()` and `wp_list_pages()`](31-wp_list_pages-VS-get_pages.md)
+32. [Conditional Tags in WP](32-conditional_tags.md)
