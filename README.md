@@ -35,3 +35,4 @@
 31. [Difference between `get_pages()` and `wp_list_pages()`](31-wp_list_pages-VS-get_pages.md)
 32. [Conditional Tags in WP](32-conditional_tags.md)
 33. [paginate_links()](33-paginate_links.md)
+34. [Other WP functions](other_info.md)
