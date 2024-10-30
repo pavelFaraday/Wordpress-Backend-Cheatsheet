@@ -36,3 +36,5 @@
 32. [Conditional Tags in WP](32-conditional_tags.md)
 33. [paginate_links()](33-paginate_links.md)
 34. [Other WP functions](other_info.md)
+35. [pre_get_posts hook](34-pre_get_posts.md)
+36. [Actions, Hooks & Filters](35-actions_hooks_filters.md)
