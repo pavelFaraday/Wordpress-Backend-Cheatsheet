@@ -156,7 +156,7 @@ Let’s expand on Actions, Filters, and Hooks with additional insights and use c
 Actions are fired at specific points during WordPress’ execution cycle. They allow you to run custom code when a particular WordPress event or trigger occurs. WordPress has a vast number of built-in action hooks, but you can also create your own custom action hooks.
 
 #### **Action Hook Execution Sequence**
-When an action hook is called, all the functions associated with that hook are executed sequentially based on their priority (default is 10). If two functions have the same priority, they execute in the order they were added.
+**When an action hook is called, all the functions associated with that hook are executed sequentially based on their priority (default is 10). If two functions have the same priority, they execute in the order they were added.**
 
 #### **More Common Action Hooks**
 - `init`: Runs after WordPress is loaded and is commonly used to initialize plugins or custom post types.
@@ -211,7 +211,7 @@ When an action hook is called, all the functions associated with that hook are e
 Filters are powerful tools in WordPress that allow you to modify and return data. Unlike actions, filters must return the modified data back to WordPress after they are processed.
 
 #### **Filter Execution Sequence**
-Filters execute attached functions based on their priority. Each attached function must return a modified or unmodified value.
+**Filters execute attached functions based on their priority. Each attached function must return a modified or unmodified value.**
 
 #### **Common Filters**
 - `the_content`: Modifies post content before displaying it.
@@ -258,7 +258,7 @@ Filters execute attached functions based on their priority. Each attached functi
 ### **3. Hooks in WordPress**
 
 #### **More Details**
-Hooks are strategically placed points in WordPress code where developers can insert custom functions. You can use built-in hooks or create your own.
+**Hooks are <u>*strategically placed points in WordPress code where developers can insert custom functions*</u>. You can use built-in hooks or create your own.**
 
 #### **Creating Custom Hooks**
 
@@ -307,14 +307,14 @@ function modify_custom_data($data) {
 ### **4. Actions vs Filters - Key Differences**
 
 - **Execution**:
-  - **Actions** execute functions to perform a task.
-  - **Filters** execute functions to modify and return data.
+  - **Actions** <u>execute functions to perform a task.</u>
+  - **Filters** execute functions to <u>modify and return data.</u>
 - **Return Value**:
-  - **Actions** do not return any data (though functions within them can).
-  - **Filters** must return modified data.
+  - **Actions** **do not return any data** (though functions within them can).
+  - **Filters** **<u>must</u> return modified data.**
 - **Purpose**:
-  - **Actions** focus on triggering additional functions.
-  - **Filters** focus on modifying specific data.
+  - **Actions** <u>focus on triggering additional functions.</u>
+  - **Filters** <u>focus on modifying specific data.</u>
 
 ---
 
