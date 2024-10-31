@@ -6,17 +6,17 @@ In WordPress development, **Actions**, **Hooks**, and **Filters** are core eleme
 
 ### **1. Actions, Hooks & Filters - Overview**
 
-- **Actions** and **Filters** are both types of **Hooks**. Hooks allow developers to *“hook into”* or customize WordPress functionality.
-- **Actions** are used to perform a task or execute code at specific points.
-- **Filters** are used to modify data before it is sent to the database or browser.
+> - **Actions** and **Filters** are both types of **Hooks**. Hooks allow developers to *“hook into”* or customize WordPress functionality.
+> - **Actions** are used to **perform a task or execute code at specific points.**
+> - **Filters** are used to **modify data** before it is sent to the **database** or **browser**.
 
 ---
 
 ### **2. Purpose**
 
 - **Actions**: To execute a specific code or function at a particular point in WordPress, like when a post is published, an admin page is loaded, or a comment is saved. 
-- **Filters**: To modify or filter content/data, such as changing the title of a post or adding custom data to a user’s profile information.
-- **Hooks**: The umbrella term for both Actions and Filters. It signifies predefined points in WordPress where custom code can be attached.
+- **Filters**: **To modify or filter content/data**, such as changing the title of a post or adding custom data to a user’s profile information.
+- **Hooks**: **The <u>umbrella</u> term for both Actions and Filters. It signifies predefined points in WordPress where custom code can be attached.**
 
 ---
 
@@ -24,8 +24,8 @@ In WordPress development, **Actions**, **Hooks**, and **Filters** are core eleme
 
 #### **A. Actions**
 - **Definition**: Actions are hooks that allow you to insert custom code at specific points in the WordPress execution cycle.
-- **Mechanism**: When an action is triggered, all functions attached to it are executed in order of priority.
-- **Usage**: You use actions to perform a specific task that does not modify any specific data, such as:
+- **Mechanism**: **When an action is triggered, all functions attached to it are executed in order of priority.**
+- **Usage**: You use actions to **perform a specific task that does not modify any specific data**, such as:
   - Sending an email when a post is published.
   - Adding custom widgets or sidebars.
   - Enqueueing scripts or stylesheets.
@@ -46,8 +46,8 @@ function notify_author_on_publish($post_ID, $post) {
 ```
 
 #### **B. Filters**
-- **Definition**: Filters are hooks that modify data before it is displayed or stored in the database.
-- **Mechanism**: When a filter is applied, all functions attached to it process the data and return it for further use.
+- **Definition**: **Filters are hooks that modify data before it is displayed or stored in the database.**
+- **Mechanism**: **When a filter is applied, all functions attached to it process the data and return it for further use.**
 - **Usage**: You use filters to modify content like:
   - Altering post titles or content before rendering.
   - Adding custom data to an array.
@@ -69,10 +69,10 @@ function modify_post_title($title) {
 
 #### **C. Hooks**
 - **Definition**: Hooks are the foundation that allows Actions and Filters to exist. They are predefined points within the WordPress core.
-- **Purpose**: Hooks act as breakpoints or triggers within WordPress, providing opportunities to add or modify functionality.
+- **Purpose**: **Hooks act as breakpoints or triggers within WordPress, providing opportunities to <u>add or modify functionality</u>.**
 - **Types**:
-  - **Action Hooks**: Triggers specific tasks.
-  - **Filter Hooks**: Modifies and returns data.
+  > - **Action Hooks**: Triggers specific tasks.
+  > - **Filter Hooks**: Modifies and returns data.
 
 **Common Hooks**:
 - `init`: Runs after WordPress has finished loading but before any headers are sent.
@@ -133,7 +133,7 @@ In this example:
 
 - **Use descriptive names** for custom hooks and callbacks to maintain code clarity.
 - **Manage priorities wisely**. If you want a particular function to execute first or last, use the priority parameter.
-- **Return data in Filters**. Always remember to return modified data in filter functions.
+- **Return data in Filters**. <u>**Always remember to return modified data in filter functions.</u>**
 - **Don’t directly edit core files**. Instead, rely on actions and filters to make modifications.
 
 ---
@@ -144,7 +144,7 @@ In this example:
 - **Filters**: Modify data before using it. They’re like saying *“Change this”* to certain pieces of content or data.
 - **Hooks**: Predefined places in WordPress that allow you to attach your actions or filters.
 
-Understanding and using actions, hooks, and filters effectively is key to developing flexible, powerful, and maintainable WordPress websites. They enable developers to add custom features and alter default behavior without altering core WordPress files—a crucial aspect of WordPress best practices.
+Understanding and using actions, hooks, and filters effectively is key to developing flexible, powerful, and maintainable WordPress websites. **They enable developers to add custom features and alter default behavior without altering core WordPress files—a crucial aspect of WordPress best practices.**
 
 ---
 
