@@ -38,3 +38,5 @@
 34. [Other WP functions](other_info.md)
 35. [pre_get_posts hook](34-pre_get_posts.md)
 36. [Actions, Hooks & Filters](35-actions_hooks_filters.md)
+37. [get_field()](36-get_field.md)
+38. [Post Object in WordPress](37-post_object.md)
