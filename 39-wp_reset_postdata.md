@@ -1,9 +1,9 @@
 ## 📌  `wp_reset_postdata()` 
 
-`wp_reset_postdata()` is a WordPress function that plays a key role when dealing with multiple custom queries on a single page or post. It’s used to reset the global `$post` object back to the current post in the main query after you’ve run a custom query. Let’s dive into the core concepts, purpose, and common use cases.
+**`wp_reset_postdata()` is a WordPress function that plays a key role when dealing with <u>multiple custom queries on a single page or post.</u> It’s used to reset the global `$post` object back to the current post in the main query after you’ve run a custom query.** Let’s dive into the core concepts, purpose, and common use cases.
 
 ### Purpose of `wp_reset_postdata()`
-The purpose of `wp_reset_postdata()` is to ensure that the global `$post` object (which contains data about the currently displayed post) is restored after a custom query is run. This is essential when you use custom queries (like `WP_Query`) to pull in posts from outside the main query, because if you don't reset the global post data, it can lead to conflicts, such as incorrect post titles, content, or other post data appearing in subsequent parts of your template.
+**The purpose of `wp_reset_postdata()` is to ensure that the global `$post` object (which contains data about the currently displayed post) is restored after a custom query is run. This is essential when you use custom queries (like `WP_Query`) to pull in posts from outside the main query, because if you don't reset the global post data, it can lead to conflicts, such as incorrect post titles, content, or other post data appearing in subsequent parts of your template.**
 
 ### Core Concepts
 To understand `wp_reset_postdata()`, you should be familiar with the following core concepts:
@@ -12,10 +12,10 @@ To understand `wp_reset_postdata()`, you should be familiar with the following c
 
 2. **Custom Queries and the Main Query**: The main query is what WordPress runs by default to display the main content of a page or post, determined by the URL parameters. Custom queries are additional queries you might run on a page to retrieve posts or content outside the main query.
 
-3. **Template Tags and the `$post` Global**: Template tags like `the_title()`, `the_excerpt()`, and `the_content()` rely on the global `$post` to output the correct post data. When a custom query modifies this global `$post`, these tags may display incorrect information if `wp_reset_postdata()` isn’t called after the custom query loop.
+3. **Template Tags and the `$post` Global**: ***Template tags like `the_title()`, `the_excerpt()`, and `the_content()` rely on the global `$post` to output the correct post data. When a custom query modifies this global `$post`, these tags may display incorrect information if `wp_reset_postdata()` isn’t called after the custom query loop.***
 
 ### How `wp_reset_postdata()` Works
-When you use `WP_Query` for a custom loop, it sets the `$post` global to match each post in the custom query. However, after the custom loop finishes, WordPress still “remembers” the last post from that custom query as the global `$post`. Calling `wp_reset_postdata()` after the loop completes tells WordPress to revert to the main query's `$post` object, ensuring subsequent template tags reference the correct post data.
+**When you use `WP_Query` for a custom loop, it sets the `$post` global to match each post in the custom query. However, after the custom loop finishes, WordPress still “remembers” the last post from that custom query as the global `$post`. Calling `wp_reset_postdata()` after the loop completes tells WordPress to revert to the main query's `$post` object, ensuring subsequent template tags reference the correct post data.**
 
 ### Use Cases of `wp_reset_postdata()`
 Here are some common scenarios where `wp_reset_postdata()` is useful:
