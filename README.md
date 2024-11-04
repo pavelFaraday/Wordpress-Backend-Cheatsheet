@@ -40,3 +40,5 @@
 36. [Actions, Hooks & Filters](35-actions_hooks_filters.md)
 37. [get_field()](36-get_field.md)
 38. [Post Object in WordPress](37-post_object.md)
+39. [Wordpress Archive](38-archive.md)
+40. [wp_reset_postdata()](39-wp_reset_postdata.md)
