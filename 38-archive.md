@@ -1,6 +1,6 @@
 ## 📌 WordPress Archive: Overview, Purpose, Core Concepts, and Practical Use Cases
 
-In WordPress, an "archive" refers to a collection of posts grouped based on specific criteria, such as date, category, tag, author, or custom taxonomies. Archives provide a structured way for users to navigate and explore past content based on these groupings, enhancing usability and accessibility on blogs, news sites, and other content-heavy websites.
+**In WordPress, an "archive" refers to a collection of posts grouped based on specific criteria, such as date, category, tag, author, or custom taxonomies.** Archives provide a structured way for users to navigate and explore past content based on these groupings, enhancing usability and accessibility on blogs, news sites, and other content-heavy websites.
 
 #### Purpose of Archives in WordPress
 
