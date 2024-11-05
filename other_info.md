@@ -64,3 +64,23 @@ These functions are essential for building dynamic, user-friendly WordPress site
 
 12. **`the_post_thumbnail_url()`**
    - Displays the post thumbnail URL.
+
+13. How to use `after_setup_theme` action hook
+```php
+function university_features() {
+  // Register Different Menu Locations
+  register_nav_menu('headerMenuLocation', 'Header Menu Location');
+  register_nav_menu('footerLocationOne', 'Footer Location One');
+  register_nav_menu('footerLocationTwo', 'Footer Location Two');
+
+  // Register theme support for a various features.
+  add_theme_support('title-tag');
+  add_theme_support('post-thumbnails');
+
+  // Register a new/additional image size.
+  add_image_size('professorLandscape', 400, 260, true);
+  add_image_size('professorPortraite', 480, 650, true);
+}
+add_action('after_setup_theme', 'university_features');
+
+```
