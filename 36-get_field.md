@@ -1,4 +1,4 @@
-## 📌 `get_field()` in WordPress
+## 📌 `get_field()` & `the_field()` in WordPress
 
 The `get_field()` function in WordPress is a part of the Advanced Custom Fields (ACF) plugin, widely used to add and retrieve custom field values on posts, pages, and other custom post types. Let’s dive into its purpose, core concepts, and practical use cases.
 
