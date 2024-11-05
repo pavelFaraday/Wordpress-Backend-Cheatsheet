@@ -58,3 +58,9 @@ These functions are essential for building dynamic, user-friendly WordPress site
 10. **`get_post_type()`**: 
    - Returns the post type (e.g., 'post', 'page', or custom types) of the current post or a specified post.
    - Useful for conditional checks in theme or plugin development.
+  
+11.  **`the_post_thumbnail();`**
+   - Displays the post thumbnail.
+
+12. **`the_post_thumbnail_url()`**
+   - Displays the post thumbnail URL.
