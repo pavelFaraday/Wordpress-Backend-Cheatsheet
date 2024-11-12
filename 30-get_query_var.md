@@ -15,7 +15,6 @@ $pastEvents = new WP_Query(array(
 ));
 ```
 
-
 ⬆️⬆️⬆️ Works with ⬇️⬇️⬇️
 
 ```php
