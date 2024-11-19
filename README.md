@@ -44,3 +44,4 @@
 40. [wp_reset_postdata()](39-wp_reset_postdata.md)
 41. [get_template_part()](40-get_template_part.md)
 42. [WordPress REST API](41-wordpress_REST_API.md)
+43. [WP_CLI](42-WP_CLI.md)
