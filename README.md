@@ -46,3 +46,4 @@
 42. [WordPress REST API](41-wordpress_REST_API.md)
 43. [WP_CLI](42-WP_CLI.md)
 44. [wp_localize_script()](43-wp_localize_script.md)
+45. [rest_api_init() hook](44-rest_api_init-hook.md)
