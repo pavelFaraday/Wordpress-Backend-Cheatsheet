@@ -49,3 +49,4 @@
 45. [rest_api_init() hook](44-rest_api_init-hook.md)
 46. [register_rest_field()](45-register_rest_field.md)
 47. [Why We should create our own custom RestAPI URL in WordPress?](46-Custom_RestAPI_adventages.md)
+48. [register_rest_route()](47-register_rest_route.md)
