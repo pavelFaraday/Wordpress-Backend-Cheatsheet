@@ -1,4 +1,4 @@
-## 📌 `get_query_var()`
+## 📌 `get_query_var()` in WordPress
 
 Retrieves the value of a query variable in the WP_Query class.
 
