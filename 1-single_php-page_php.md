@@ -60,4 +60,5 @@ Both `single.php` and `page.php` are part of WordPress’s **Template Hierarchy*
 
 This hierarchy allows you to build highly customizable layouts for different kinds of content across your WordPress site. By using `single.php` and `page.php` effectively, you ensure that posts and pages have the right look and functionality according to the needs of your theme.
 
+
 ---
