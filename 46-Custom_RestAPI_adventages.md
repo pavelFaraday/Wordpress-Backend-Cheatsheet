@@ -4,17 +4,17 @@ Creating a custom REST API URL in WordPress can be highly advantageous, especial
 
 ---
 
-### **1. Enhanced Security 🔒**  
-Custom REST API URLs help protect your WordPress site from unwanted access and abuse.  
-- **Reason**: Default REST API endpoints can be a target for hackers who exploit vulnerabilities.  
-- **Advantage**: Custom URLs make it harder for attackers to guess or abuse API endpoints, reducing potential security risks.
-
----
-
-### **2. Optimized Performance 🚀**  
+### **1. Optimized Performance 🚀**  
 Custom APIs are often tailored to serve only the data you need.  
 - **Reason**: Default WordPress REST API endpoints return a lot of unnecessary data.  
 - **Advantage**: You can streamline requests and responses, reducing server load and improving response times.
+
+---
+
+### **2. Enhanced Security 🔒**  
+Custom REST API URLs help protect your WordPress site from unwanted access and abuse.  
+- **Reason**: Default REST API endpoints can be a target for hackers who exploit vulnerabilities.  
+- **Advantage**: Custom URLs make it harder for attackers to guess or abuse API endpoints, reducing potential security risks.
 
 ---
 
