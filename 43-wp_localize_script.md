@@ -1,7 +1,6 @@
 ## 📌 `wp_localize_script()` in WordPress: A Comprehensive Guide
 
 The `wp_localize_script()` function in WordPress is a powerful tool for passing data from PHP to JavaScript. While its name suggests "localization," its purpose extends far beyond just translating strings. It’s widely used to make server-side data accessible to client-side scripts in a structured and secure way.
----
 
 ### **Purpose of `wp_localize_script()`**
 The primary purpose of `wp_localize_script()` is to:
