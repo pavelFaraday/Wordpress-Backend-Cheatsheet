@@ -7,7 +7,7 @@ The `register_rest_route()` function is a core component of the WordPress REST A
 ### **Purpose of `register_rest_route()`**
 
 The primary purpose of the `register_rest_route()` function is to:
-1. **Expose Custom Data**: Allow developers to create endpoints that expose specific data or functionality beyond the default endpoints provided by WordPress.
+1. **Expose Custom Data**: ***Allow developers to create endpoints that expose specific data or functionality beyond the default endpoints provided by WordPress.***
 2. **Enhance Interoperability**: Enable external applications (like mobile apps, SPAs, or other web services) to interact with WordPress in a standardized way.
 3. **Extend Default Functionality**: Customize or augment the existing WordPress REST API for unique project needs.
 
@@ -136,21 +136,36 @@ function myplugin_submit_data( WP_REST_Request $request ) {
 ```
 
 ---
-#### 4. Create new RestAPI URL --- "http://localhost:10033/wp-json/university/v1/search"
+### Complex Example: Create new RestAPI URL for custom post types "professor" --- http://localhost:10033/wp-json/university/v1/search
 
 ```php
 function universityRegisterSearch() {
   register_rest_route('university/v1', 'search', array(
-    'methods' => WP_REST_SERVER::READABLE, // This is WP constant is the safest way to replace "GET" 
+    'methods' => WP_REST_SERVER::READABLE, // This is WP constant - safest way to replace "GET" 
     'callback' => 'universitySearchResults'
   ));
 }
 add_action('rest_api_init', 'universityRegisterSearch');
 
 function universitySearchResults() {
-  return 'Congratulations, you created a route.';
+  $professors = new WP_Query(array(
+    'post_type' => 'professor'
+  ));
+
+  $professorResults = array();
+
+  while($professors->have_posts()){
+    $professors->the_post();
+    array_push($professorResults, array(
+      'title' => get_the_title(),
+      'permalink' => get_the_permalink(),
+    ));
+  }
+  return $professorResults;
 }
 ```
+
+---
 
 ### **Best Practices**
 
