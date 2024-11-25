@@ -1,6 +1,6 @@
 ## 📌 **`register_rest_field()` in WordPress**
 
-`register_rest_field()` is a function in WordPress used to add custom fields to the REST API responses. This allows developers to include additional data in API responses for specific post types, taxonomies, or user objects, making the API more flexible and tailored for custom use cases.
+**`register_rest_field()` is a function in WordPress used to add custom fields to the REST API responses. This allows developers to include additional data in API responses for specific post types, taxonomies, or user objects, making the API more flexible and tailored for custom use cases.**
 
 ---
 
