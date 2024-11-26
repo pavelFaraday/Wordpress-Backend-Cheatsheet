@@ -52,3 +52,4 @@
 48. [register_rest_route()](47-register_rest_route.md)
 49. [Data Sanitizing & sanitize_text_field() in WordPress](48-sanitizing_data.md)
 50. [Interactivity API in WP](49-Interactive_API.md)
+51. [Full Site Editing (FSE) and Block Themes in WordPress](50-FSE_block_themes.md)
