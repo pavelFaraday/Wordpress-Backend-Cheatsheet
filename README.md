@@ -51,3 +51,4 @@
 47. [Why We should create our own custom RestAPI URL in WordPress?](46-Custom_RestAPI_adventages.md)
 48. [register_rest_route()](47-register_rest_route.md)
 49. [Data Sanitizing & sanitize_text_field() in WordPress](48-sanitizing_data.md)
+50. [Interactivity API in WP](49-Interactive_API.md)
