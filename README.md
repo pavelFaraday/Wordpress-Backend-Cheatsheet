@@ -53,6 +53,7 @@
 49. [Interactivity API in WP](49-Interactive_API.md)
 50. [Full Site Editing (FSE) and Block Themes in WordPress](50-FSE_block_themes.md)
 51. [esc_url()](51-esc_url.md)
+52. [get_search_query()](52-get_search_query.md)
 
 
 [Other WP functions](other_info.md)
