@@ -54,6 +54,7 @@
 50. [Full Site Editing (FSE) and Block Themes in WordPress](50-FSE_block_themes.md)
 51. [esc_url()](51-esc_url.md)
 52. [get_search_query()](52-get_search_query.md)
+53. [get_search_form()](53-get_search_form.md)
 
 
 [Other WP functions](other_info.md)
