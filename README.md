@@ -63,6 +63,7 @@
 59. [admin_init()](59-admin_init.md)
 60. [wp_login_url()](60-wp_login_url.md)
 61. [wp_registration_url()](61-wp_registration_url.md)
+62. [login_enqueue_scripts() Action](62-login_enqueue_scripts.md)
 
 
 [Other WP functions](other_info.md)
