@@ -55,6 +55,7 @@
 51. [esc_url()](51-esc_url.md)
 52. [get_search_query()](52-get_search_query.md)
 53. [get_search_form()](53-get_search_form.md)
+54. [User Roles in WordPress: A Detailed Guide](54-User-Roles.md)
 
 
 [Other WP functions](other_info.md)
