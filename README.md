@@ -61,6 +61,7 @@
 57. [get_avatar()](57-get_avatar.md)
 58. [wp_loaded()](58-wp_loaded.md)
 59. [admin_init()](59-admin_init.md)
+60. [wp_login_url()](60-wp_login_url.md)
 
 
 [Other WP functions](other_info.md)
