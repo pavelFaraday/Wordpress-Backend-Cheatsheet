@@ -55,7 +55,8 @@
 51. [esc_url()](51-esc_url.md)
 52. [get_search_query()](52-get_search_query.md)
 53. [get_search_form()](53-get_search_form.md)
-54. [User Roles in WordPress: A Detailed Guide](54-User-Roles.md)
+54. [User Roles in WordPress: A Detailed Guide](54-User-Roles_General.md)
+55. [User Roles with `capability_type` and `map_meta_cap` in WordPress](55-User-Roles-capability_type&map_meta_cap.md)
 
 
 [Other WP functions](other_info.md)
