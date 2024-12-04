@@ -59,6 +59,7 @@
 55. [User Roles with `capability_type` and `map_meta_cap` in WordPress](55-User-Roles-capability_type&map_meta_cap.md)
 56. [wp_logout_url()](56-wp_logout_url.md)
 57. [get_avatar()](57-get_avatar.md)
+58. [wp_loaded()](58-wp_loaded.md)
 
 
 [Other WP functions](other_info.md)
