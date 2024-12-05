@@ -65,6 +65,7 @@
 61. [wp_registration_url()](61-wp_registration_url.md)
 62. [login_enqueue_scripts() Action](62-login_enqueue_scripts.md)
 63. [esc_attr()](63-esc_attr.md)
+64. [wp_strip_all_tags()](64-wp_strip_all_tags.md)
 
 
 [Other WP functions](other_info.md)
