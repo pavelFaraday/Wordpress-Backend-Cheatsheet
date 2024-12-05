@@ -1,25 +1,25 @@
 ### `wp_strip_all_tags()` in WordPress: A Detailed Overview
 
-The **`wp_strip_all_tags()`** function is a built-in WordPress utility used to remove all HTML and PHP tags from a given string, leaving only plain text. This function is particularly useful for cleaning input or content in scenarios where raw text is needed.
+The **`wp_strip_all_tags()`** function is a built-in WordPress utility used to **remove all HTML and PHP tags from a given string, leaving only plain text**. This function is particularly useful for cleaning input or content in scenarios where raw text is needed.
 
 ---
 
 ### **Purpose**
 The primary purpose of `wp_strip_all_tags()` is to:
-1. **Sanitize content**: Ensure that no HTML or PHP tags are present in the output to avoid issues like unwanted formatting or potential security risks.
-2. **Extract plain text**: Useful for generating summaries, excerpts, or meta descriptions.
-3. **Improve security**: Helps mitigate potential XSS (Cross-Site Scripting) attacks by removing tags that might execute malicious code.
+1. **❗️Sanitize content**: Ensure that no HTML or PHP tags are present in the output to avoid issues like unwanted formatting or potential security risks.
+2. **❗️Extract plain text**: Useful for generating summaries, excerpts, or meta descriptions.
+3. **❗️Improve security**: Helps mitigate potential XSS (Cross-Site Scripting) attacks by removing tags that might execute malicious code.
 
 ---
 
 ### **Core Concepts**
 1. **Tag Stripping**:
-   - It removes **both opening and closing tags** (e.g., `<p>` and `</p>`).
-   - It does not parse or validate tags but simply strips them.
+   - ❗️ It removes **both opening and closing tags** (e.g., `<p>` and `</p>`).
+   - ❗️ It does not parse or validate tags but simply strips them.
 
 2. **Content Preservation**:
-   - Only text within the tags is preserved.
-   - Attributes or inner structures are discarded (e.g., `<a href="example.com">Link</a>` becomes `Link`).
+   - ❗️ Only text within the tags is preserved.
+   - ❗️ Attributes or inner structures are discarded (e.g., `<a href="example.com">Link</a>` becomes `Link`).
 
 3. **Option for Script Removal**:
    - By default, it strips all tags, including scripts and styles. 
