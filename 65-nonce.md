@@ -6,18 +6,18 @@ A **nonce** in WordPress is a unique token that protects URLs and forms from mal
 
 ### **Purpose of Nonces in WordPress**
 
-1. **Security**: Prevent unauthorized requests, especially when dealing with critical actions like deleting, updating, or creating resources.
-2. **Validation**: Verify the legitimacy of user actions or requests.
-3. **State Management**: Ensure that the request corresponds to a legitimate session.
+1. **❗️Security**: Prevent unauthorized requests, especially when dealing with critical actions like deleting, updating, or creating resources.
+2. **❗️Validation**: Verify the legitimacy of user actions or requests.
+3. **❗️State Management**: Ensure that the request corresponds to a legitimate session.
 
 ---
 
 ### **Core Concepts**
 
-1. **Temporary and Expiry**: WordPress nonces are time-sensitive and typically expire after 12-24 hours.
-2. **User-Specific**: Nonces are tied to a specific user and their session, making them unique for each user.
-3. **Non-Cryptographic**: While secure, WordPress nonces are not intended for encryption purposes.
-4. **Server-Generated**: Nonces are generated on the server side and validated when the client submits a request.
+1. **❗️Temporary and Expiry**: WordPress nonces are time-sensitive and typically expire after 12-24 hours.
+2. *❗️User-Specific**: Nonces are tied to a specific user and their session, making them unique for each user.
+3. **❗️Non-Cryptographic**: While secure, WordPress nonces are not intended for encryption purposes.
+4. **❗️Server-Generated**: Nonces are generated on the server side and validated when the client submits a request.
 
 ---
 
@@ -43,10 +43,10 @@ if (!wp_verify_nonce($_REQUEST['nonce'], 'delete_note')) {
 
 ### **Use Cases in Practice**
 
-1. **AJAX Requests**: Protect AJAX endpoints from unauthorized access.
-2. **Custom Forms**: Secure custom forms from CSRF attacks.
-3. **REST API**: Add security headers to requests made to custom REST API endpoints.
-4. **Delete or Update Actions**: Prevent direct URL manipulation for sensitive operations.
+1. **❗️AJAX Requests**: Protect AJAX endpoints from unauthorized access.
+2. **❗️Custom Forms**: Secure custom forms from CSRF attacks.
+3. **❗️REST API**: Add security headers to requests made to custom REST API endpoints.
+4. **❗️Delete or Update Actions**: Prevent direct URL manipulation for sensitive operations.
 
 ---
 
@@ -139,4 +139,4 @@ function delete_note($data) {
 
 ### **Conclusion**
 
-Nonces are essential for securing WordPress actions, particularly when working with AJAX or REST API requests. The provided JavaScript example shows how to integrate a nonce with the REST API to ensure only authenticated actions are processed. This ensures your application is protected against unauthorized access and CSRF attacks.
+**Nonces are essential for securing WordPress actions, particularly when working with AJAX or REST API requests. The provided JavaScript example shows how to integrate a nonce with the REST API to ensure only authenticated actions are processed. This ensures your application is protected against unauthorized access and CSRF attacks.**
