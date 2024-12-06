@@ -5,7 +5,7 @@ The `esc_url()` function in WordPress is a built-in function that ensures URLs u
 ---
 
 ## **Purpose of `esc_url()`**
-The primary purpose of `esc_url()` is to sanitize URLs to ensure they are safe and valid for use. It removes potentially malicious or unsafe content from URLs, such as JavaScript payloads or invalid characters, while preserving a URL's structure for legitimate use.
+**The primary purpose of `esc_url()` is to sanitize URLs to ensure they are safe and valid for use. It removes potentially malicious or unsafe content from URLs, such as JavaScript payloads or invalid characters, while preserving a URL's structure for legitimate use.**
 
 ---
 
@@ -13,16 +13,16 @@ The primary purpose of `esc_url()` is to sanitize URLs to ensure they are safe a
 Here are the essential concepts behind this function:
 
 ### 1. **Sanitization**
-   - It ensures the URL is properly escaped and free from potentially dangerous content.
-   - Filters out invalid characters and schemes (like `javascript:`) that could pose a security risk.
+   - ❗️It ensures the URL is properly escaped and free from potentially dangerous content.
+   - ❗️Filters out invalid characters and schemes (like `javascript:`) that could pose a security risk.
 
 ### 2. **Allowable Schemes**
    - By default, `esc_url()` allows common schemes like `http`, `https`, `mailto`, `ftp`, and more.
    - You can modify allowable schemes using the `kses_allowed_protocols` filter.
 
 ### 3. **Output Context**
-   - Designed for URLs used in HTML attributes (e.g., `href`, `src`).
-   - Not intended for raw database storage or places where URL encoding isn’t needed.
+   - ❗️Designed for URLs used in HTML attributes (e.g., `href`, `src`).
+   - ❗️Not intended for raw database storage or places where URL encoding isn’t needed.
 
 ---
 
@@ -74,11 +74,11 @@ esc_url( string $url, array $protocols = null, string $_context = 'display' )
 ## **Common Pitfalls**
 
 1. **Using `esc_url()` for Raw Database Storage**
-   - Avoid using `esc_url()` when saving URLs to a database. Use `sanitize_url()` or validation functions instead.
-   - Use `esc_url()` **only when outputting** URLs in templates.
+   - ❗️❗️❗️ Avoid using `esc_url()` when saving URLs to a database. Use `sanitize_url()` or validation functions instead.
+   - ❗️❗️❗️ Use `esc_url()` **only when outputting** URLs in templates.
 
 2. **Ignoring Protocols**
-   - When dealing with non-standard protocols (like `tel:` or `sms:`), ensure they’re included in the `$protocols` array if necessary.
+   - ❗️❗️❗️ When dealing with non-standard protocols (like `tel:` or `sms:`), ensure they’re included in the `$protocols` array if necessary.
 
 ---
 
@@ -96,4 +96,4 @@ This snippet adds a `custom` protocol to the allowable schemes.
 ---
 
 ## **Conclusion**
-The `esc_url()` function is an essential tool in WordPress development to maintain secure and valid URLs in your projects. Always sanitize URLs when outputting them to templates or HTML attributes to protect against XSS attacks and ensure data integrity. Whether you're creating a theme, plugin, or custom solution, using `esc_url()` correctly is a best practice for robust WordPress security.
+**The `esc_url()` function is an essential tool in WordPress development to maintain secure and valid URLs in your projects. Always sanitize URLs when outputting them to templates or HTML attributes to protect against XSS attacks and ensure data integrity. Whether you're creating a theme, plugin, or custom solution, using `esc_url()` correctly is a best practice for robust WordPress security.**
