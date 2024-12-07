@@ -1,26 +1,26 @@
 ## 📌 `get_search_form()` in WordPress
 
-`get_search_form()` is a built-in WordPress function used to generate and display a search form on a website. It's a simple yet powerful function that adheres to WordPress’s modular and customizable design philosophy.
+`get_search_form()` **is a built-in WordPress function used to generate and display a search form on a website.** It's a simple yet powerful function that adheres to WordPress’s modular and customizable design philosophy.
 
 ---
 
 ### **Purpose**
 
-The purpose of `get_search_form()` is to provide a standardized way to add a search form to a WordPress theme or plugin. This function ensures that the search functionality is consistent with the theme's design and integrates seamlessly with WordPress's search feature.
+**The purpose of `get_search_form()` is to provide a standardized way to add a search form to a WordPress theme or plugin. This function ensures that the search functionality is consistent with the theme's design and integrates seamlessly with WordPress's search feature.**
 
 ---
 
 ### **Core Concepts**
 
 #### **1. Default Behavior**
-- By default, `get_search_form()` calls the `searchform.php` file in the theme directory if it exists.
-- If `searchform.php` is not present, WordPress generates a default HTML structure for the search form.
+- ❗️ By default, `get_search_form()` calls the `searchform.php` file in the theme directory if it exists.
+- ❗️ If `searchform.php` is not present, WordPress generates a default HTML structure for the search form.
 
 #### **2. Action Hook**
-The function triggers the `get_search_form` filter, allowing developers to override the form’s HTML before it is rendered.
+❗️The function triggers the `get_search_form` filter, allowing developers to override the form’s HTML before it is rendered.
 
 #### **3. Parameters**
-The function doesn't take any parameters but accepts a boolean argument if called directly, e.g., `get_search_form( false )`. This prevents the form's HTML from being echoed directly, instead returning it as a string.
+**The function doesn't take any parameters but accepts a boolean argument if called directly, e.g., `get_search_form( false )`. This prevents the form's HTML from being echoed directly, instead returning it as a string.**
 
 ---
 
@@ -31,7 +31,7 @@ get_search_form( $echo );
 ```
 
 **Parameters:**
-- `$echo` *(bool)*: Whether to display or return the search form. Default is `true`.
+- ❗️ `$echo` *(bool)*: Whether to display or return the search form. Default is `true`.
 
 **Returns:**
 - If `$echo` is `true`, it outputs the search form's HTML.
@@ -75,13 +75,13 @@ Place `get_search_form()` in a widget-friendly location using `dynamic_sidebar` 
 
 ### **Use Cases in Practice**
 
-#### **1. Adding Search to a Header**
+#### **📌 1. Adding Search to a Header**
 ```php
 <?php get_search_form(); ?>
 ```
 This will display the search form in the header.php file.
 
-#### **2. Custom Search Page**
+#### **📌 2. Custom Search Page**
 For a specialized search page, create a `page-search.php` file and call the function within a custom layout.
 
 #### **3. Enhanced Search UX**
@@ -102,4 +102,4 @@ Leverage `_x()` or `__()` functions for translation-ready search forms in multil
 
 ### **Conclusion**
 
-`get_search_form()` is a versatile function that streamlines the integration of search capabilities into WordPress themes and plugins. Whether you're aiming for a simple search box or a fully customized search experience, this function provides the foundation to build upon.
+**`get_search_form()` is a versatile function that streamlines the integration of search capabilities into WordPress themes and plugins. Whether you're aiming for a simple search box or a fully customized search experience, this function provides the foundation to build upon.**
