@@ -5,7 +5,7 @@ The `get_search_query()` function in WordPress is a handy tool for retrieving th
 ---
 
 ### **Purpose**
-The primary purpose of `get_search_query()` is to fetch the search term(s) that users input into the search form. This function can be used anywhere within your theme or plugin to display or utilize the search query.
+**The primary purpose of `get_search_query()` is to fetch the search term(s) that users input into the search form. This function can be used anywhere within your theme or plugin to display or utilize the search query.**
 
 ---
 
