@@ -6,7 +6,7 @@ WordPress user roles are a fundamental component of its content management syste
 
 ### **Core Concepts of WordPress User Roles**  
 
-- **Roles**: Predefined sets of permissions assigned to a user. Examples include Administrator, Editor, Author, Contributor, and Subscriber.  
+- **Roles**: **Predefined sets of permissions assigned to a user.** Examples include Administrator, Editor, Author, Contributor, and Subscriber.  
 - **Capabilities**: Specific permissions that dictate actions users can perform, such as editing posts, managing plugins, or moderating comments.  
 
 Roles are essentially a grouping of capabilities. For example, an Author has the capability to write and publish their posts but cannot manage plugins or themes.  
@@ -28,37 +28,37 @@ Roles are essentially a grouping of capabilities. For example, an Author has the
      - Small business owners customizing their websites.  
 
 #### 2. **Editor** ✍️  
-   - **Purpose**: Content managers with control over all content but no access to settings or plugins.  
+   - **Purpose**: Content managers with control over all content but ***<u>no access to settings or plugins</u>***.  
    - **Capabilities**:  
-     - Publish, edit, and delete all posts and pages (including others’).  
-     - Moderate comments.  
+      - ❗️Publish, edit, and delete all **posts and pages** (including others’).  
+      - ❗️Moderate comments.  
    - **Use Cases in Practice**:  
      - Content managers ensuring consistency and quality across articles.  
      - Team leaders overseeing multiple contributors and authors.  
 
 #### 3. **Author** 🖋️  
-   - **Purpose**: Content creators who can publish and manage their posts only.  
+   - **Purpose**: Content creators who can ***<u>publish and manage their posts only</u>***.  
    - **Capabilities**:  
-     - Write, edit, and publish their posts.  
-     - Upload media files.  
+     - ❗️ Write, edit, and publish their posts.  
+     - ❗️ Upload media files.  
    - **Use Cases in Practice**:  
      - Individual bloggers managing their own posts.  
      - Freelance writers contributing articles without full site access.  
 
 #### 4. **Contributor** 💡  
-   - **Purpose**: Guest writers or part-time contributors who can write but not publish posts.  
+   - **Purpose**: Guest writers or part-time contributors who can ***<u>write but not publish posts</u>***.  
    - **Capabilities**:  
-     - Write and edit their posts.  
-     - Cannot upload media files or publish content.  
+     - ❗️ Write and edit their posts.  
+     - ❗️Cannot upload media files or publish content.  
    - **Use Cases in Practice**:  
      - External writers submitting drafts for review.  
      - Organizations with strict editorial workflows.  
 
 #### 5. **Subscriber** 📰  
-   - **Purpose**: Basic users with minimal access, typically used for membership sites or commenting.  
+   - **Purpose**: Basic users with minimal access, typically used for ***<u>membership sites or commenting</u>***.  
    - **Capabilities**:  
-     - Manage their profiles.  
-     - View private content (if applicable).  
+     - ❗️Manage their profiles.  
+     - ❗️View private content (if applicable).  
    - **Use Cases in Practice**:  
      - Membership websites requiring user login for exclusive content.  
      - Community forums or blogs allowing user interaction through comments.  
