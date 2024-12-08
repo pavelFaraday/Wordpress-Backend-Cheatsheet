@@ -7,19 +7,19 @@ WordPress uses a robust **Role and Capability** system to manage permissions and
 ### **1. What is `capability_type`?**
 
 #### **Definition**  
-`capability_type` specifies the base object type for which capabilities are generated in WordPress. This is commonly used in post types and taxonomies to establish access controls.
+**`capability_type` specifies the base object type for which capabilities are generated in WordPress.** This is commonly used in post types and taxonomies to establish access controls.
 
 #### **Core Concepts**  
 - **Base Object Type**: Defines a string that serves as the foundation for generating a range of capabilities. For example:
-  - For posts: `post`
-  - For pages: `page`
-  - For custom post types: A custom value like `product`.
-- **Capabilities Derived**: WordPress generates a set of capabilities using the base object. For instance:
-  - For `post`: `edit_post`, `delete_post`, `read_post`, etc.
-  - For `product`: `edit_product`, `delete_product`, `read_product`, etc.
+  - ❗️ For posts: `post`
+  - ❗️ For pages: `page`
+  - ❗️For custom post types: A custom value like `product`.
+- **Capabilities Derived**: ❗️ WordPress generates a set of capabilities using the base object. For instance:
+  - ❗️For `post`: `edit_post`, `delete_post`, `read_post`, etc.
+  - ❗️ For `product`: `edit_product`, `delete_product`, `read_product`, etc.
 
 #### **Purpose**  
-`capability_type` ensures that permissions can be tailored to specific post types or taxonomies, allowing granular control over user actions.
+***`capability_type` ensures that <u>permissions can be tailored to specific post types or taxonomies, allowing granular control over user actions.</u>***
 
 #### **Use Cases in Practice**  
 1. **Custom Post Types**  
@@ -43,7 +43,7 @@ WordPress uses a robust **Role and Capability** system to manage permissions and
 ### **2. What is `map_meta_cap`?**
 
 #### **Definition**  
-The `map_meta_cap` argument determines whether WordPress should map "meta capabilities" to "primitive capabilities." Meta capabilities are high-level, while primitive capabilities are specific.
+**The `map_meta_cap` argument determines whether WordPress should map "meta capabilities" to "primitive capabilities." Meta capabilities are high-level, while primitive capabilities are specific.**
 
 #### **Core Concepts**  
 - **Meta Capabilities**: Abstract capabilities like:
