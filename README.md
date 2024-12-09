@@ -75,5 +75,7 @@
 
 [Other WP functions](other_info.md)
 
+---
+
 📌 data serialize
 📌 get_transient()
