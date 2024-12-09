@@ -69,6 +69,7 @@
 65. [NONCE in WordPress](65-nonce.md)
 66. [wp_insert_post_data()](66-wp_insert_post_data.md)
 67. [get_option()](67-get_option.md)
+68. [save_post() action hook](68-save_post.md)
 
 
 [Other WP functions](other_info.md)
