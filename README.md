@@ -67,6 +67,7 @@
 63. [esc_attr()](63-esc_attr.md)
 64. [wp_strip_all_tags()](64-wp_strip_all_tags.md)
 65. [NONCE in WordPress](65-nonce.md)
+66. [wp_insert_post_data()](66-wp_insert_post_data.md)
 
 
 [Other WP functions](other_info.md)
