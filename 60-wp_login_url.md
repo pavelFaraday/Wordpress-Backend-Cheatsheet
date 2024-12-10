@@ -2,7 +2,7 @@
 
 #### **Purpose:**
 
-The function `wp_login_url()` is used to retrieve the URL of the WordPress login page. It is useful in situations where you want to redirect users to the login page or link to the login page dynamically.
+**The function `wp_login_url()` is used to retrieve the URL of the WordPress login page. It is useful in situations where you want to redirect users to the login page or link to the login page dynamically.**
 
 By default, the WordPress login page URL is:
 - `wp-login.php`
@@ -15,7 +15,7 @@ However, using `wp_login_url()` allows you to retrieve the URL with additional f
    The login URL is usually `wp-login.php`. You can use `wp_login_url()` to dynamically get this URL.
 
 2. **Redirection After Login:**
-   A common use case for `wp_login_url()` is to append a query parameter to specify where a user should be redirected after logging in. For example, you can use the `redirect_to` parameter to send the user back to a page they were viewing before being asked to log in.
+  **A common use case for `wp_login_url()` is to append a query parameter to specify where a user should be redirected after logging in. For example, you can use the `redirect_to` parameter to send the user back to a page they were viewing before being asked to log in.**
 
 3. **Custom Login URL:**
    If you have a custom login page, you can use the `wp_login_url()` function to generate the correct login page URL, which can be customized through plugins or by modifying the login URL.
@@ -32,7 +32,7 @@ However, using `wp_login_url()` allows you to retrieve the URL with additional f
 wp_login_url( $redirect = '' );
 ```
 
-- `$redirect` (optional) - A string URL to redirect the user after a successful login. If left empty, the user will be redirected to the default home page.
+- **`$redirect` (optional) - A string URL to redirect the user after a successful login. If left empty, the user will be redirected to the default home page.**
 
 #### **Return Value:**
 
