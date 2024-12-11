@@ -72,6 +72,7 @@
 68. [save_post() action hook](68-save_post.md)
 69. [All Security Functions](69-all-Security-functions.md)
 70. [found_posts](70-found_posts.md)
+71. [add_options_page()](71-add_options_page.md)
 
 
 [Other WP functions](other_info.md)
