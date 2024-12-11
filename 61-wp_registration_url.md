@@ -1,10 +1,10 @@
 ## 📌 `wp_registration_url()` in Wordpress
 
-The `wp_registration_url()` function in WordPress is a convenient way to retrieve the URL for the user registration page on your WordPress site. Here's a detailed breakdown of its purpose, core concepts, and practical use cases:
+**The `wp_registration_url()` function in WordPress is a convenient way to retrieve the URL for the user registration page on your WordPress site.** Here's a detailed breakdown of its purpose, core concepts, and practical use cases:
 
 ---
 
-## **Purpose**
+## **❗️Purpose**
 The `wp_registration_url()` function:
 - **Generates the Registration Page URL**: It returns the link to the WordPress registration page, typically at `yourdomain.com/wp-login.php?action=register`.
 - **Ensures Consistency**: Ensures the correct URL is generated according to the site's settings.
@@ -20,7 +20,7 @@ function wp_registration_url() {
     return wp_login_url() . '?action=register';
 }
 ```
-- The function appends the `action=register` query parameter to the login URL retrieved by `wp_login_url()`.
+- ❗️The function appends the `action=register` query parameter to the login URL retrieved by `wp_login_url()`.
 
 ### 2. **Filters**
 The function applies the `register_url` filter, allowing developers to modify the returned URL:
@@ -30,13 +30,13 @@ return apply_filters('register_url', $url);
 This makes it customizable for developers who want to redirect or modify the default registration behavior.
 
 ### 3. **Dependencies**
-- It works in conjunction with WordPress' built-in user management system.
-- Requires registration to be enabled on the site (`Settings > General > Membership`).
+- ❗️It works in conjunction with WordPress' built-in user management system.
+- ❗️ Requires registration to be enabled on the site (`Settings > General > Membership`).
 
 ### 4. **Prerequisites**
 For this function to work effectively:
-- User registration must be enabled (`Anyone can register` option checked).
-- If not enabled, accessing the registration page will display a login form instead.
+- ❗️User registration must be enabled (`Anyone can register` option checked).
+- ❗️If not enabled, accessing the registration page will display a login form instead.
 
 ---
 
