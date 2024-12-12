@@ -1,13 +1,13 @@
 ## 📌 `wp_logout_url()` in WordPress
 
-The `wp_logout_url()` function in WordPress generates a URL that allows users to log out of the website. This function is essential for implementing custom logout links, ensuring that users can securely end their sessions.
+**The `wp_logout_url()` function in WordPress generates a URL that allows users to log out of the website. This function is essential for implementing custom logout links, ensuring that users can securely end their sessions.**
 
 ---
 
 ### **Purpose**
-- **Generate Secure Logout URLs**: `wp_logout_url()` ensures the generated logout link is secure and correctly formatted.
-- **Seamless Integration**: It integrates well with WordPress's authentication system and handles redirection after logout.
-- **Custom Redirection**: You can specify a URL to redirect users to after logging out.
+- ❗️ **Generate Secure Logout URLs**: `wp_logout_url()` ensures the generated logout link is secure and correctly formatted.
+- ❗️ **Seamless Integration**: It integrates well with WordPress's authentication system and handles redirection after logout.
+-❗️**Custom Redirection**: You can specify a URL to redirect users to after logging out.
 
 ---
 
@@ -36,7 +36,7 @@ function wp_logout_url( $redirect = '' ) {
 
 ---
 
-### **How It Works**
+### **❗️How It Works❗️**
 1. **Base Logout URL**: The function starts by creating a base logout URL pointing to `wp-login.php?action=logout`.
 2. **Add Redirection**: If the `$redirect` parameter is provided, it appends a `redirect_to` query argument to the URL.
 3. **Nonce Addition**: The `wp_nonce_url()` function appends a security nonce to the URL.
@@ -45,7 +45,7 @@ function wp_logout_url( $redirect = '' ) {
 
 ### **Practical Use Cases**
 
-#### 1. **Custom Logout Link in a Navigation Menu**
+#### 1. **❗️Custom Logout Link in a Navigation Menu**
 To add a logout link to your site's navigation menu:
 ```php
 <?php 
