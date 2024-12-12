@@ -1,14 +1,14 @@
 ## 📌 `get_avatar()` in WordPress
 
-The `get_avatar()` function in WordPress is a built-in function primarily used to retrieve and display a user's avatar (profile picture) based on their email address or user ID. Below, you’ll find a comprehensive breakdown of its purpose, core concepts, and practical use cases:
+**The `get_avatar()` function in WordPress is a built-in function primarily used to retrieve and display a user's avatar (profile picture) based on their email address or user ID.**
 
 ---
 
 ### **Purpose of `get_avatar()`**
 The `get_avatar()` function is designed to:
-1. Retrieve the URL of a user’s avatar.
-2. Return the avatar as an `<img>` HTML tag with customizable attributes.
-3. Provide a consistent way to display user avatars across WordPress themes and plugins.
+1.❗️ Retrieve the URL of a user’s avatar.
+2.❗️ Return the avatar as an `<img>` HTML tag with customizable attributes.
+3.❗️Provide a consistent way to display user avatars across WordPress themes and plugins.
 
 Avatars are typically pulled from [Gravatar](https://gravatar.com), a globally recognized avatar service. If a user has a Gravatar linked to their email address, WordPress fetches their profile picture automatically.
 
@@ -17,10 +17,10 @@ Avatars are typically pulled from [Gravatar](https://gravatar.com), a globally r
 ### **Core Concepts**
 
 #### **1. Gravatar Integration**
-- Gravatar (Globally Recognized Avatar) is a service that associates email addresses with profile pictures. When you use `get_avatar()`, WordPress queries Gravatar's servers to fetch the image for a given email.
+- ❗️ Gravatar (Globally Recognized Avatar) is a service that associates email addresses with profile pictures. When you use `get_avatar()`, WordPress queries Gravatar's servers to fetch the image for a given email.
 
 #### **2. Fallback Behavior**
-- If no Gravatar exists for the provided email address, WordPress can display a default image, which can be customized in the WordPress admin settings or programmatically using filters.
+- ❗️ If no Gravatar exists for the provided email address, WordPress can display a default image, which can be customized in the WordPress admin settings or programmatically using filters.
 
 #### **3. Customization Options**
 The function allows developers to customize:
@@ -28,7 +28,7 @@ The function allows developers to customize:
 - **Default Image**: Choose a fallback image for users without a Gravatar.
 - **CSS Class**: Add classes for styling the avatar.
 
-#### **4. Hook and Filters**
+#### **4.❗️ Hook and Filters**
 WordPress provides hooks like `get_avatar` and `get_avatar_data`, allowing developers to modify the avatar output or provide custom behavior.
 
 ---
@@ -52,7 +52,7 @@ get_avatar( mixed $id_or_email, int $size = 96, string $default = '', string $al
    - Optional additional arguments for customization, such as class or force display.
 
 #### **Return Value**
-- Returns the `<img>` HTML tag for the avatar or an empty string if no avatar is available.
+- **Returns the `<img>` HTML tag for the avatar or an empty string if no avatar is available.**
 
 ---
 
@@ -135,9 +135,9 @@ add_filter( 'get_avatar_data', 'customize_avatar_data', 10, 2 );
 ---
 
 ### **Key Points to Remember**
-1. **Default Sizes**: WordPress defaults to 96px avatars unless specified.
-2. **Accessibility**: Always include meaningful `alt` attributes.
-3. **Cache Consideration**: Gravatar images are cached for performance.
-4. **Fallback Plan**: Always define a fallback avatar to handle users without Gravatars.
+1.❗️ **Default Sizes**: WordPress defaults to 96px avatars unless specified.
+2.❗️ **Accessibility**: Always include meaningful `alt` attributes.
+3.❗️ **Cache Consideration**: Gravatar images are cached for performance.
+4.❗️ **Fallback Plan**: Always define a fallback avatar to handle users without Gravatars.
 
 This versatility makes `get_avatar()` a vital tool for any WordPress developer aiming to enhance user profiles and comment displays seamlessly.
