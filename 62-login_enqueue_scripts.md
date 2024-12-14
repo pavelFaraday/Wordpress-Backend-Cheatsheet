@@ -116,4 +116,4 @@ add_action( 'login_enqueue_scripts', 'custom_login_styles_and_scripts' );
 
 ---
 
-By using `login_enqueue_scripts()`, developers can craft a unique and functional login experience, enhancing both usability and branding for WordPress projects.
+By using `login_enqueue_scripts()`, developers can craft a unique and functional login experience, enhancing both usability and branding for WordPress project.
