@@ -13,7 +13,7 @@ This makes it ideal for tasks that:
 
 ---
 
-### **Core Concepts of `wp_loaded`**
+### **Core Concepts `wp_loaded`**
 1. **Execution Timing**:
    - It fires after all WordPress core files, plugins, and theme files are loaded.
    - It is invoked right before WordPress executes its query and sends headers.
