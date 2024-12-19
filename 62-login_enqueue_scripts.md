@@ -1,27 +1,27 @@
 ## 📌 `login_enqueue_scripts()` in WordPress
 
-The `login_enqueue_scripts()` function in WordPress is a specialized hook that allows developers to enqueue scripts and styles specifically for the WordPress login page. This function plays a crucial role in customizing the look, feel, or functionality of the login screen, offering opportunities to tailor the user experience.
+**The `login_enqueue_scripts()` function in WordPress is a specialized hook that allows developers to enqueue scripts and styles specifically for the WordPress login page. This function plays a crucial role in customizing the look, feel, or functionality of the login screen, offering opportunities to tailor the user experience.**
 
 ---
 
 ### **Purpose**
 The primary purpose of the `login_enqueue_scripts()` function is:
-1. **Enhance Login Page Design**: Customize the login page with custom CSS or JavaScript.
-2. **Add Functionality**: Add interactive features or tools, such as reCAPTCHA or custom error messages.
-3. **Branding**: Replace default WordPress branding (like the logo) with personalized branding for clients or custom projects.
+1. **❗️Enhance Login Page Design**: Customize the login page with custom CSS or JavaScript.
+2. **❗️Add Functionality**: Add interactive features or tools, such as reCAPTCHA or custom error messages.
+3. **❗️Branding**: Replace default WordPress branding (like the logo) with personalized branding for clients or custom projects.
 
 ---
 
 ### **Core Concepts**
 1. **Action Hook**:  
-   - It is an **action hook** that triggers when the login page is loaded. 
-   - Developers use it to add or modify scripts and styles specifically for the login page.
+   - ❗️It is an **action hook** that triggers when the login page is loaded. 
+   - ❗️Developers use it to add or modify scripts and styles specifically for the login page.
 
 2. **Scope of Application**:  
-   - It affects only the login page (`wp-login.php`) and does not interfere with other parts of the WordPress admin or frontend.
+   - ❗️It affects only the login page (`wp-login.php`) and does not interfere with other parts of the WordPress admin or frontend.
 
 3. **Dependency on `wp_enqueue_script()` and `wp_enqueue_style()`**:  
-   - The function relies on the standard WordPress methods `wp_enqueue_script()` and `wp_enqueue_style()` to enqueue assets.
+   - ❗️The function relies on the standard WordPress methods `wp_enqueue_script()` and `wp_enqueue_style()` to enqueue assets.
 
 4. **Follows WordPress Best Practices**:  
    - Adhering to the enqueue system ensures proper loading, prevents script conflicts, and respects dependencies.
@@ -43,14 +43,14 @@ add_action( 'login_enqueue_scripts', 'custom_login_styles_and_scripts' );
 ```
 
 #### **Key Notes in the Code**:
-1. **Hook**: `add_action('login_enqueue_scripts', 'your_function_name');` ensures the function is triggered at the correct time.
-2. **File Paths**: Use `get_template_directory_uri()` or `plugins_url()` to correctly reference your assets.
+1. **❗️ Hook**: `add_action('login_enqueue_scripts', 'your_function_name');` ensures the function is triggered at the correct time.
+2. **❗️ File Paths**: Use `get_template_directory_uri()` or `plugins_url()` to correctly reference your assets.
 3. **Dependencies**: You can pass dependencies (e.g., `['jquery']`) and set whether the script loads in the footer (`true`).
 
 ---
 
 ### **Practical Use Cases**
-#### 1. **Custom Login Page Branding**:
+#### 1. **❗️Custom Login Page Branding**:
    - Replace the default WordPress logo, add a background image, or change the color scheme to match your client's branding.
    ```php
    function custom_login_branding() {
@@ -59,7 +59,7 @@ add_action( 'login_enqueue_scripts', 'custom_login_styles_and_scripts' );
    add_action( 'login_enqueue_scripts', 'custom_login_branding' );
    ```
 
-#### 2. **Adding a CAPTCHA**:
+#### 2. **❗️Adding a CAPTCHA**:
    - Enqueue a CAPTCHA library or integration script (e.g., Google reCAPTCHA).
    ```php
    function add_recaptcha_to_login() {
@@ -68,7 +68,7 @@ add_action( 'login_enqueue_scripts', 'custom_login_styles_and_scripts' );
    add_action( 'login_enqueue_scripts', 'add_recaptcha_to_login' );
    ```
 
-#### 3. **Interactive Login Features**:
+#### 3. **❗️ Interactive Login Features**:
    - Add custom validation, animations, or tooltips with JavaScript.
    ```php
    function custom_login_js() {
@@ -77,7 +77,7 @@ add_action( 'login_enqueue_scripts', 'custom_login_styles_and_scripts' );
    add_action( 'login_enqueue_scripts', 'custom_login_js' );
    ```
 
-#### 4. **Localization for the Login Screen**:
+#### 4. **❗️Localization for the Login Screen**:
    - Include localized strings for custom scripts on the login page.
    ```php
    function localize_login_script() {
