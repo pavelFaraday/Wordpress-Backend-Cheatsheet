@@ -1,31 +1,31 @@
 ## 📌 `wp_loaded` in WordPress
 
-The `wp_loaded` action in WordPress is a powerful hook that fires once all core files have been loaded, but before the headers are sent and any query is executed. Here's a detailed breakdown of its purpose, core concepts, and practical use cases:
+**The `wp_loaded` action in WordPress is a powerful hook that fires once all core files have been loaded, but before the headers are sent and any query is executed.** Here's a detailed breakdown of its purpose, core concepts, and practical use cases:
 
 ---
 
 ### **Purpose of `wp_loaded`**
-The `wp_loaded` hook is intended to signal that WordPress is fully loaded and ready to begin processing requests, but no output (like headers or content) has been sent yet. 
+**The `wp_loaded` hook is intended to signal that WordPress is fully loaded and ready to begin processing requests, but no output (like headers or content) has been sent yet.** 
 
 This makes it ideal for tasks that:
-1. Need to rely on the availability of core WordPress functions, plugins, and themes.
-2. Do not interfere with the actual page rendering or request processing.
+1.❗️ Need to rely on the availability of core WordPress functions, plugins, and themes.
+2.❗️ Do not interfere with the actual page rendering or request processing.
 
 ---
 
 ### **Core Concepts `wp_loaded`**
 1. **Execution Timing**:
-   - It fires after all WordPress core files, plugins, and theme files are loaded.
-   - It is invoked right before WordPress executes its query and sends headers.
+   - ❗️ It fires after all WordPress core files, plugins, and theme files are loaded.
+   - ❗️ It is invoked right before WordPress executes its query and sends headers.
 
 2. **Position in the Load Process**:
-   - It occurs later than `muplugins_loaded` (used for must-use plugins) and `plugins_loaded` (for general plugins).
-   - It is earlier than `init` (where many plugins add their functionality).
+   - ❗️It occurs later than `muplugins_loaded` (used for must-use plugins) and `plugins_loaded` (for general plugins).
+   - ❗️It is earlier than `init` (where many plugins add their functionality).
 
 3. **Difference from Similar Hooks**:
-   - **`plugins_loaded`**: Fires immediately after all plugins are loaded but before the current theme functions file is included.
-   - **`init`**: Fired after WordPress has initialized but before any headers are sent.
-   - **`wp_loaded`**: Signifies that everything needed to execute WordPress is loaded but no processing has begun.
+   - **`plugins_loaded`**: ❗️ Fires immediately after all plugins are loaded but before the current theme functions file is included.
+   - **`init`**:❗️ Fired after WordPress has initialized but before any headers are sent.
+   - **`wp_loaded`**: **❗️Signifies that everything needed to execute WordPress is loaded but no processing has begun❗️.**
 
 4. **Global Availability**:
    - At this stage, all global variables like `$wpdb`, `$wp_query`, and `$wp_rewrite` are available for use.
@@ -133,10 +133,10 @@ function initialize_custom_features() {
 
 ### **Key Considerations**
 1. **Avoid Heavy Processing**:
-   Since `wp_loaded` runs for every request, keep the logic lightweight to avoid performance bottlenecks.
+   ❗️ Since `wp_loaded` runs for every request, keep the logic lightweight to avoid performance bottlenecks.
 
 2. **Not for Query Modifications**:
-   If you need to modify the WordPress query, use `pre_get_posts` or similar hooks.
+   ❗️ If you need to modify the WordPress query, use `pre_get_posts` or similar hooks.
 
 3. **Compatibility**:
    Ensure your code within this hook doesn’t conflict with themes or plugins that rely on similar logic.
@@ -145,5 +145,5 @@ function initialize_custom_features() {
 
 ### **Summary**
 - `wp_loaded` is a late-stage hook perfect for tasks that require all WordPress functionality to be ready.
-- It’s best suited for initialization tasks, conditional logic, and plugin or theme-specific setup that doesn't affect query execution or page rendering.
+- **It’s best suited for initialization tasks, conditional logic, and plugin or theme-specific setup that doesn't affect query execution or page rendering.**
 - By leveraging `wp_loaded`, you ensure your custom logic integrates smoothly with the core, themes, and plugins without disrupting the request lifecycle.
