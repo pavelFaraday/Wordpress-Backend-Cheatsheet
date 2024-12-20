@@ -75,7 +75,6 @@
 71. [add_options_page()](71-add_options_page.md)
 
 [Other WP functions](other_info.md)
-
 ---
 
 📌 data serialize
