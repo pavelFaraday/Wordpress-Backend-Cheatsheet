@@ -105,3 +105,5 @@ add_action( 'wp_head', 'log_search_queries' );
 ---
 
 By leveraging `get_search_query()` effectively, you can create a more intuitive and user-friendly search experience while maintaining secure and efficient coding practices.
+
+---
