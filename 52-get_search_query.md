@@ -24,7 +24,6 @@ The `get_search_query()` function in WordPress is a handy tool for retrieving th
 
 4. **Escaping**:
    - The function escapes the returned value for safe usage in HTML if `$escaped` is `true`. When using the query in raw format (e.g., inside attributes or custom logic), pass `false` to avoid double-escaping.
-
 ---
 
 ### **Practical Use Cases**
