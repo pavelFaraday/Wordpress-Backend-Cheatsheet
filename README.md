@@ -75,6 +75,7 @@
 71. [add_options_page()](71-add_options_page.md)
 72. [load_plugin_textdomain()](72-load_plugin_textdomain.md)
 73. [Functions for Custom Settings creation in WP](73-custom-setting-functions.md)
+74. [enqueue_block_styles_assets()](74-enqueue_block_styles_assets.md)
 
 [Other WP functions](other_info.md)
 
