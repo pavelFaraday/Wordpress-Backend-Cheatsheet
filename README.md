@@ -78,6 +78,7 @@
 74. [enqueue_block_styles_assets()](74-enqueue_block_styles_assets.md)
 75. [wp.data.subscribe()](75-wp_data_subscribe.md)
 76. [wp.data.select()](76-wp-data-select.md)
+77. [wp.data.dispatch()](77-wp_data_dispatch.md)
 
 [Other WP functions](other_info.md)
 
