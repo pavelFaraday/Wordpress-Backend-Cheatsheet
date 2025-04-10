@@ -105,5 +105,3 @@ wp.data.dispatch('core/block-editor').updateBlockAttributes('block-id', { conten
 ✅ **Supports custom stores** for plugin and theme development.  
 ✅ Plays a crucial role in **WordPress' React-based Gutenberg editor**.
 
-Would you like an example specific to your WordPress development needs? 🚀
-
