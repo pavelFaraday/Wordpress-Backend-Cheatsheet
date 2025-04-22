@@ -8,3 +8,4 @@
 4. [Gutenberg Block Development with React: Understanding `register_block_type()`](4-register_block_type.md)
 5. [Gutenberg Block Development with React: Deep Dive into `useBlockProps`](5-useBlockProps.md)
 6. [Gutenberg Block Development with React: `useInnerBlocksProps` & `InnerBlocks`](6-useInnerBlocksProps-&-InnerBlocks.md)
+7. [Gutenberg Block Development with React: `Richtext`](7-Richtext.md)
