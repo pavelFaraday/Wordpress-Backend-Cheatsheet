@@ -10,3 +10,4 @@
 6. [Gutenberg Block Development with React: `useInnerBlocksProps` & `InnerBlocks`](6-useInnerBlocksProps-&-InnerBlocks.md)
 7. [Gutenberg Block Development with React: `Richtext`](7-Richtext.md)
 8. [Gutenberg Block Development with React: `InspectorControls`](8-InspectorControls.md)
+9. [Gutenberg Block Development with React: `PanelBody`](9-PanelBody.md)
