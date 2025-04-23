@@ -13,6 +13,7 @@
 9. [Gutenberg Block Development with React: `PanelBody`](9-PanelBody.md)
 10. [Gutenberg Block Development with React: `SelectControl`](10-SelectControl.md)
 11. [Gutenberg Block Development with React: `useSelect`](11-useSelect.md)
+12. [Gutenberg Block Development with React: `registerBlockType`](12-registerBlockType.md)
 
 
 ---
@@ -26,3 +27,4 @@
 - `ColorPalette` +
 - `RangeControl` +
 - useDispatch & Memoize -
+- `transforms` in registerBlockType +
