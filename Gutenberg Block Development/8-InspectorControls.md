@@ -71,7 +71,7 @@ const Edit = (props) => {
 
 You can use many UI components from `@wordpress/components`, such as:
 
-- `PanelBody` +
+- `PanelBody` + ✅
 - `PanelRow` −
 - `TextControl` −
 - `ToggleControl` +
