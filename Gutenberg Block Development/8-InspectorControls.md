@@ -71,13 +71,13 @@ const Edit = (props) => {
 
 You can use many UI components from `@wordpress/components`, such as:
 
-- `PanelBody` + ✅
-- `PanelRow` −
-- `TextControl` −
-- `ToggleControl` +
-- `SelectControl` +
-- `ColorPalette` +
-- `RangeControl` +
+- `PanelBody`  
+- `PanelRow` 
+- `TextControl` 
+- `ToggleControl` 
+- `SelectControl`  
+- `ColorPalette` 
+- `RangeControl` 
 
 These components map directly to form-like inputs for your block’s settings.
 
