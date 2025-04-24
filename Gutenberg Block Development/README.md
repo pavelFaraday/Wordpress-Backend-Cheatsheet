@@ -15,6 +15,7 @@
 11. [Gutenberg Block Development with React: `useSelect`](11-useSelect.md)
 12. [Gutenberg Block Development with React: `registerBlockType`](12-registerBlockType.md)
 13. [Gutenberg Block Development with React: `BlockControls`](13-BlockControls.md)
+14. [Gutenberg Block Development with React: `JustifyContentControl`](14-JustifyContentControl.md)
 
 
 ---
@@ -32,4 +33,5 @@
 
 - AlignmentToolbar (used inside BlockControls)
 - useState
+
 ---
