@@ -16,6 +16,7 @@
 12. [Gutenberg Block Development with React: `registerBlockType`](12-registerBlockType.md)
 13. [Gutenberg Block Development with React: `BlockControls`](13-BlockControls.md)
 14. [Gutenberg Block Development with React: `JustifyContentControl`](14-JustifyContentControl.md)
+15. [Gutenberg Block Development with React: `ToggleControl`](15-ToggleControl.md)
 
 
 ---
