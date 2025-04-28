@@ -19,6 +19,7 @@
 15. [Gutenberg Block Development with React: `ToggleControl`](15-ToggleControl.md)
 16. [Gutenberg Block Development with React: `MediaUploadCheck`](16-MediaUploadCheck.md)
 17. [Gutenberg Block Development with React: `MediaUpload`](17-MediaUpload.md)
+18. [Gutenberg Block Development with React: `MediaPlaceholder`](18-MediaPlaceholder.md)
 
 
 ---
@@ -36,6 +37,5 @@
 
 - AlignmentToolbar (used inside BlockControls)
 - useState
-- MediaPlaceholder
 
 ---
