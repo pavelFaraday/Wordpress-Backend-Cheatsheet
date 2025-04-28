@@ -17,15 +17,17 @@
 13. [Gutenberg Block Development with React: `BlockControls`](13-BlockControls.md)
 14. [Gutenberg Block Development with React: `JustifyContentControl`](14-JustifyContentControl.md)
 15. [Gutenberg Block Development with React: `ToggleControl`](15-ToggleControl.md)
+16. [Gutenberg Block Development with React: `MediaUploadCheck`](16-MediaUploadCheck.md)
+17. [Gutenberg Block Development with React: `MediaUpload`](17-MediaUpload.md)
 
 
 ---
 
 - `SelectControl` + ✅
 - `PanelBody` + ✅
+- `ToggleControl` + ✅
 - `ColorPalette` +
 - `RangeControl` +
-- `ToggleControl` +
 - `PanelRow` −
 - `TextControl` −
 
