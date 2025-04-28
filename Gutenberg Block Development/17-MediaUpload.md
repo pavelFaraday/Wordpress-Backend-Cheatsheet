@@ -16,9 +16,8 @@ In this article, we'll **deep dive** into `MediaUpload`:
 At its core, `MediaUpload` is a **React component** provided by WordPress' `@wordpress/block-editor` package. 
 
 Its **purpose** is simple but powerful:  
-👉 **Allow users to select or upload media (images, videos, audio, files) inside a custom Gutenberg block**.
-
-Instead of manually building uploaders or handling the WordPress media modal yourself, `MediaUpload` wraps all that logic, providing a consistent and native WordPress experience.
+> 👉 **Allow users to select or upload media (images, videos, audio, files) inside a custom Gutenberg block** ❗️❗️❗️
+**Instead of manually building uploaders or handling the WordPress media modal yourself, `MediaUpload` wraps all that logic, providing a consistent and native WordPress experience.**
 
 **Without `MediaUpload`,** you'd have to build:
 - File input handlers,
@@ -37,8 +36,7 @@ Here’s a breakdown of the key ideas you need to understand:
 
 ### 1. `onSelect`
 This is the **callback function** triggered once a user selects or uploads a media item.
-
-You use it to **save the selected media’s details** (like URL, ID, alt text) to the block's attributes.
+> You use it to **save the selected media’s details** (like URL, ID, alt text) to the block's attributes ❗️
 
 ```javascript
 onSelect={(media) => setAttributes({ imageUrl: media.url })}
@@ -47,7 +45,7 @@ onSelect={(media) => setAttributes({ imageUrl: media.url })}
 ---
 
 ### 2. `allowedTypes`
-Specifies **what kind of media** the user can upload or select.
+> Specifies **what kind of media** the user can upload or select ❗️
 
 Examples:
 - `['image']` → only images
@@ -58,13 +56,12 @@ Examples:
 allowedTypes={['image']}
 ```
 
-If you **don’t set this**, all media types are allowed by default.
+If you **don’t set this**, all media types are allowed by default ❗️
 
 ---
 
 ### 3. `value`
-The **ID of the currently selected media**.
-
+> The **ID of the currently selected media** ❗️
 If you pass an ID here, `MediaUpload` will pre-load that item (helpful for showing "Replace" or "Edit" options).
 
 ```javascript
@@ -74,10 +71,10 @@ value={imageId}
 ---
 
 ### 4. `render`
-This is where **you control the button or UI** that opens the media modal.
+> This is where **you control the button or UI** that opens the media modal ❗️
 
 `render` is a function that gets a single argument with useful functions like:
-- `open()` → opens the media library modal
+- `open()` → opens the media library modal ❗️
 
 Example:
 
@@ -87,7 +84,7 @@ render={({ open }) => (
 )}
 ```
 
-The **render prop** pattern gives you **full flexibility** to style your uploader button however you want.
+The **render prop** pattern gives you **full flexibility** to <u>style</u> your uploader button however you want.
 
 ---
 
@@ -185,8 +182,8 @@ Paired with `MediaUpload` + `multiple: true`, you can select multiple images at 
 
 - **Always validate media type**: Check the file type if needed after selection, even if you set `allowedTypes`.
 - **Handle media errors gracefully**: Some users might upload unsupported or corrupted files.
-- **Use `ID` rather than URL**: Storing the media ID is safer for WordPress because it ensures compatibility if the site’s URL changes later.
-- **Use `MediaUploadCheck`**: Wrap your `MediaUpload` with `MediaUploadCheck` if you need to restrict uploads to users with permission to upload files.
+- **Use `ID` rather than URL**: Storing the media ID is safer for WordPress because it ensures compatibility if the site’s URL changes later ❗️
+- **Use `MediaUploadCheck`**: Wrap your `MediaUpload` with `MediaUploadCheck` if you need to restrict uploads to users with permission to upload files ❗️
 
 Example:
 

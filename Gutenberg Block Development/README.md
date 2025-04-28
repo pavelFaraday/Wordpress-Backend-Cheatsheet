@@ -36,5 +36,6 @@
 
 - AlignmentToolbar (used inside BlockControls)
 - useState
+- MediaPlaceholder
 
 ---
