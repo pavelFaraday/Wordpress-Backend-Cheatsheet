@@ -21,7 +21,10 @@
 17. [Gutenberg Block Development with React: `MediaUpload`](17-MediaUpload.md)
 18. [Gutenberg Block Development with React: `MediaPlaceholder`](18-MediaPlaceholder.md)
 19. [Gutenberg Block Development with React: `useState`](19-useState.md)
-
+20. [Gutenberg Block Development with React: `ToolbarGroup`](20-ToolbarGroup.md)
+21. [Gutenberg Block Development with React: `ToolbarButton`](21-ToolbarButton.md)
+22. [Gutenberg Block Development with React: `Icon`](22-Icon.md)
+23. [Gutenberg Block Development with React: `AlignmentToolbar`](23-AlignmentToolbar.md)
 
 ---
 
@@ -36,13 +39,5 @@
 
 - useDispatch & Memoize -
 - `transforms` in registerBlockType +
-
-- AlignmentToolbar (used inside BlockControls)
-
-- ToolbarGroup
-- ToolbarButton
-- Icon
-
-
 
 ---
