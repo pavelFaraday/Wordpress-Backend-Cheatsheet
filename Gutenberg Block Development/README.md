@@ -31,11 +31,17 @@
 - `RangeControl` +
 - `PanelRow` −
 - `TextControl` −
+- useState +
 
 - useDispatch & Memoize -
 - `transforms` in registerBlockType +
 
 - AlignmentToolbar (used inside BlockControls)
-- useState
+
+- ToolbarGroup
+- ToolbarButton
+- Icon
+
+
 
 ---
