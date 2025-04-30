@@ -27,18 +27,10 @@
 23. [Gutenberg Block Development with React: `AlignmentToolbar`](23-AlignmentToolbar.md)
 24. [Gutenberg Block Development with React: `ColorPalette`](24-ColorPalette.md)
 25. [Gutenberg Block Development with React: `RangeControl`](25-RangeControl.md)
+26. [Gutenberg Block Development with React: `PanelRow`](26-PanelRow.md)
+27. [Gutenberg Block Development with React: `TextConrol`](27-TextConrol.md)
 
 ---
-
-- `SelectControl` + ✅
-- `PanelBody` + ✅
-- `ToggleControl` + ✅
-- `ColorPalette` + ✅
-- `RangeControl` + ✅
-- `PanelRow` −
-- `TextControl` −
-
-
 
 
 
@@ -47,4 +39,3 @@
 - useSetting from '@wordpress/block-editor'
 useSetting() is a hook that fetches editor settings like color presets.
 
----
