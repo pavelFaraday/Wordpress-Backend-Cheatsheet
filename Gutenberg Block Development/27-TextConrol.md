@@ -8,13 +8,14 @@ In this article, we’ll **dive deep into `TextControl`**—what it is, how it w
 
 ## 🔍 What is `TextControl`?
 
-`TextControl` is a **React component** provided by the `@wordpress/components` package. It renders a simple, accessible **input field** (text box) that you can easily wire up to your block attributes or custom logic.
+`TextControl` is a **React component** provided by the `@wordpress/components` package. 
+>It renders a simple, accessible **input field** (text box) that you can easily wire up to your block attributes or custom logic ❗️❗️❗️
 
 It’s designed to be:
 - Declarative
 - Accessible
-- Controlled via props
-- Easy to bind with `useState()` or Gutenberg’s block attributes
+- Controlled via props ❗️
+- Easy to bind with `useState()` or Gutenberg’s block attributes ❗️
 
 **Importing:**
 ```js
