@@ -26,6 +26,7 @@
 22. [Gutenberg Block Development with React: `Icon`](22-Icon.md)
 23. [Gutenberg Block Development with React: `AlignmentToolbar`](23-AlignmentToolbar.md)
 24. [Gutenberg Block Development with React: `ColorPalette`](24-ColorPalette.md)
+25. [Gutenberg Block Development with React: `RangeControl`](25-RangeControl.md)
 
 ---
 
@@ -33,7 +34,7 @@
 - `PanelBody` + ✅
 - `ToggleControl` + ✅
 - `ColorPalette` + ✅
-- `RangeControl` +
+- `RangeControl` + ✅
 - `PanelRow` −
 - `TextControl` −
 
