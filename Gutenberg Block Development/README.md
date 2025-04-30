@@ -25,19 +25,25 @@
 21. [Gutenberg Block Development with React: `ToolbarButton`](21-ToolbarButton.md)
 22. [Gutenberg Block Development with React: `Icon`](22-Icon.md)
 23. [Gutenberg Block Development with React: `AlignmentToolbar`](23-AlignmentToolbar.md)
+24. [Gutenberg Block Development with React: `ColorPalette`](24-ColorPalette.md)
 
 ---
 
 - `SelectControl` + ✅
 - `PanelBody` + ✅
 - `ToggleControl` + ✅
-- `ColorPalette` +
+- `ColorPalette` + ✅
 - `RangeControl` +
 - `PanelRow` −
 - `TextControl` −
 
 
+
+
+
 - useDispatch & Memoize -
 - `transforms` in registerBlockType +
+- useSetting from '@wordpress/block-editor'
+useSetting() is a hook that fetches editor settings like color presets.
 
 ---
