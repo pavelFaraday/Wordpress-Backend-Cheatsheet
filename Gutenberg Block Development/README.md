@@ -31,11 +31,4 @@
 27. [Gutenberg Block Development with React: `TextConrol`](27-TextConrol.md)
 28. [Gutenberg Block Development with React: `useSetting`](28-useSetting.md)
 29. [Gutenberg Block Development with React: `transforms`](29-transforms.md)
-
----
-
-
-
-- useDispatch & Memoize -
-- `transforms` in registerBlockType +
-
+30. [Gutenberg Block Development with React: `memoize`](30-memoize.md)
