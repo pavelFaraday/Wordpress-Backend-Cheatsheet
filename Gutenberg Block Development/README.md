@@ -30,6 +30,7 @@
 26. [Gutenberg Block Development with React: `PanelRow`](26-PanelRow.md)
 27. [Gutenberg Block Development with React: `TextConrol`](27-TextConrol.md)
 28. [Gutenberg Block Development with React: `useSetting`](28-useSetting.md)
+29. [Gutenberg Block Development with React: `transforms`](29-transforms.md)
 
 ---
 
