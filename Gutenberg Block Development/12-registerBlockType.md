@@ -4,6 +4,8 @@ The WordPress Gutenberg editor has revolutionized content creation—and at its 
 
 Let’s break it all down in this deep dive. 🔍
 
+![registerBlockType](<JS Libraries/9_registerBlockType.png>)
+
 ---
 
 ## 🔧 What is `registerBlockType`?
