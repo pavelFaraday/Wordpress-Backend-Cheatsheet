@@ -13,6 +13,26 @@ In this article, we’ll explore:
 
 ---
 
+`useBlockProps` adds default block wrapper props, like styling and block ID, from WordPress. It’s like saying, “Hey WordPress, this is a block!”
+
+In simple terms:
+👉 useBlockProps() is a WordPress helper function that gives your block the necessary HTML properties (like className, style, data-*) so it looks and behaves correctly inside the block editor.
+
+🧩 Why do you need it? Think of WordPress blocks like Lego pieces. Each block needs:
+
+- A specific shape (CSS class)
+- An identity (HTML attributes)
+- Editor styling hooks
+
+Without those, your block:
+- May not display styles properly
+- Might not be selectable or draggable
+- Won’t work well with other blocks
+
+So useBlockProps() gives your block the standard "Lego connectors" to fit nicely with the others in the editor.
+
+---
+
 ## 🧠 What is `useBlockProps`?
 
 The `useBlockProps` **hook** is part of the WordPress Block Editor’s React-based development system (also known as Gutenberg). It provides the necessary props (HTML attributes and event handlers) to integrate your custom block with the block editor's UI and behavior.
@@ -28,6 +48,40 @@ It ensures your block gets:
 - Keyboard accessibility ❗️
 - Proper DOM structure for selection, editing, and toolbar integration ❗️
 - Styles handled automatically by the editor ❗️
+
+---
+
+#### In your code:
+
+```js
+<div {...useBlockProps()}>
+  {/* your block content */}
+</div>
+```
+
+**This means:**
+- "Give me the default props for a block"
+- "Apply them to this using the spread operator (...)"
+
+So your block becomes:
+✅ Selectable
+✅ Styled properly
+✅ Compatible with other blocks
+
+#### You can add your own class or styles like this 👇
+```php
+const blockProps = useBlockProps({
+  className: 'my-slider-block',
+  style: { backgroundColor: 'lightgray' }
+});
+```
+
+Then use 👇
+```js
+<div {...blockProps}>...</div>
+```
+
+
 
 ---
 
