@@ -34,57 +34,47 @@
 30. [`memoize`](30-memoize.md)
 31. [`useDispatch`](31-useDispatch.md)
 32. [Static Block vs Dynamic Block](32-static-VS-dynamic.md)
+33. [`render-callback` method](33-render-callback.md)
 
 ---
 
 ### 10 best interview questions tailored for the intermediate WordPress Gutenberg Block Developer role
 
-
-
 1. 🔧 **How do you set up a modern Gutenberg block using `@wordpress/scripts`?**
 
 > _Assesses understanding of the modern build setup (e.g., WP-scripts, webpack, Babel) and the ability to scaffold a block properly._
-
 
 2. ⚛️ **Can you explain how React is used within Gutenberg blocks? How is it different from working with React in a standalone app?**
 
 > _Evaluates experience with React in the context of WordPress and understanding of how Gutenberg uses it internally._
 
-
 3. 🧩 **Walk me through creating a dynamic block vs a static block in Gutenberg. When would you use each?**
 
 > _Tests knowledge of server-side vs client-side rendering, and when to use PHP (e.g., with `render_callback`)._
-
 
 4. 🧠 **What are InnerBlocks, and how have you used them in your custom block development?**
 
 > _Probes experience with nested block structures and building flexible layouts._
 
-
 5. 🛠️ **How do you handle block attributes in Gutenberg? Can you give an example of using multiple attributes with different data types?**
 
 > _Checks understanding of attribute definition, handling changes via `setAttributes`, and working with different data types._
-
 
 6. 🎨 **How would you make a custom Gutenberg block editable via both the editor (InspectorControls, RichText, etc.) and a live preview?**
 
 > _Tests ability to integrate controls in both the editor UI and visual block rendering._
 
-
 7. 📦 **What is the purpose of the `registerBlockType()` function? What are its most important properties?**
 
 > _Checks core foundational knowledge of block registration._
-
 
 8. 🧪 **How do you ensure your custom Gutenberg blocks are backward compatible and follow best practices for WordPress coding standards?**
 
 > _Evaluates the candidate’s awareness of versioning, deprecated block APIs, and coding best practices._
 
-
 9. 🌐 **Have you worked with reusable components from the `@wordpress/components` package? What are some commonly used components?**
 
 > _Assesses practical knowledge of the Gutenberg UI library and how to leverage reusable components._
-
 
 10. 🚀 **Can you describe a complex Gutenberg block you built? What challenges did you face and how did you solve them?**
 
