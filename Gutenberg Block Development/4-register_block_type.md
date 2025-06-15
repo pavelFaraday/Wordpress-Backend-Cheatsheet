@@ -3,6 +3,7 @@
 If you’re diving into **WordPress Gutenberg block development** using **React**, one of the core functions you'll encounter is `register_block_type()`. Whether you're building custom blocks for clients or crafting your own Gutenberg-powered plugin, this function is essential.
 
 In this article, we’ll break down:
+
 - What `register_block_type()` is,
 - Why it’s crucial,
 - How it works under the hood,
@@ -15,12 +16,16 @@ In this article, we’ll break down:
 
 `register_block_type()` is a **PHP function** that **registers a block on the server-side in WordPress**. It essentially links your JavaScript block code with the WordPress block editor (Gutenberg) so the editor knows how to render, save, and configure your block.
 
+![register_block_type example](<JS Libraries/registerBlockType.png>)
+
 ### 📘 Syntax:
+
 ```php
 register_block_type( string $block_type, array|string $args = array() )
 ```
 
 ### ✅ Example:
+
 ```php
 register_block_type( 'myplugin/awesome-block', array(
     'editor_script' => 'my-block-editor-script',
@@ -47,16 +52,20 @@ Although you can register blocks using JavaScript with `registerBlockType()`, th
 Let’s unpack the most important parameters in the `$args` array:
 
 ### 1. `editor_script`
+
 Registers the JavaScript file that initializes your block in the editor.
+
 ```php
 'editor_script' => 'my-block-editor-js'
 ```
 
 ### 2. `editor_style` and `style`
+
 - `editor_style`: CSS for the block editor.
 - `style`: CSS that loads on both frontend and editor.
 
 ### 3. `render_callback`
+
 This is **crucial for dynamic blocks**. It points to a PHP function that renders the block content.
 
 ```php
@@ -64,9 +73,11 @@ This is **crucial for dynamic blocks**. It points to a PHP function that renders
 ```
 
 ### 4. `attributes`
+
 Defines block attributes like text, numbers, arrays, etc.
 
 ### 5. `api_version`
+
 Specifies the Block API version. Use `2` for modern block features like React hooks.
 
 ---
@@ -76,7 +87,9 @@ Specifies the Block API version. Use `2` for modern block features like React ho
 Let’s go through an example setup.
 
 ### ✅ Step 1: Enqueue Assets
+
 In your plugin’s main file:
+
 ```php
 function myplugin_register_assets() {
     wp_register_script(
@@ -104,6 +117,7 @@ add_action( 'init', 'myplugin_register_assets' );
 ```
 
 ### ✅ Step 2: Register Block Type
+
 ```php
 function myplugin_register_block() {
     register_block_type( 'myplugin/awesome-block', array(
@@ -117,6 +131,7 @@ add_action( 'init', 'myplugin_register_block' );
 ```
 
 ### ✅ Step 3: PHP Render Function
+
 ```php
 function myplugin_render_awesome_block( $attributes ) {
     return '<div class="awesome-block">' . esc_html( $attributes['content'] ?? 'Default Text' ) . '</div>';
@@ -130,6 +145,7 @@ function myplugin_render_awesome_block( $attributes ) {
 In modern block development, using a `block.json` file is preferred. WordPress 5.5+ supports it.
 
 ### Example `block.json`:
+
 ```json
 {
   "apiVersion": 2,
@@ -150,6 +166,7 @@ In modern block development, using a `block.json` file is preferred. WordPress 5
 ```
 
 Then register it in PHP with just:
+
 ```php
 register_block_type( __DIR__ . '/build' );
 ```
@@ -161,7 +178,9 @@ This keeps your block modular, readable, and plugin-ready.
 ## 🧪 Use Cases in Practice
 
 ### 🔹 Static Block (Client-rendered)
+
 Useful for decorative or layout-focused blocks:
+
 ```php
 register_block_type( 'myplugin/image-frame', array(
     'editor_script' => 'my-block-editor-js',
@@ -170,7 +189,9 @@ register_block_type( 'myplugin/image-frame', array(
 ```
 
 ### 🔹 Dynamic Block (Server-rendered)
+
 For real-time data like recent posts, WooCommerce product blocks, etc.
+
 ```php
 register_block_type( 'myplugin/latest-posts', array(
     'render_callback' => 'myplugin_render_latest_posts'
@@ -207,4 +228,5 @@ If you're serious about mastering Gutenberg block development, here’s what you
 ---
 
 ## 🔖 Useful Hashtags (SEO-friendly):
+
 `#WordPressDevelopment` `#GutenbergBlocks` `#register_block_type` `#ReactJS` `#DynamicBlocks` `#FullSiteEditing` `#WPPluginDev` `#blockjson`
