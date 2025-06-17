@@ -38,6 +38,55 @@ It aligns your blocks with core WordPress blocks—seamlessly.
 
 ---
 
+### All Supported Attributes
+
+| Key                    | Description                                                                  |
+| ---------------------- | ---------------------------------------------------------------------------- |
+| `"anchor"`             | Enables the HTML anchor field. Adds `id` attribute.                          |
+| `"align"`              | Allows block alignment: `"left"`, `"right"`, `"center"`, `"wide"`, `"full"`. |
+| `"defaultStylePicker"` | Enables the style picker by default if styles are registered.                |
+| `"html"`               | Allow users to edit block HTML (default: `true`).                            |
+| `"inserter"`           | Enable/disable block inserter visibility.                                    |
+| `"multiple"`           | Determines if block can be added multiple times.                             |
+| `"reusable"`           | Allow block to be saved as reusable block (default: `true`).                 |
+| `"className"`          | Toggle whether the block supports the default class name.                    |
+| `"customClassName"`    | Allow custom classes from block inspector.                                   |
+| `"style"`              | Enable the use of block styles via `theme.json`.                             |
+
+---
+
+### Practical Example:
+
+```json
+"supports": {
+  "anchor": true,
+  "align": ["wide", "full"],
+  "color": {
+    "background": true,
+    "text": true,
+    "gradients": true
+  },
+  "spacing": {
+    "padding": true,
+    "margin": true,
+    "blockGap": true
+  },
+  "typography": {
+    "fontSize": true,
+    "lineHeight": true,
+    "letterSpacing": true
+  },
+  "layout": {
+    "allowSwitching": true,
+    "default": {
+      "type": "flex"
+    }
+  }
+}
+```
+
+---
+
 ## 🔧 Core Concepts: How It Works
 
 You define block supports in your `block.json` file under the `supports` property. Here’s how:
