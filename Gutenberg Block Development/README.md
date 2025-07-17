@@ -37,6 +37,7 @@
 33. [`render-callback` method](33-render-callback.md)
 34. [Difference between `title` & `name` in block.json](34-difference_title_&_name.md)
 35. [Block Supports API](35-block_supports_API.md)
+36. [Wordpress Data Stores](36-wp_stores.md)
 
 ---
 
