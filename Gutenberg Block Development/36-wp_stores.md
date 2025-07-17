@@ -4,10 +4,10 @@
 
 Think of `wp.data` as a smart assistant that:
 
-* 📖 **Reads data** (`select`)
-* ✏️ **Updates data** (`dispatch`)
-* 👀 **Watches data changes** (`subscribe`)
-* 🧩 **Registers custom data stores**
+- 📖 **Reads data** (`select`)
+- ✏️ **Updates data** (`dispatch`)
+- 👀 **Watches data changes** (`subscribe`)
+- 🧩 **Registers custom data stores**
 
 It makes interacting with WordPress data (like posts, users, blocks, etc.) much easier and more consistent in JavaScript.
 
@@ -17,9 +17,9 @@ It makes interacting with WordPress data (like posts, users, blocks, etc.) much 
 
 Before `wp.data`, WordPress JavaScript code was messy and inconsistent. Developers had to:
 
-* Write custom AJAX calls
-* Manage state in individual components
-* Repeat logic across features
+- Write custom AJAX calls
+- Manage state in individual components
+- Repeat logic across features
 
 `wp.data` fixes that by:
 ✅ Centralizing data
@@ -31,7 +31,7 @@ Before `wp.data`, WordPress JavaScript code was messy and inconsistent. Develope
 
 ## 🏗️ Core Concepts
 
-| Concept           | Description                | Example                                               |
+| Functions         | Description                | Example                                               |
 | ----------------- | -------------------------- | ----------------------------------------------------- |
 | `select()`        | Read data from a store     | `select('core').getEntityRecords('postType', 'post')` |
 | `dispatch()`      | Update or trigger actions  | `dispatch('core/editor').editPost({...})`             |
@@ -45,26 +45,28 @@ Before `wp.data`, WordPress JavaScript code was messy and inconsistent. Develope
 ### 1. Get current post title
 
 ```js
-const title = wp.data.select('core/editor').getEditedPostAttribute('title');
+const title = wp.data.select("core/editor").getEditedPostAttribute("title");
 ```
 
 ### 2. Change the post content
 
 ```js
-wp.data.dispatch('core/editor').editPost({ content: '<p>Hello world</p>' });
+wp.data.dispatch("core/editor").editPost({ content: "<p>Hello world</p>" });
 ```
 
 ### 3. Show a success notice
 
 ```js
-wp.data.dispatch('core/notices').createSuccessNotice('Post saved!');
+wp.data.dispatch("core/notices").createSuccessNotice("Post saved!");
 ```
 
 ### 4. Insert a new paragraph block
 
 ```js
 const { createBlock } = wp.blocks;
-wp.data.dispatch('core/block-editor').insertBlock(createBlock('core/paragraph'));
+wp.data
+  .dispatch("core/block-editor")
+  .insertBlock(createBlock("core/paragraph"));
 ```
 
 ---
@@ -73,12 +75,12 @@ wp.data.dispatch('core/block-editor').insertBlock(createBlock('core/paragraph'))
 
 `wp.data` holds many **"stores"**, which are like mini databases for specific WordPress features. Examples:
 
-* `core`: WordPress data (posts, users, etc.)
-* `core/editor`: The current post
-* `core/block-editor`: Block data
-* `core/notices`: Admin notices
-* `core/preferences`: User settings
-* …and more
+- `core`: WordPress data (posts, users, etc.)
+- `core/editor`: The current post
+- `core/block-editor`: Block data
+- `core/notices`: Admin notices
+- `core/preferences`: User settings
+- …and more
 
 You can list them with:
 
@@ -92,8 +94,8 @@ console.log(wp.data.getStoreNames());
 
 ```js
 const unsubscribe = wp.data.subscribe(() => {
-    const title = wp.data.select('core/editor').getEditedPostAttribute('title');
-    console.log('New title:', title);
+  const title = wp.data.select("core/editor").getEditedPostAttribute("title");
+  console.log("New title:", title);
 });
 ```
 
@@ -118,16 +120,16 @@ The `wp.data` module is a **state management library** used across WordPress, es
 
 It provides a centralized way to:
 
-- Access data (`select`)
-- Modify data (`dispatch`)
-- Watch for data changes (`subscribe`)
-- Register your own stores (`registerStore`)
+- Access data (`select` function)
+- Modify data (`dispatch` function)
+- Watch for data changes (`subscribe` function)
+- Register your own stores (`registerStore` function)
 
 ---
 
-# 🔍 Core Concepts of `wp.data`
+# 🔍 Core Concepts/Functions in `wp.data`:
 
-| Concept         | Description                  |
+| Function        | Description                  |
 | --------------- | ---------------------------- |
 | `select`        | Read state from a store      |
 | `dispatch`      | Write/update state           |
@@ -468,4 +470,3 @@ You can call `unsubscribe()` to stop listening.
 | Site editing (FSE)              | `core/edit-site`    |
 
 ---
-
