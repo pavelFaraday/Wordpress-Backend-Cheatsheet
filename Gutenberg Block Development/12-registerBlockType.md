@@ -21,27 +21,63 @@ Think of it like this:
 > You're telling WordPress:
 > “Hey! I want to add a new block to the editor, and here's what it looks like and how it works.”
 
-
 ### 🔧 What It Does:
 
-* **Gives your block a name**
-* **Defines how it looks in the editor**
-* **Defines what happens when it's shown on the website**
+- **Gives your block a name**
+- **Defines how it looks in the editor**
+- **Defines what happens when it's shown on the website**
+
+---
+
+### Real Example - register child/innerblock (team-member) for a parent block (team-members):
+
+```js
+import { registerBlockType } from "@wordpress/blocks";
+import Edit from "./edit";
+import Save from "./save";
+
+registerBlockType("create-block/team-member", {
+  title: "Team Member",
+  description: "A team member item",
+  icon: "admin-users",
+  parent: ["create-block/team-members"],
+  supports: {
+    html: false,
+    reusable: false,
+  },
+  attributes: {
+    name: {
+      type: "string",
+      source: "html",
+      selector: "h4",
+    },
+    bio: {
+      type: "string",
+      source: "html",
+      selector: "p",
+    },
+  },
+  edit: Edit,
+  save: Save,
+});
+```
+
+👀 See project: [Gutenberg-Block-React-Redux](https://github.com/pavelFaraday/Gutenberg-Block-React-Redux/blob/master/app/public/wp-content/plugins/team-members/src/team-members/team-member/index.js)
 
 ---
 
 ### 🧑‍💻 Example (Simple Version):
 
 ```js
-registerBlockType('myplugin/hello-world', {
-  title: 'Hello World',
-  icon: 'smiley',
-  category: 'widgets',
+registerBlockType("myplugin/hello-world", {
+  title: "Hello World",
+  icon: "smiley",
+  category: "widgets",
   edit: () => {
-    return 'Hello from the editor!';
+    return "Hello from the editor!";
   },
   save: () => {
-    return 'Hello on the website!';
+    return "Hello on the website!";
   },
 });
 ```
@@ -50,19 +86,19 @@ registerBlockType('myplugin/hello-world', {
 ✅ You can insert it in the block editor
 ✅ It shows text in the editor and on the site
 
-
 ---
 
 ## 🔧 What is `registerBlockType`?
 
-❗️❗️❗️ `registerBlockType` is the **core function** used to **create custom Gutenberg blocks**❗️❗️❗️. 
+❗️❗️❗️ `registerBlockType` is the **core function** used to **create custom Gutenberg blocks**❗️❗️❗️.
 It comes from the `@wordpress/blocks` package and **allows you to define how your block behaves, looks, and interacts with the editor**.
 
 **Syntax:**
-```js
-import { registerBlockType } from '@wordpress/blocks';
 
-registerBlockType( name, settings );
+```js
+import { registerBlockType } from "@wordpress/blocks";
+
+registerBlockType(name, settings);
 ```
 
 - `name` (string): A unique identifier, usually namespaced (e.g., `myplugin/custom-block`).
@@ -82,9 +118,9 @@ registerBlockType( name: string, settings: Object )
 
 ✅ **`name` (required)**
 
-* Format: `'namespace/block-name'` (e.g., `'myplugin/testimonial'`)
-* Must be **unique** across all blocks.
-* The `namespace` prevents naming collisions with core or third-party blocks.
+- Format: `'namespace/block-name'` (e.g., `'myplugin/testimonial'`)
+- Must be **unique** across all blocks.
+- The `namespace` prevents naming collisions with core or third-party blocks.
 
 ---
 
@@ -94,34 +130,34 @@ registerBlockType( name: string, settings: Object )
 
 ### 🔑 **1. title (required)**
 
-* The human-readable name shown in the inserter (e.g., `'Testimonial'`).
+- The human-readable name shown in the inserter (e.g., `'Testimonial'`).
 
 ---
 
 ### 🎨 **2. icon (required)**
 
-* Block icon shown in the inserter.
-* Can be:
+- Block icon shown in the inserter.
+- Can be:
 
-  * A Dashicon slug (e.g., `'format-quote'`).
-  * A JSX element for a custom SVG.
+  - A Dashicon slug (e.g., `'format-quote'`).
+  - A JSX element for a custom SVG.
 
 Example:
 
 ```js
-icon: 'star'  
+icon: "star";
 // or
-icon: <svg>...</svg>
+icon: <svg>...</svg>;
 ```
 
 ---
 
 ### 📁 **3. category (required)**
 
-* Defines where the block appears in the inserter.
-* Common built-in categories:
+- Defines where the block appears in the inserter.
+- Common built-in categories:
 
-  * `'text'`, `'media'`, `'design'`, `'widgets'`, `'theme'`, `'embed'`.
+  - `'text'`, `'media'`, `'design'`, `'widgets'`, `'theme'`, `'embed'`.
 
 You can also register **custom categories** if needed.
 
@@ -129,24 +165,24 @@ You can also register **custom categories** if needed.
 
 ### 🔍 **4. keywords (optional)**
 
-* **Array of up to 3 strings** to improve block search discoverability.
-* Example:
+- **Array of up to 3 strings** to improve block search discoverability.
+- Example:
 
   ```js
-  keywords: ['quote', 'review', 'feedback']
+  keywords: ["quote", "review", "feedback"];
   ```
 
 ---
 
 ### 📊 **5. attributes (optional but common)**
 
-* Defines **data** the block will store and how it’s mapped between the editor and saved content.
-* Each attribute has:
+- Defines **data** the block will store and how it’s mapped between the editor and saved content.
+- Each attribute has:
 
-  * `type`: `'string'`, `'number'`, `'boolean'`, `'array'`, `'object'`.
-  * `selector`: CSS selector.
-  * `attribute`: HTML attribute name.
-  * `default`: default value.
+  - `type`: `'string'`, `'number'`, `'boolean'`, `'array'`, `'object'`.
+  - `selector`: CSS selector.
+  - `attribute`: HTML attribute name.
+  - `default`: default value.
 
 Example:
 
@@ -161,8 +197,8 @@ attributes: {
 
 ### 🖼️ **6. edit (required)**
 
-* React function or component that controls the **editor view**.
-* Receives `props` (attributes, setAttributes, etc.).
+- React function or component that controls the **editor view**.
+- Receives `props` (attributes, setAttributes, etc.).
 
 Example:
 
@@ -174,20 +210,20 @@ edit: ({ attributes, setAttributes }) => <RichText ... />
 
 ### 💾 **7. save (required unless using dynamic block)**
 
-* React function or component that outputs **static frontend markup**.
-* This content gets saved to the post content.
+- React function or component that outputs **static frontend markup**.
+- This content gets saved to the post content.
 
 Example:
 
 ```js
-save: ({ attributes }) => <blockquote>...</blockquote>
+save: ({ attributes }) => <blockquote>...</blockquote>;
 ```
 
 ---
 
 ### 🔥 **8. supports (optional)**
 
-* An object that enables or disables **core Gutenberg features**.
+- An object that enables or disables **core Gutenberg features**.
 
 Example:
 
@@ -203,50 +239,50 @@ supports: {
 
 ### 🏷️ **9. styles (optional)**
 
-* Define predefined **block styles** the user can toggle.
+- Define predefined **block styles** the user can toggle.
 
 Example:
 
 ```js
 styles: [
-    { name: 'default', label: 'Default', isDefault: true },
-    { name: 'fancy', label: 'Fancy' }
-]
+  { name: "default", label: "Default", isDefault: true },
+  { name: "fancy", label: "Fancy" },
+];
 ```
 
 ---
 
 ### 📦 **10. variations (optional)**
 
-* Define **block variations** (preconfigured versions of the same block).
-* Useful for providing “templates” or specialized block presets.
+- Define **block variations** (preconfigured versions of the same block).
+- Useful for providing “templates” or specialized block presets.
 
 Example:
 
 ```js
 variations: [
-    {
-        name: 'testimonial-quote',
-        title: 'Quote Style',
-        attributes: { style: 'quote' }
-    }
-]
+  {
+    name: "testimonial-quote",
+    title: "Quote Style",
+    attributes: { style: "quote" },
+  },
+];
 ```
 
 ---
 
 ### 📝 **11. example (optional)**
 
-* Provides **preview data** for the inserter or pattern library.
-* Shown when browsing available blocks.
+- Provides **preview data** for the inserter or pattern library.
+- Shown when browsing available blocks.
 
 Example:
 
 ```js
 example: {
-    attributes: {
-        content: 'Sample testimonial here.'
-    }
+  attributes: {
+    content: "Sample testimonial here.";
+  }
 }
 ```
 
@@ -254,27 +290,27 @@ example: {
 
 ### 📄 **12. parent (optional)**
 
-* Restricts which parent block(s) this block can be inserted into.
+- Restricts which parent block(s) this block can be inserted into.
 
 Example:
 
 ```js
-parent: ['myplugin/container-block']
+parent: ["myplugin/container-block"];
 ```
 
 ---
 
 ### 💻 **13. transforms (optional)**
 
-* Define how your block can be **converted to/from** other blocks.
-* Advanced usage for better editor UX.
+- Define how your block can be **converted to/from** other blocks.
+- Advanced usage for better editor UX.
 
 ---
 
 ### 🛑 **14. deprecated (optional)**
 
-* Provide previous block versions for backward compatibility.
-* Ensures older saved content still works.
+- Provide previous block versions for backward compatibility.
+- Ensures older saved content still works.
 
 ---
 
@@ -284,14 +320,14 @@ parent: ['myplugin/container-block']
 
 | Parameter  | Required? | Purpose                          |
 | ---------- | --------- | -------------------------------- |
-| name       | ✅         | Unique block identifier          |
-| title      | ✅         | Display name                     |
-| icon       | ✅         | Inserter icon                    |
-| category   | ✅         | Inserter category                |
+| name       | ✅        | Unique block identifier          |
+| title      | ✅        | Display name                     |
+| icon       | ✅        | Inserter icon                    |
+| category   | ✅        | Inserter category                |
 | keywords   | Optional  | Search terms                     |
 | attributes | Optional  | Stored data                      |
-| edit       | ✅         | Editor React component           |
-| save       | ✅\*       | Frontend markup (unless dynamic) |
+| edit       | ✅        | Editor React component           |
+| save       | ✅\*      | Frontend markup (unless dynamic) |
 | supports   | Optional  | Enable/disable core features     |
 | styles     | Optional  | Predefined styles                |
 | variations | Optional  | Block presets                    |
@@ -309,7 +345,6 @@ If you want, I can provide:
 
 Would you like me to prepare one of those for you? 💡
 
-
 ---
 
 ## 🛠️ Example: Registering a Simple Block
@@ -317,18 +352,18 @@ Would you like me to prepare one of those for you? 💡
 Here’s a complete example of a text block:
 
 ```js
-import { registerBlockType } from '@wordpress/blocks';
-import { RichText } from '@wordpress/block-editor';
+import { registerBlockType } from "@wordpress/blocks";
+import { RichText } from "@wordpress/block-editor";
 
-registerBlockType('myplugin/simple-text', {
-  title: 'Simple Text',
-  icon: 'edit',
-  category: 'text',
+registerBlockType("myplugin/simple-text", {
+  title: "Simple Text",
+  icon: "edit",
+  category: "text",
   attributes: {
     content: {
-      type: 'string',
-      source: 'html',
-      selector: 'p',
+      type: "string",
+      source: "html",
+      selector: "p",
     },
   },
   edit: ({ attributes, setAttributes }) => {
@@ -378,10 +413,10 @@ Want blocks that **render on the server** instead of saving HTML directly?
 Use this pattern:
 
 ```js
-registerBlockType('myplugin/dynamic-block', {
-  title: 'Dynamic Greeting',
-  icon: 'admin-users',
-  category: 'widgets',
+registerBlockType("myplugin/dynamic-block", {
+  title: "Dynamic Greeting",
+  icon: "admin-users",
+  category: "widgets",
   edit: () => <p>This block renders dynamically.</p>,
   save: () => null, // This tells Gutenberg it's dynamic
 });
