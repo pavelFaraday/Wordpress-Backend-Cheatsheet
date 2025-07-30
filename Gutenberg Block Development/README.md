@@ -45,3 +45,6 @@
 41. [wp.data.subscribe()](41-wp_data_subscribe.md)
 42. [wp.data.select()](41-wp-data-select.md)
 43. [wp.data.dispatch()](43-wp_data_dispatch.md)
+44. [Templates](44-templates.md)
+45. [`isBlobURL` in WordPress Gutenberg](45-isBlobURL.md)
+46. [`withNotices` - High order components ](46-withNotices.md)
