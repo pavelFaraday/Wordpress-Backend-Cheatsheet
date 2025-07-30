@@ -48,3 +48,4 @@
 44. [Templates](44-templates.md)
 45. [`isBlobURL` in WordPress Gutenberg](45-isBlobURL.md)
 46. [`withNotices` - High order components ](46-withNotices.md)
+47. [`MediaReplaceFlow` in WordPress Gutenberg](47-MediaReplaceFlow.md)
