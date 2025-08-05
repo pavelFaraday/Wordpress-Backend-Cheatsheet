@@ -1,8 +1,8 @@
-## 📌 Meta Queries
+# 📌 Meta Queries
 
 #### Understanding Meta Queries in WordPress
 
-In WordPress, a **meta query** is a specialized type of query used within the `WP_Query` class to  **filter posts based on the value of post meta fields (also known as custom fields).** Post meta fields allow you to store additional information about a post, page, or custom post type, and meta queries make it easy to retrieve content based on this data.
+In WordPress, a **meta query** is a specialized type of query used within the `WP_Query` class to  **filter posts based on the value of <u>post meta fields (also known as custom fields).</u>** Post meta fields allow you to store additional information about a post, page, or custom post type, and meta queries make it easy to retrieve content based on this data.
 
 #### Why Use Meta Queries?
 
@@ -97,7 +97,7 @@ $events = new WP_Query(array(
 This query only shows events where the event date is today or later.
 
 #### 2. **E-commerce Product Filtering**
-Meta queries are ideal for building product catalogs in e-commerce sites. For example, to display products priced between $10 and $50:
+Meta queries are ideal for building product catalogs in e-commerce sites. For example, to display products priced between 10 and 50$:
 
 ```php
 $products = new WP_Query(array(
