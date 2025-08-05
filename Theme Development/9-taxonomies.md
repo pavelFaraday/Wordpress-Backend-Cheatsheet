@@ -13,7 +13,7 @@ Beyond these, developers can create **custom taxonomies** for grouping content i
 
 ### **Core Concepts of Taxonomies**
 
-- **Hierarchical vs Non-Hierarchical Taxonomies**:  
+- ❗️ **Hierarchical vs Non-Hierarchical Taxonomies**:  
    - **Hierarchical taxonomies** (like categories) allow a parent-child relationship. For example, you can have a “News” category with subcategories like “Sports News” and “Tech News.”
    - **Non-hierarchical taxonomies** (like tags) do not have this structure and are used for more flexible grouping. You simply add keywords to the post.
    
