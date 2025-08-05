@@ -1,14 +1,16 @@
-## 📌 Custom Queries
+# 📌 Custom Queries
 
 Custom Queries allow us to load whatever we want, wherever we want.
 
 #### Understanding Custom Queries in WordPress
 
-In WordPress, a Custom Query refers to a query that retrieves specific data from the WordPress database beyond the default set of posts or pages. It allows developers to fetch data based on custom criteria such as custom post types, specific taxonomies, meta fields, or a particular date range. Custom queries give you the flexibility to control what content is displayed and how it is organized, making them an essential feature for any WordPress developer looking to create a more dynamic and customized user experience.
+In WordPress, a Custom Query refers to a query that retrieves specific data from the WordPress database beyond the default set of posts or pages. **It allows developers to fetch data based on custom criteria such as custom post types, specific taxonomies, meta fields, or a particular date range.** Custom queries give you the flexibility to control what content is displayed and how it is organized, making them an essential feature for any WordPress developer looking to create a more dynamic and customized user experience.
 
 #### What Is a Custom Query?
 
-A **custom query** in WordPress refers to a query that fetches specific data based on criteria that you define, rather than relying on the default behavior of WordPress. This means you can display data such as custom post types, specific categories, tags, meta fields, or even posts from a specific time range. Custom queries allow you to do things that are not directly tied to the current page or URL.
+📌 A **custom query** *in WordPress refers to a query that fetches specific data based on criteria that you define, rather than relying on the default behavior of WordPress.* 
+
+This means you can display data such as custom post types, specific categories, tags, meta fields, or even posts from a specific time range. Custom queries allow you to do things that are not directly tied to the current page or URL.
 
 So, custom queries are the right tool for the job when you want to do something that isn't related to the default behavior of the current URL.
 
@@ -17,10 +19,12 @@ The **WP_Query** class in WordPress is the main class used to execute custom que
 
 `WP_Query()` - Sets up the WordPress query, if parameter is not empty.
 
+---
+
 ### Core Concepts of Custom Queries
 
 1. **WP_Query**
-   - `WP_Query` is a class that you can use to create your custom queries. It offers a wide range of parameters to help you fetch exactly the data you need.
+   - `WP_Query` is a <u>class</u> that you can use to create your custom queries. It offers a wide range of parameters to help you fetch exactly the data you need.
    - You can use arguments like:
      - **post_type**: Filter posts by custom post types (e.g., 'post', 'page', 'product', 'event').
      - **posts_per_page**: Limit the number of posts returned.
