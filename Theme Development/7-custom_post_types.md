@@ -1,6 +1,6 @@
-## 📌 Custom Post Types
+# 📌 Custom Post Types
 
-In WordPress, a Custom Post Type (CPT) allows you to create and manage different types of content beyond the default types like Posts and Pages. Essentially, it's a way to extend WordPress’s functionality to handle content more suited to your needs.
+**In WordPress, a Custom Post Type (CPT) allows you to create and manage different types of content beyond the default types like Posts and Pages. Essentially, it's a way to extend WordPress’s functionality to handle content more suited to your needs**.
 
 #### Default Post Types in WordPress
 By default, WordPress comes with a few built-in post types:
@@ -42,9 +42,9 @@ function university_post_types() {
 ```
 
 #### Why Use Custom Post Types?
-- Organization: Helps keep different content types separate, making your site more organized.
-- Better Functionality: Each CPT can have its own custom fields, templates, and features.
-- Tailored Admin Panel: You can create custom taxonomies (like categories and tags) and customize the WordPress admin interface for specific content.
+- **Organization**: Helps keep different content types separate, making your site more organized.
+- **Better Functionality**: Each CPT can have its own custom fields, templates, and features.
+- **Tailored Admin Panel**: You can create custom taxonomies (like categories and tags) and customize the WordPress admin interface for specific content.
 
 #### Use Cases for Custom Post Types
 - Portfolio: Showcasing individual projects or case studies.
@@ -52,6 +52,4 @@ function university_post_types() {
 - Products: Creating an e-commerce catalog.
 - Events: Managing an event calendar.
 
-Using Custom Post Types allows you to make WordPress even more flexible, adapting it perfectly to different types of content for custom websites.
-
----
+**Using Custom Post Types allows you to make WordPress even more flexible, adapting it perfectly to different types of content for custom websites.**
