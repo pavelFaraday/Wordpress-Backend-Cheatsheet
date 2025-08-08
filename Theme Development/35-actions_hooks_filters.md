@@ -7,15 +7,15 @@ In WordPress development, **Actions**, **Hooks**, and **Filters** are core eleme
 ### **1. Actions, Hooks & Filters - Overview**
 
 > - **Actions** and **Filters** are both types of **Hooks**. Hooks allow developers to *“hook into”* or customize WordPress functionality.
-> - **Actions** are used to **perform a task or execute code at specific points.**
-> - **Filters** are used to **modify data** before it is sent to the **database** or **browser**.
+> - ❗️ **Actions** are used to **perform a task or execute code at specific points.**
+> - ❗️ **Filters** are used to **modify data** before it is sent to the **database** or **browser**.
 
 ---
 
 ### **2. Purpose**
 
-- **Actions**: To execute a specific code or function at a particular point in WordPress, like when a post is published, an admin page is loaded, or a comment is saved. 
-- **Filters**: **To modify or filter content/data**, such as changing the title of a post or adding custom data to a user’s profile information.
+- ❗️ **Actions**: To execute a specific code or function at a particular point in WordPress, like when a post is published, an admin page is loaded, or a comment is saved. 
+- ❗️ **Filters**: **To modify or filter content/data**, such as changing the title of a post or adding custom data to a user’s profile information.
 - **Hooks**: **The <u>umbrella</u> term for both Actions and Filters. It signifies predefined points in WordPress where custom code can be attached.**
 
 ---
