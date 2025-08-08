@@ -13,7 +13,7 @@ Let’s dive in! 👇
 > In the simplest terms, **transforms** are the **rules** that define how one block can **change into another block** or how certain **content types** can be **converted into blocks**❗️❗️❗️.  
 
 They allow you to:
-✅❗️ Switch between similar block types (e.g., Paragraph → Quote)  
+✅❗️Switch between similar block types (e.g., Paragraph → Quote)  
 ✅❗️Convert raw content (like shortcodes or HTML) into Gutenberg blocks  
 ✅ Enable advanced editing workflows for your users  
 
