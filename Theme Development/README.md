@@ -77,5 +77,6 @@
 73. [Functions for Custom Settings creation in WP](73-custom-setting-functions.md)
 74. [enqueue_block_styles_assets()](74-enqueue_block_styles_assets.md)
 75. [Shortcodes in WordPress](75-shortcode.md)
+76. [WordPress Loops](76-WordPress_Loops.md)
 
 [Other WP functions](other_info.md)
