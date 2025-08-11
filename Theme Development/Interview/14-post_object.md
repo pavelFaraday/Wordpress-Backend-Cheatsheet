@@ -1,8 +1,6 @@
 ## 📌 Post Object in WordPress
 
-The WordPress **Post Object** is an essential part of WordPress’ data structure. **It represents a single post entry in WordPress, which can be any type of content like blog posts, pages, attachments, custom post types, etc.** The Post Object is key to how WordPress handles and displays content, making it essential for developers who work with custom themes, plugins, and extended WordPress functionalities. Here’s a breakdown of its purpose, core concepts, and use cases.
-
-### 1. Purpose of the Post Object
+**Post Object represents a single post entry in WordPress, which can be any type of content like blog posts, pages, attachments, custom post types, etc.** 
 
 The Post Object's primary purpose is to **store and provide access to data related to individual posts or content entries in WordPress.** It offers a structured way to retrieve and display information like:
 >
@@ -13,10 +11,12 @@ The Post Object's primary purpose is to **store and provide access to data relat
 > - Post Status (published, draft, pending, etc.)
 > - Author Information
 > - Timestamps (creation, last modified)
->
-### 2. Core Concepts of the Post Object
 
-❗️❗️❗️ The Post Object in WordPress is essentially a **PHP Object** that is an instance of the `WP_Post` class. It provides a standard format for handling post data and making it easy for developers to access and manipulate. Here are the core concepts:
+❗️❗️❗️ The Post Object in WordPress is essentially a <u>**PHP Object** that is an instance of the `WP_Post` class.</u> It provides a standard format for handling post data and making it easy for developers to access and manipulate.
+
+#### Core Concepts of the Post Object
+
+Here are the core concepts:
 
 > - **Post Types**: Posts can be standard blog posts, pages, attachments, revisions, or custom post types. <u>Each type is an instance of the Post Object.</u>
 > - **Post Statuses**: WordPress posts can have various statuses, such as `publish`, `draft`, `pending`, `private`, and `trash`.
@@ -24,6 +24,10 @@ The Post Object's primary purpose is to **store and provide access to data relat
 > - **Taxonomies**: The Post Object is often associated with taxonomies like categories and tags, which help organize and classify posts.
 > - **Permalinks**: The Post Object includes a URL, which is used to access the post directly.
 > - **Hierarchy**: Some post types (like pages) have a hierarchical structure, where one page can be a parent of another.
+
+---
+---
+---
 
 ### 3. Working with the Post Object in Practice
 
