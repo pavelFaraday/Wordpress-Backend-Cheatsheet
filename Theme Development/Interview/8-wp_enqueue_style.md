@@ -60,6 +60,10 @@ In this example:
 - The version is set to `1.0.0`, which is useful for cache-busting.
 - The `media` parameter is set to `all`, which means it applies to all media types.
 
+---
+---
+---
+ 
 ### Advanced Use Cases
 
 1. **Enqueuing Google Fonts**
