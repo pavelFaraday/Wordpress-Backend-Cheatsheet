@@ -16,4 +16,4 @@
 16. [Shortcodes](16-shortcode.md)
 17. [`add_theme_support()`](17-add_theme_support.md)
 
-- [WordPress Theme Development Interview Questions](1000-WP_Theme_interview.md)
+📌 [WordPress Theme Development Interview Questions](1000-WP_Theme_interview.md)
