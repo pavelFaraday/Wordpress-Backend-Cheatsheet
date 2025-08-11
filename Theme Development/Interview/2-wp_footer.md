@@ -1,6 +1,6 @@
 ## 📌 `wp_footer()`
 
-The `wp_footer()` function in WordPress is an essential part of the theme development process, primarily used in the footer section of a WordPress site. It plays a crucial role in the proper functioning of your website by ensuring that any scripts, styles, and other content that need to be placed at the end of your page are properly hooked into the footer area.
+The `wp_footer()` function in WordPress is an essential part of the theme development process, primarily used in the footer section of a WordPress site. It plays a crucial role in the proper functioning of your website by **ensuring that any scripts, styles, and other content that need to be placed at the end of your page are properly hooked into the footer area.**
 
 ### Detailed Information
 
@@ -9,12 +9,21 @@ The `wp_footer()` function in WordPress is an essential part of the theme develo
   wp_footer();
   ```
 - **Location:** This function is generally placed in the `footer.php` file of your WordPress theme, right before the closing `</body>` tag.
-- **Purpose:** It is responsible for executing any code hooked to the `wp_footer` action, which typically includes scripts, styles, and other dynamic content. Without this function, plugins and themes might fail to function correctly, as they often rely on it to inject JavaScript or other code just before the end of the HTML document.
+- **Purpose:** It is responsible for **executing any code hooked to the `wp_footer` action, which typically includes scripts, styles, and other dynamic content**. Without this function, plugins and themes might fail to function correctly, as they often rely on it to inject JavaScript or other code just before the end of the HTML document.
+
+### Purpose of `wp_footer()`
+
+***The primary purpose of `wp_footer()` is to execute all functions hooked to the `wp_footer` action.*** Here’s a breakdown of what it does:
+- **Injects Scripts and Styles:** Adds JavaScript files, inline scripts, or CSS styles that are meant to load at the end of the page.
+- Inject **Google Analytics** Tracking Codes
+- Inject **Third-party API** functionalities
+- **Enables Plugin Functionality:** Many WordPress plugins rely on `wp_footer()` to insert necessary code, such as tracking pixels for analytics, social media scripts, or other third-party integrations.
+- **Enhances SEO:** Loading non-essential scripts in the footer can help with SEO optimization by improving page speed and the user experience.
 
 ### Core Concepts
 
 1. **Action Hook:**
-   - `wp_footer()` is an action hook, meaning it provides a place where functions and code can be executed at a specific point in the page's lifecycle. Developers can attach their custom functions to this hook, ensuring that their code runs when the `wp_footer()` function is called.
+    - ❗️ `wp_footer()` is an <u>action hook</u>, meaning it provides a place where **functions and code can be executed at a specific point in the page's lifecycle.** Developers can attach their custom functions to this hook, ensuring that their code runs when the `wp_footer()` function is called.
    - Example of hooking into `wp_footer`:
      ```php
      add_action('wp_footer', 'custom_footer_script');
@@ -26,17 +35,14 @@ The `wp_footer()` function in WordPress is an essential part of the theme develo
 
 2. **Theme Compatibility:**
    - For your WordPress theme to work seamlessly with plugins and external scripts, it must include the `wp_footer()` function. It’s a best practice to always add it to the `footer.php` file to maintain theme compatibility.
-   - Missing `wp_footer()` in a theme can lead to incomplete page loads and malfunctioning of important features, like analytics tracking scripts or third-party plugin functionalities.
+   - Missing `wp_footer()` in a theme can lead to **incomplete page loads** and malfunctioning of important features, like analytics tracking scripts or third-party plugin functionalities.
 
 3. **Performance Optimization:**
    - Placing JavaScript and other non-essential scripts in the footer using `wp_footer()` helps improve page load performance. By loading these scripts at the end of the page, you ensure that the visible parts of your website load faster, providing a better user experience.
 
-### Purpose of `wp_footer()`
-
-The primary purpose of `wp_footer()` is to execute all functions hooked to the `wp_footer` action. Here’s a breakdown of what it does:
-- **Injects Scripts and Styles:** Adds JavaScript files, inline scripts, or CSS styles that are meant to load at the end of the page.
-- **Enables Plugin Functionality:** Many WordPress plugins rely on `wp_footer()` to insert necessary code, such as tracking pixels for analytics, social media scripts, or other third-party integrations.
-- **Enhances SEO:** Loading non-essential scripts in the footer can help with SEO optimization by improving page speed and the user experience.
+---
+---
+---
 
 ### Use Cases in Practice
 
