@@ -1,18 +1,20 @@
-# 📌 `wp_head()'
+# 📌 `wp_head()' 
 
-This function let's WordPress be in control of head section.
+This action hook let's WordPress be in control of head section.
 > **Example:** Plugins and WordPress core use this function to insert crucial elements into your document (e.g., scripts, styles, and meta tags). Always put wp_head() just before the closing tag of your theme (usually in **header.php**):
 
 The `wp_head()` function is an essential part of WordPress theme development, and it plays a crucial role in ensuring that WordPress, themes, and plugins can function properly by allowing them to insert important elements into the `<head>` section of your HTML document.
 
 ### What Does `wp_head()` Do?
 
-The `wp_head()` function is a WordPress action hook that outputs crucial elements between the `<head>` tags in your theme’s HTML. When you add `wp_head()` to your theme, you allow WordPress core, themes, and plugins to inject code dynamically, like:
+The `wp_head()` function is a WordPress action hook that outputs crucial elements between the `<head>` tags in your theme’s HTML. When you add `wp_head()` to your theme, you allow WordPress core, <u>themes, and plugins to inject code dynamically</u>, like:
 
 - **Meta tags:** Information about the webpage (charset, viewport, description).
-- **Stylesheets:** Enqueueing theme or plugin styles (CSS).
-- **JavaScript files:** Enqueueing necessary JavaScript files.
+- **Enqueuing Styles and Scripts:**
+  - **Stylesheets:** Enqueueing theme or plugin styles (CSS).
+  - **JavaScript files:** Enqueueing necessary JavaScript files.
 - **RSS feeds:** Adding RSS feed links to the head.
+- **Google Analytics**, **Facebook Pixels** & **Google Tag Manager** tracking scripts
 - **Other essential code:** Like SEO metadata or custom scripts needed by plugins.
 
 It is typically placed in the `header.php` file of your theme, just before the closing `</head>` tag, like this:
@@ -26,13 +28,17 @@ It is typically placed in the `header.php` file of your theme, just before the c
 
 ### Why is `wp_head()` Important?
 
-Without `wp_head()`, WordPress and your plugins won’t be able to function correctly. Many plugins rely on `wp_head()` to add necessary code, such as:
-- SEO plugins (inserting meta tags for SEO purposes).
-- Caching and performance plugins (inserting optimized scripts or styles).
-- Social media plugins (inserting Open Graph tags for better social sharing).
-- Analytics scripts (like Google Analytics or Facebook Pixel).
+Without `wp_head()`, WordPress and your plugins won’t be able to function correctly. **Many plugins rely on `wp_head()` to add necessary code**, such as:
+- **SEO plugins** (inserting meta tags for SEO purposes).
+- **Caching and performance plugins** (inserting optimized scripts or styles).
+- **Social media plugins** (inserting Open Graph tags for better social sharing).
+- **Analytics scripts** (like Google Analytics or Facebook Pixel).
 
 Simply put, it ensures that the necessary elements required for the proper functioning of a WordPress site are present in the `<head>` section.
+
+---
+---
+---
 
 ### Detailed Example of `wp_head()` in Action
 
