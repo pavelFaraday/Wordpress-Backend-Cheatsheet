@@ -10,21 +10,24 @@ In WordPress development, **Hooks: Actions & Filters** are core elements that al
 
 > - ❗️ **We should not directly edit core files.** Instead, rely on actions and filters to make modifications.
 > - ❗️ **We must always return modified data in Filter functions**.
+> - ❗️  Unlike filters, **action hooks don’t modify data and don’t require a return value**. They are designed purely for side-effects (executing custom code like logging, sending emails, or displaying custom messages).
 
 **Common Hooks**:
 
 - `init`: Runs after WordPress has finished loading but before any headers are sent.
 - `wp_head`: Injects content in the `<head>` section.
 - `wp_footer`: Injects functionality in the `<footer>` section.
-- `the_content`: Filters post content.
+- `wp_enqueue_scripts`: - Triggered when stylesheets and scripts are being enqueued
 - `save_post`: Executes when a post is saved.
 - `publish_post`: Runs after Post has been published
 - `widgets_init`: Injects functionality after widgets finished loading
+- `the_content`: Filters post content.
+- `admin_menu`: Triggered when the WordPress admin dashboard menu is being created.
 
 ### Actions Syntax:
 
 - `add_action('action_name', 'callback_function', [priority], [accepted_args]);`
-- `do_action('action_name', [parameters]);`
+- `do_action('action_name', [parameters]);` - It triggers the execution of all functions attached to that action.
 
 **Example**:
 
