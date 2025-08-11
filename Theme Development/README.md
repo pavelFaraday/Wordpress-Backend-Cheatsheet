@@ -78,5 +78,6 @@
 74. [enqueue_block_styles_assets()](74-enqueue_block_styles_assets.md)
 75. [Shortcodes in WordPress](75-shortcode.md)
 76. [WordPress Loops](76-WordPress_Loops.md)
+77. [WordPress Theme Development Interview Questions](77-WP_Theme_interview.md)
 
 [Other WP functions](other_info.md)
