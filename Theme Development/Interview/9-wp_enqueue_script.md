@@ -1,10 +1,10 @@
 ## 📌 `wp_enqueue_script`
 
-`wp_enqueue_script` is a fundamental function in WordPress used to manage and load JavaScript files efficiently. Understanding its purpose, core concepts, and use cases will help you manage scripts in WordPress better. Let’s break down these aspects in detail.
+`wp_enqueue_script` is a fundamental function in WordPress used to manage and load JavaScript files efficiently. Understanding its purpose, core concepts, and use cases will help you manage scripts in WordPress better. 
 
 ### 1. **What is `wp_enqueue_script`?**
 
-`wp_enqueue_script` is a WordPress function that properly adds JavaScript files to your site. It ensures that scripts are loaded in the correct order, with proper dependencies, and without conflicts. This function is part of WordPress's queueing system, which provides a structured way to include JavaScript files without directly embedding them into your theme or plugin files.
+`wp_enqueue_script` is a WordPress function that properly adds JavaScript files to your site. <u>It ensures that scripts are loaded in the correct order, with proper dependencies, and without conflicts. It a structured way to include JavaScript files without directly embedding them into your theme or plugin files.</u>
 
 ### 2. **Purpose of Using `wp_enqueue_script`**
 
@@ -35,6 +35,10 @@ wp_enqueue_script( $handle, $src, $deps, $ver, $in_footer );
 - `$deps` *(array)*: Optional. An array of handles that this script depends on.
 - `$ver` *(string)*: Optional. The script version number.
 - `$in_footer` *(bool)*: Optional. Whether to load the script in the footer (`true`) or the header (`false`).
+
+---
+---
+---
 
 ### 5. **Use Cases in Practice**
 
