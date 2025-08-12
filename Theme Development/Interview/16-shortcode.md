@@ -2,16 +2,39 @@
 
 ### What Are Shortcodes?
 
-Shortcodes are WordPress-specific code snippets enclosed in square brackets (like `[shortcode]`) that **allow you to add dynamic content or functionality to posts, pages, and widgets without writing complex PHP code. They act as macros that expand into more complex content when the page is rendered.** It is a small tag-like piece of text you put in post/page content and WordPress will replace that tag with dynamic content when the post is shown.
+Shortcodes **allow you to add dynamic content or functionality to posts, pages, and widgets <u>without writing complex PHP code</u>. They act as macros that expand into more complex content when the page is rendered.** It is a small tag-like piece of text you put in post/page content and WordPress will replace that tag with dynamic content when the post is shown.
 
 ### Purpose of Shortcodes
 
-- **❗️Simplify content creation**: Enable non-technical users to add complex features
 - **❗️Code reusability**: One piece of code that can be used multiple times in many posts/pages.
+- **❗️Simplify content creation**: Enable non-technical users to add complex features
 - **❗️Consistency**: Maintain uniform implementation of features across a site
-- **❗️Separation of concerns**: Keep PHP logic separate from content, content remains clean.
-- **❗️Editor friendly**: content editors can add UI/functionality without PHP
 - **❗️Quick dynamic content:** show lists of posts, forms, buttons, widgets, widgets in content areas.
+- **❗️Editor friendly**: content editors can add UI/functionality without PHP
+- **❗️Separation of concerns**: Keep PHP logic separate from content, content remains clean.
+
+### Fundamentals
+
+1. There are 2 types of shortcodes: **Self-closing vs. Enclosing Shortcodes**:
+
+   - Self-closing: `[gallery ids="1,2,3"]`
+   - Enclosing: `[box]Content here[/box]`
+
+2. **Attributes**: Key-value pairs that configure the shortcode behavior
+
+   - Example: `[button color="blue" size="large"]Click me[/button]`
+
+3. **Callback Signature:** `function callback_name($atts = [], $content = null, $tag = '') { ... }`
+
+4. **Registration:**
+   `add_shortcode( 'tag', 'callback' );`
+   `remove_shortcode( 'tag' );`
+   `shortcode_exists( 'tag' );`
+
+5. **Return vs echo:** Always return the generated string❗️ Don’t echo — WP expects a return❗️
+6. **❗️Register assets once; enqueue when shortcode runs❗️**
+7. **Nesting / enclosed content:** If your shortcode encloses content, use `$content` and `do_shortcode( $content)` to process nested shortcodes.
+8. **Where shortcodes are processed:** Shortcodes are expanded when `do_shortcode()` is called (common path: `the_content` filter). If you want them in custom HTML, call `do_shortcode()` manually.
 
 ### Common Use Cases in Practice
 
@@ -24,30 +47,81 @@ Shortcodes are WordPress-specific code snippets enclosed in square brackets (lik
 
 ### Core Concepts
 
-1. **Self-closing vs. Enclosing Shortcodes**:
+1. **Shortcode API**: WordPress's built-in system for registering and handling shortcodes
+2. **Security:** Sanitize attributes (`sanitize_text_field`, `esc_url`, `intval`), escape output (`esc_html`, `esc_attr`, `wp_kses_post`) depending on type of output.
+3. **Assets:** Register scripts/styles on init, enqueue them from inside the shortcode callback (so they load only when shortcode is used).
+4. **Performance:** Avoid heavy queries inside shortcode on every page load
 
-   - Self-closing: `[gallery ids="1,2,3"]`
-   - Enclosing: `[box]Content here[/box]`
+### Example:
 
-2. **Attributes**: Key-value pairs that configure the shortcode behavior
+**Register your shortcode**:
+Usage: `[my_shortcode color="red" size="large"]This is my content[/my_shortcode]`
 
-   - Example: `[button color="blue" size="large"]Click me[/button]`
+```php
+function my_custom_shortcode($atts, $content = null) {
+    // Extract attributes or set defaults
+    $atts = shortcode_atts(
+        array(
+            'color' => 'blue',
+            'size' => 'medium'
+        ),
+        $atts,
+        'my_shortcode'
+    );
 
-3. **Shortcode API**: WordPress's built-in system for registering and handling shortcodes
+    // Process the shortcode
+    $output = '<div class="my-shortcode" style="color: ' . esc_attr($atts['color']) . '; font-size: ' . esc_attr($atts['size']) . ';">';
+    $output .= do_shortcode($content); // Process nested shortcodes
+    $output .= '</div>';
 
-4. **Callback Signature:** `function callback_name($atts = [], $content = null, $tag = '') { ... }`
+    return $output;
+}
+add_shortcode('my_shortcode', 'my_custom_shortcode');
+```
 
-5. **Registration:**
-   `add_shortcode( 'tag', 'callback' );`
-   `remove_shortcode( 'tag' );`
-   `shortcode_exists( 'tag' );`
+ **Shortcode that outputs a button and enqueues a script only when used:**
+   Usage: `[cta url="https://example.com" target="_blank"]Learn more[/cta]`
 
-6. **Return vs echo:** Always return the generated string❗️ Don’t echo — WP expects a return❗️
-7. **Nesting / enclosed content:** If your shortcode encloses content, use `$content` and `do_shortcode( $content)` to process nested shortcodes.
-8. **Where shortcodes are processed:** Shortcodes are expanded when `do_shortcode()` is called (common path: `the_content` filter). If you want them in custom HTML, call `do_shortcode()` manually.
-9. **Security:** Sanitize attributes (`sanitize_text_field`, `esc_url`, `intval`), escape output (`esc_html`, `esc_attr`, `wp_kses_post`) depending on type of output.
-10. **Assets:** Register scripts/styles on init, enqueue them from inside the shortcode callback (so they load only when shortcode is used).
-11. **Performance:** Avoid heavy queries inside shortcode on every page load
+```php
+// Register script/style on init
+function ds_register_assets() {
+    wp_register_script( 'ds-cta-js', plugin_dir_url(__FILE__) . 'assets/cta.js', array('jquery'), '1.0', true );
+    wp_register_style( 'ds-cta-css', plugin_dir_url(__FILE__) . 'assets/cta.css', array(), '1.0' );
+}
+add_action( 'wp_enqueue_scripts', 'ds_register_assets' );
+
+function ds_cta_shortcode( $atts, $content = null ) {
+    $atts = shortcode_atts( array(
+        'url'    => '#',
+        'target' => '_self',
+    ), $atts, 'cta' );
+
+    // enqueue only when shortcode renders
+    wp_enqueue_script( 'ds-cta-js' );
+    wp_enqueue_style( 'ds-cta-css' );
+
+    $url = esc_url( $atts['url'] );
+    $target = esc_attr( $atts['target'] );
+
+    return '<a class="ds-cta" href="' . $url . '" target="' . $target . '">' . esc_html( $content ? $content : 'Click' ) . '</a>';
+}
+add_shortcode( 'cta', 'ds_cta_shortcode' );
+```
+
+### Quick cheat-sheet (copyable)
+
+- Register: `add_shortcode( 'tag', 'callback' )`;
+- Callback signature: `function cb( $atts = [], $content = null, $tag = '' ) {}`
+- Merge attrs: `$atts = shortcode_atts( $defaults, $atts, $tag )`;
+- Nested: `$content = do_shortcode( $content )`;
+- Return HTML, escape output: `esc_html()`, `esc_url()`, `wp_kses_post()`
+- Enqueue assets from callback: `wp_enqueue_script()` / `wp_enqueue_style()`
+- Cache heavy results: `set_transient()` / `get_transient()`
+- Use `do_shortcode($content)` for nested shortcodes.
+
+---
+---
+---
 
 ### Best practices
 
@@ -56,7 +130,7 @@ Shortcodes are WordPress-specific code snippets enclosed in square brackets (lik
 - Sanitize attributes and escape output.
 - Register assets once; enqueue when shortcode runs.
 - Cache heavy output (transient) and invalidate when needed.
-- Use `do_shortcode($content)` for nested shortcodes.
+
 
 ### Debugging & testing tips
 
@@ -69,16 +143,6 @@ Shortcodes are WordPress-specific code snippets enclosed in square brackets (lik
 
 - For complex editor UIs and richer WYSIWYG editing, prefer Gutenberg blocks (blocks give better UX and visual editing).
 - If the content is purely structural and belongs in a template, implement in theme templates instead.
-
-### Quick cheat-sheet (copyable)
-
-- Register: `add_shortcode( 'tag', 'callback' )`;
-- Callback signature: `function cb( $atts = [], $content = null, $tag = '' ) {}`
-- Merge attrs: `$atts = shortcode_atts( $defaults, $atts, $tag )`;
-- Nested: `$content = do_shortcode( $content )`;
-- Return HTML, escape output: `esc_html()`, `esc_url()`, `wp_kses_post()`
-- Enqueue assets from callback: `wp_enqueue_script()` / `wp_enqueue_style()`
-- Cache heavy results: `set_transient()` / `get_transient()`
 
 ---
 
