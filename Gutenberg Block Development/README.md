@@ -54,3 +54,4 @@
 50. [Context API in Gutenberg](50-ContextAPI.md)
 51. [Predefined Templates & Template Locking in Gutenberg](51-Predefined_Templates+Template_lock.md)
 52. [Block Patterns](52-Block-Patterns.md)
+53. [PHP Filters for Gutenberg Blocks](53-PHP_filters.md)
