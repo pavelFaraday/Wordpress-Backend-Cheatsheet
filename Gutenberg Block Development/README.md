@@ -56,3 +56,4 @@
 52. [Block Patterns](52-Block-Patterns.md)
 53. [PHP Filters for Gutenberg Blocks](53-PHP_filters.md)
 54. [JS Filters for Gutenberg Blocks](54-JS_Filters.md)
+55. [Internationalization & Localization of Gutenberg Blocks](55-Localization-Translation.md)
