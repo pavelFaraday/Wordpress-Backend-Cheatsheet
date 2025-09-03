@@ -55,3 +55,4 @@
 51. [Predefined Templates & Template Locking in Gutenberg](51-Predefined_Templates+Template_lock.md)
 52. [Block Patterns](52-Block-Patterns.md)
 53. [PHP Filters for Gutenberg Blocks](53-PHP_filters.md)
+54. [JS Filters for Gutenberg Blocks](54-JS_Filters.md)
