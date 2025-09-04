@@ -57,3 +57,70 @@
 53. [PHP Filters for Gutenberg Blocks](53-PHP_filters.md)
 54. [JS Filters for Gutenberg Blocks](54-JS_Filters.md)
 55. [Internationalization & Localization of Gutenberg Blocks](55-Localization-Translation.md)
+56. [SlotFill API (Plugin UI Extensions) in Gutenberg](56-SlotFill-API.md)
+
+---
+
+## 📌 Additional Topics to Strengthen It
+
+### 2. **theme.json & Global Styles** 🎨
+
+- How block supports interact with theme.json.
+- Defining color palettes, spacing, typography globally.
+- Important for WordPress 6+ era development.
+
+### 3. **Block.json in Detail** 🗂
+
+- Difference between `title`, `name`, `category`, `supports`, `attributes`, `providesContext`, `usesContext`.
+- Why `block.json` is central for modern block registration.
+
+### 4. **Block Styles & Variations** 🎭
+
+- You listed “Block Variations” ✅ but also cover **Block Styles** (`registerBlockStyle`).
+- Difference between variations vs styles.
+
+### 5. **Server-Side Rendering API (`@wordpress/server-side-render`)** ⚡
+
+- How to preview dynamic blocks in the editor.
+- Common for WooCommerce/product-related blocks.
+
+### 6. **Performance & Best Practices** 🚀
+
+- Avoiding unnecessary re-renders with `useMemo`, `useCallback`.
+- Splitting code into smaller components.
+- Accessibility (focus handling, ARIA roles).
+
+### 7. **Security & Sanitization** 🔒
+
+- Escaping and sanitizing block attributes in PHP (`esc_html`, `esc_url`).
+- Avoiding XSS with `dangerouslySetInnerHTML`.
+
+### 8. **Deprecated & Migration** 🔄
+
+- Handling block deprecations (the `deprecated` property in block registration).
+- Migrating attributes when schema changes.
+
+### 9. **Testing Gutenberg Blocks** 🧪
+
+- Unit tests (Jest, React Testing Library).
+- End-to-end tests with Playwright/Puppeteer + WP test utils.
+
+### 10. **Editor Extensibility Beyond Blocks** 🖇
+
+- Modifying the editor interface via filters/actions.
+- Example: `editor.PostTaxonomies`, `editor.DocumentSettingsPanel`.
+
+---
+
+## ✅ Suggested Additions (Quick Checklist)
+
+- SlotFill API (`PluginSidebar`, `PluginDocumentSettingPanel`)
+- theme.json & Global Styles
+- Block Styles (`registerBlockStyle`)
+- Server-Side Rendering (SSR)
+- Block Deprecation & Migration
+- Testing Blocks (unit + e2e)
+- Security & Sanitization
+- Performance optimizations (React hooks, memoization best practices)
+
+---
