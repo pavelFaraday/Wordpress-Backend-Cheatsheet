@@ -2,9 +2,81 @@
 
 ## What is SlotFill (in plain English)?
 
+- **Slot** = an empty “hole” in the Gutenberg editor UI (like a reserved spot).
+- **Fill** = your plugin’s UI content that gets inserted into that hole.
+  👉 Together, Slot + Fill = **SlotFill**.
+
+WordPress core defines where the holes (slots) are — sidebars, panels, menus, toolbars, etc.
+You (plugin dev) decide what to fill them with.
+
+## 🧩 Why SlotFill Exists
+
+- Before Gutenberg, extending the editor UI was messy (PHP hooks, jQuery hacks).
+- Now with SlotFill, it’s **clean and React-based**.
+- It ensures **multiple plugins can inject UI safely** without breaking each other.
+- Works the same across both **Post Editor** and **Site Editor** (since WP 6.6).
+
+## 📍 The Most Common Slots You Can Use
+
+Here are the main “injection points” you get:
+
+1. **PluginSidebar** → Your own sidebar, opened from a toolbar button or the ⋯ menu.
+   _(Great for big workflows like SEO tools, editorial checklists, asset libraries.)_
+
+2. **PluginDocumentSettingPanel** → A panel inside the normal “Document” sidebar.
+   _(Perfect for things tied to the post/page itself — SEO title, canonical URL, etc.)_
+
+3. **PluginSidebarMoreMenuItem** → An item in the ⋯ “More” menu that toggles your sidebar.
+   _(Auto-created when you use PluginSidebar, but you can customize it.)_
+
+4. **PluginPostStatusInfo** → Add info under the post status area.
+   _(e.g., “Word count: 523” or “SEO score: Good.”)_
+
+5. **PluginPrePublishPanel** → A panel that shows up **before publishing**.
+   _(Useful for final checks like “Alt text missing” or “Word count too low.”)_
+
+6. **PluginPostPublishPanel** → A panel that shows up **after publishing**.
+   _(Great for “Next steps” like share buttons, checklists, etc.)_
+
+7. **PluginBlockSettingsMenuItem** → Extra items in the ⋯ menu of a **selected block**.
+   _(e.g., “Convert this block to custom format.”)_
+
+8. **PluginMoreMenuItem** → Extra item in the **top toolbar’s ⋯ menu**.
+   _(Good for utilities or links, like “Open Help Center.”)_
+
+9. **MainDashboardButton** → A button in the top toolbar itself.
+   _(For quick global actions, like toggling a custom panel.)_
+
+## 🔄 How It Works in Practice
+
+1. WordPress says: “Here’s a slot in the editor UI.”
+2. You say: “I’ll fill it with my controls.”
+3. Gutenberg takes care of placing it in the right place, with the right styles.
+4. When multiple plugins add fills to the same slot → no problem, they just stack.
+
+## ⚖️ When to Use What
+
+- **Big workflows?** → Use a **PluginSidebar**.
+- **Post/page settings?** → Use a **PluginDocumentSettingPanel**.
+- **Warnings before publishing?** → Use a **PluginPrePublishPanel**.
+- **Tips after publishing?** → Use a **PluginPostPublishPanel**.
+- **Extra block actions?** → Use a **PluginBlockSettingsMenuItem**.
+- **Quick toolbar items?** → Use **PluginMoreMenuItem** or **MainDashboardButton**.
+
+## 🚦 Common Pitfalls
+
+- Using **old APIs** (like `wp.editPost.*`) on new WordPress (≥6.6) → causes deprecation warnings.
+- Forgetting to **register post meta with REST support** → your data won’t save.
+- Using the **same panel name as another plugin** → it won’t toggle properly.
+- Missing **script dependencies** → nothing shows up.
+
+## 📝 The Interview Elevator Pitch
+
+“If I need to add custom UI into Gutenberg, I use the **SlotFill API**. Core defines the **slots** (like sidebars, panels, menus), and I create **fills** to inject my plugin’s UI there. The most common ones are **PluginSidebar** for a whole new sidebar and **PluginDocumentSettingPanel** for fields inside the document sidebar. There are also slots for pre-publish, post-publish, block menus, and more. Since WP 6.6, everything is unified under `@wordpress/editor`, so I avoid deprecated `wp.editPost.*` APIs. SlotFill gives me a clean, React-based way to extend the editor without conflicts.”
+
 [SlotFill API - PowerPoint](<JS Libraries/SlotFill_API_Gutenberg_Plugin_UI_Extensions.pptx>)
 
-**SlotFill** is a React portal-style extensibility pattern used by the WordPress Block Editor. Core exposes **Slots** (fixed “mount points” in the editor UI), and plugins render **Fills** to those Slots. Multiple Fills can target the same Slot; the editor handles layout/ordering. ([WordPress Developer Resources][1])
+**SlotFill** is a React portal-style extensibility pattern used by the WordPress Block Editor. Core exposes **Slots** (fixed “mount points” in the editor UI), and plugins render **Fills** to those Slots. Multiple Fills can target the same Slot; the editor handles layout/ordering.
 
 Gutenberg ships a set of **predefined SlotFills** for common areas: sidebar panels, the More (⋯) menu, pre-publish checks, block settings menu items, and more. You register your UI by calling **`registerPlugin`** (from `@wordpress/plugins`) and rendering the provided components (e.g., `<PluginSidebar/>`, `<PluginDocumentSettingPanel/>`). ([WordPress Developer Resources][2])
 
@@ -14,7 +86,7 @@ Gutenberg ships a set of **predefined SlotFills** for common areas: sidebar pane
 
 ## Core concepts & moving parts
 
-- **Slots & Fills**: Think “placeholders” (Slots) that accept “content injections” (Fills). Rendering is virtual/portaled so your UI appears in the intended editor location. ([WordPress Developer Resources][1])
+- **Slots & Fills**: Think “placeholders” (Slots) that accept “content injections” (Fills). Rendering is virtual/portaled so your UI appears in the intended editor location.
 - **`registerPlugin( name, { render, icon, scope } )`**: Attaches your React app to the editor and makes your SlotFills live. Your `render` returns any number of SlotFills. ([WordPress Developer Resources][6])
 - **Predefined SlotFills** (selected highlights):
 
@@ -182,7 +254,7 @@ registerPlugin("my-seo-doc-panel", { render: SeoDocumentPanel });
 
 ## Quick cheat-sheet
 
-- **Pattern**: Slot (in core) ⇢ Fill (in your plugin). ([WordPress Developer Resources][1])
+- **Pattern**: Slot (in core) ⇢ Fill (in your plugin).
 - **Register**: `wp.plugins.registerPlugin( 'my-namespace', { render, icon } )`. ([WordPress Developer Resources][6])
 - **Imports / handles (WP 6.6+)**: Use `wp.editor.*` components (script handle `wp-editor`) for SlotFills; avoid deprecated `wp.editPost.*`. ([Make WordPress][3], [GitHub][4])
 - **Popular SlotFills**:
@@ -237,6 +309,233 @@ registerPlugin("my-seo-doc-panel", { render: SeoDocumentPanel });
 
 ---
 
+## Currently available SlotFills:
+
+(The places you can inject UI) in the Block Editor UI, using the unified `@wordpress/editor` API:
+
+1. **MainDashboardButton** — adds a button to the editor’s top bar (main toolbar).
+2. **PluginSidebar** — registers a **custom sidebar** panel; also gets a toolbar toggle automatically.
+3. **PluginSidebarMoreMenuItem** — adds an item in the ⋯ **More menu** to open your custom sidebar.
+4. **PluginDocumentSettingPanel** — injects a **panel inside the native Document (post/page) sidebar**. ([WordPress Developer Resources][2])
+5. **PluginPostStatusInfo** — adds content to the **Post Summary / Status** area in the sidebar.
+6. **PluginPrePublishPanel** — surfaces checks/information in the **Pre-publish** panel (before publishing). ([WordPress Developer Resources][3])
+7. **PluginPostPublishPanel** — adds content to the **Post-publish** panel (after publishing).
+8. **PluginBlockSettingsMenuItem** — inserts a menu item into the **Block settings (ellipsis) menu** for the selected block.
+9. **PluginMoreMenuItem** — adds a custom item into the editor’s top-bar **More (⋯) menu**.
+
+> Tip: You can register them **all** inside one `registerPlugin(...)` or keep them separate. I’ll show each one standalone for clarity.
+
+### Examples:
+
+#### 1) MainDashboardButton (top toolbar)
+
+```js
+const { MainDashboardButton } = wp.editor;
+
+function MyMainButton() {
+  return (
+    <MainDashboardButton
+      onClick={() => window.alert("Top bar button clicked!")}
+      label={__("My Top Button", "td")}
+    />
+  );
+}
+
+registerPlugin("demo-main-button", { render: MyMainButton });
+```
+
+#### 2) PluginSidebar (custom sidebar) + 3) PluginSidebarMoreMenuItem (⋯ menu)
+
+```js
+const { PluginSidebar, PluginSidebarMoreMenuItem } = wp.editor;
+const { PanelBody } = wp.components;
+
+function MySidebar() {
+  return (
+    <>
+      <PluginSidebarMoreMenuItem target="my-sidebar">
+        {__("Open My Sidebar", "td")}
+      </PluginSidebarMoreMenuItem>
+
+      <PluginSidebar name="my-sidebar" title={__("My Sidebar", "td")}>
+        <PanelBody title={__("Settings", "td")} initialOpen>
+          <p>{__("Put controls here.", "td")}</p>
+        </PanelBody>
+      </PluginSidebar>
+    </>
+  );
+}
+
+registerPlugin("demo-plugin-sidebar", {
+  render: MySidebar,
+  icon: "admin-generic",
+});
+```
+
+#### 4) PluginDocumentSettingPanel (panel inside Document sidebar)
+
+```js
+const { PluginDocumentSettingPanel } = wp.editor;
+const { TextControl } = wp.components;
+const { useSelect, useDispatch } = wp.data;
+
+function MyDocPanel() {
+  const meta = useSelect(
+    (s) => s("core/editor").getEditedPostAttribute("meta") || {},
+    []
+  );
+  const { editPost } = useDispatch("core/editor");
+
+  return (
+    <PluginDocumentSettingPanel
+      name="my-doc-panel"
+      title={__("My Doc Panel", "td")}
+    >
+      <TextControl
+        label={__("Subtitle", "td")}
+        value={meta._my_subtitle || ""}
+        onChange={(v) => editPost({ meta: { ...meta, _my_subtitle: v } })}
+      />
+    </PluginDocumentSettingPanel>
+  );
+}
+
+registerPlugin("demo-doc-panel", { render: MyDocPanel });
+```
+
+> Don’t forget to register the meta key in PHP with `show_in_rest => true`.
+
+#### 5) PluginPostStatusInfo (extra info under Post Status summary)
+
+```js
+const { PluginPostStatusInfo } = wp.editor;
+const { useSelect } = wp.data;
+
+function MyPostStatusInfo() {
+  const words = useSelect(
+    (s) =>
+      (s("core/editor").getEditedPostContent() || "")
+        .split(/\s+/)
+        .filter(Boolean).length,
+    []
+  );
+
+  return (
+    <PluginPostStatusInfo className="my-post-status-info">
+      {__("Word count:", "td")} {words}
+    </PluginPostStatusInfo>
+  );
+}
+
+registerPlugin("demo-post-status-info", { render: MyPostStatusInfo });
+```
+
+#### 6) PluginPrePublishPanel (before publishing)
+
+```js
+const { PluginPrePublishPanel } = wp.editor;
+const { useSelect } = wp.data;
+
+function MyPrePublishPanel() {
+  const title = useSelect(
+    (s) => s("core/editor").getEditedPostAttribute("title") || "",
+    []
+  );
+  const hasTitle = !!title?.trim();
+
+  return (
+    <PluginPrePublishPanel title={__("Pre-publish checks", "td")} initialOpen>
+      {!hasTitle ? (
+        <p style={{ color: "red" }}>
+          {__("Add a title before publishing.", "td")}
+        </p>
+      ) : (
+        <p>{__("Looks good!", "td")}</p>
+      )}
+    </PluginPrePublishPanel>
+  );
+}
+
+registerPlugin("demo-pre-publish", { render: MyPrePublishPanel });
+```
+
+#### 7) PluginPostPublishPanel (after publishing)
+
+```js
+const { PluginPostPublishPanel } = wp.editor;
+const { useSelect } = wp.data;
+
+function MyPostPublishPanel() {
+  const link = useSelect((s) => s("core/editor").getPermalink() || "", []);
+
+  return (
+    <PluginPostPublishPanel title={__("Next steps", "td")} initialOpen>
+      <p>{__("Share your post:", "td")}</p>
+      <a
+        href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
+          link
+        )}`}
+        target="_blank"
+        rel="noreferrer"
+      >
+        {__("Share on X/Twitter", "td")}
+      </a>
+    </PluginPostPublishPanel>
+  );
+}
+
+registerPlugin("demo-post-publish", { render: MyPostPublishPanel });
+```
+
+#### 8) PluginBlockSettingsMenuItem (selected block’s ⋯ menu)
+
+```js
+const { PluginBlockSettingsMenuItem } = wp.editor;
+const { useSelect } = wp.data;
+
+function MyBlockMenuItem() {
+  const clientIds = useSelect(
+    (s) => s("core/block-editor").getSelectedBlockClientIds(),
+    []
+  );
+  const selectedId = clientIds?.[0];
+
+  if (!selectedId) return null;
+
+  return (
+    <PluginBlockSettingsMenuItem
+      allowedBlocks={["core/paragraph", "core/heading"]} // optional filter
+      icon="yes"
+      label={__("Say Hi", "td")}
+      onClick={() => window.alert("Hello from block menu!")}
+    />
+  );
+}
+
+registerPlugin("demo-block-menu-item", { render: MyBlockMenuItem });
+```
+
+#### 9) PluginMoreMenuItem (top bar ⋯ menu)
+
+```js
+const { PluginMoreMenuItem } = wp.editor;
+
+function MyMoreMenuItem() {
+  return (
+    <PluginMoreMenuItem
+      icon="smiley"
+      onClick={() => window.alert("More Menu clicked")}
+    >
+      {__("My More Menu Item", "td")}
+    </PluginMoreMenuItem>
+  );
+}
+
+registerPlugin("demo-more-menu-item", { render: MyMoreMenuItem });
+```
+
+---
+
 ## Interview-style talking points (with strong model answers)
 
 **Q1. What is the SlotFill API and why did Gutenberg adopt it?**
@@ -255,7 +554,7 @@ registerPlugin("my-seo-doc-panel", { render: SeoDocumentPanel });
 **A.** The big ones: (1) using deprecated `wp.editPost.*` APIs on WP ≥ 6.6; (2) forgetting to enqueue `wp-plugins` / `wp-editor` dependencies; (3) unregistered or non-REST meta keys; (4) panel name collisions / wrong namespace when toggling. ([GitHub][4], [Stack Overflow][9], [WordPress Developer Resources][10])
 
 **Q6. Can multiple plugins add to the same Slot? How is ordering handled?**
-**A.** Yes—Slots accept multiple Fills. Rendering order generally follows mount order (i.e., plugin load sequence). For key areas, Gutenberg provides reasonable defaults; if deterministic ordering matters, coordinate via plugin load order or compose UI so order is less critical. ([WordPress Developer Resources][1])
+**A.** Yes—Slots accept multiple Fills. Rendering order generally follows mount order (i.e., plugin load sequence). For key areas, Gutenberg provides reasonable defaults; if deterministic ordering matters, coordinate via plugin load order or compose UI so order is less critical.
 
 **Q7. How would you gate UI by post type or capability?**
 **A.** In your component, use `select('core/editor').getCurrentPostType()` (or `useSelect`) and `wp.data.select('core').canUser()` to conditionally render fills. You can also conditionally enqueue the script in PHP for specific post types/capabilities.
@@ -267,7 +566,21 @@ registerPlugin("my-seo-doc-panel", { render: SeoDocumentPanel });
 
 ## References you can cite in an interview
 
-- Slot/Fill conceptual docs and API: **Block Editor Handbook**. ([WordPress Developer Resources][1])
+- Slot/Fill conceptual docs and API: **Block Editor Handbook**.
 - SlotFills catalog incl. `PluginSidebar`, `PluginDocumentSettingPanel`, etc. ([WordPress Developer Resources][2])
 - `@wordpress/plugins` and `registerPlugin` docs. ([WordPress Developer Resources][6])
 - WP 6.6 unified extensibility & deprecations: dev note + examples of warnings. ([Make WordPress][3], [GitHub][4])
+
+---
+
+## Slides:
+
+![alt text](<JS Libraries/SlotFill API/SlotFillAPI-1.png>)
+![alt text](<JS Libraries/SlotFill API/SlotFillAPI-2.png>)
+![alt text](<JS Libraries/SlotFill API/SlotFillAPI-3.png>)
+![alt text](<JS Libraries/SlotFill API/SlotFillAPI-4.png>)
+![alt text](<JS Libraries/SlotFill API/SlotFillAPI-5.png>)
+![alt text](<JS Libraries/SlotFill API/SlotFillAPI-6.png>)
+![alt text](<JS Libraries/SlotFill API/SlotFillAPI-7.png>)
+
+---
