@@ -127,7 +127,7 @@ This is where you can insert your own UI or customize existing ones.
 **A.** Use the **`editor.PostTaxonomyType`** filter to replace the default selector for a targeted taxonomy. For example, I can swap the hierarchical checkbox tree for a radio list to enforce a single selection. This is the documented customization point for taxonomy pickers.
 
 **Q3. What changed in WP 6.6 for editor extensibility?**
-**A.** SlotFills were **unified**—import from `wp.editor` instead of `wp.editPost`/`wp.editSite`. Old names still render but throw deprecation warnings, so I dual-import or conditionalize for back-compat.
+**A.** SlotFills were **unified**—import from `wp.editor` instead of `wp.editPost`/`wp.editSite`. Old names still render but throw deprecation warnings.
 
 **Q4. How do you remove default panels (e.g., Excerpt, Discussion)?**
 **A.** Remove the corresponding **post-type support** on the PHP side. Many editor panels are gated by `PostTypeSupportCheck`, so toggling supports hides UI without hacks. If I need broader tweaks, I filter **`block_editor_settings_all`** before the editor initializes.
