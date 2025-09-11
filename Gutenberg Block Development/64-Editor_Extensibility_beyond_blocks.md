@@ -71,15 +71,15 @@ Core ready-made component in `@wordpress/editor` that renders the **taxonomy pic
 
 PHP This is where you control what options the editor should have.
 
-- **`block_editor_settings_all`**: 
-This filter is like the final checkpoint before settings are sent to the editor.
-You can use it to enable/disable features.
-👉 Example: Turn off custom colors or restrict font sizes.
+- **`block_editor_settings_all`**:
+  This filter is like the final checkpoint before settings are sent to the editor.
+  You can use it to enable/disable features.
+  👉 Example: Turn off custom colors or restrict font sizes.
 
 - **Post-type supports** (`remove_post_type_support` / `add_post_type_support`): toggling supports (hide/show)
-WP Panels (like Excerpt, Featured Image, Discussion) only show up if the post type supports them.
-You can add/remove these supports with `add_post_type_support` or `remove_post_type_support`.
-👉 Example: If you remove excerpt support from posts, the Excerpt panel disappears from the editor.
+  WP Panels (like Excerpt, Featured Image, Discussion) only show up if the post type supports them.
+  You can add/remove these supports with `add_post_type_support` or `remove_post_type_support`.
+  👉 Example: If you remove excerpt support from posts, the Excerpt panel disappears from the editor.
 
 ### JS-side hooks (once the editor is running)
 
@@ -140,3 +140,23 @@ This is where you can insert your own UI or customize existing ones.
 
 **Q7. What’s your strategy for custom taxonomy UX in the editor?**
 **A.** Keep REST-enabled taxonomies (`show_in_rest: true`) so `PostTaxonomies` can render them; then refine the picker with `editor.PostTaxonomyType` only when business rules demand. I test with large term sets and ensure keyboard navigation works like core.
+
+---
+
+---
+
+---
+
+## Terms for repeat:
+
+- SlotFill:
+  - `PluginDocumentSettingPanel`
+  - `PluginSidebar`
+- Editor Components (`@wordpress/editor` Package):
+  - `PostTaxonomies` → `editor.PostTaxonomyType`
+  - `PostAuthor`
+  - `PostSchedule`
+- PHP/JS Hooks:
+  - `block_editor_settings_all`
+  - `remove_post_type_support` / `add_post_type_support`
+  - `PostTypeSupportCheck`

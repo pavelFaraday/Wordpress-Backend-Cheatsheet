@@ -65,4 +65,4 @@
 61. [Performance & Best Practices in Gutenberg Block Development](61-Performance.md)
 62. [Security & Sanitization in Gutenberg Block Development](62-Security_&_Sanitization.md)
 63. [Deprecated & Migration](63-Deprecated_&_Migration.md)
-64. [Editor Extensibility beyond blocks](64-Editor_Extensibility_beyond_blocks.md)
+64. [Editor Extensibility beyond blocks](64-Editor_Extensibility_beyond_blocks.md) ✅
