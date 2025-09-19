@@ -9,385 +9,166 @@
 
 In Gutenberg, every small change (typing, selecting block, opening sidebar) can re-render your block’s `edit` component. These three tools help **avoid unnecessary work**.
 
+✅ **One-liner summary for interview**
+
+- `useMemo`: cache a **value** → skip recalculations.
+- `useCallback`: cache a **function** → stable props.
+- `React.memo`: cache a **component’s output** → skip useless re-renders.
+
+✅ **Interview one-liner**
+“In Gutenberg, since the editor triggers many renders, I use `useMemo` for expensive values, `useCallback` for stable handlers, and `React.memo` for children. Together they keep blocks fast and prevent unnecessary re-renders.”
+
+🧩 **How they combine in Gutenberg**
+
+- Use **`useMemo`** to cache heavy values (sorted posts, generated styles).
+- Use **`useCallback`** to keep handlers stable when passing to children (`TextControl`, `MediaUpload`, custom components).
+- Wrap **child components** with **`React.memo`** so they only re-render if their props change.
+
+This pattern makes blocks smoother in the editor — especially important since **Gutenberg re-renders your block often** (typing, selecting, opening sidebars).
+
 ---
 
-# Core concepts (with Gutenberg angles)
+## 🔑 React Performance Helpers in Simple Words
 
-## 1) Referential equality
+### 1) `useMemo` — _cache a value_
 
-React compares props by reference. New arrays/objects/functions look “different” even if contents are the same.
+- **What it does:** Remembers the result of a calculation so React doesn’t redo it on every render.
+- **Think:** _“Don’t waste time recalculating if inputs didn’t change.”_
+- **Example:** Sorting a big list of products. Without `useMemo`, it re-sorts on every keystroke, even if the list hasn’t changed. With `useMemo`, React remembers the sorted list until the list itself changes.
 
-- Bad:
+### 2) `useCallback` — _stable function reference_
 
-  ```js
-  <Child options={[1, 2, 3]} onClick={() => setAttributes({ open: true })} />
-  ```
+- **What it does:** Remembers a function so its reference doesn’t change on every render.
+- **Think:** _“Keep my handler the same unless inputs change.”_
+- **Example:** A `Button` child gets an `onClick` function from the parent. If the parent creates a new function every render, the child thinks “my props changed” and re-renders. With `useCallback`, the function reference stays stable, so the child won’t re-render unnecessarily.
 
-  New array and new function every render → `Child` keeps re-rendering.
+### 3) `React.memo` — _skip re-render if props didn’t change_
 
-- Good:
+- **What it does:** Wraps a component so React reuses the last render if the props are the same.
+- **Think:** _“Don’t redraw this child if nothing about it changed.”_
+- **Example:** A `ProductCard` that only depends on its product props. If the parent re-renders but the product didn’t change, React.memo prevents extra work.
 
-  ```js
-  const options = useMemo(() => [1, 2, 3], []);
-  const onClick = useCallback(
-    () => setAttributes({ open: true }),
-    [setAttributes]
-  );
+## 🧩 How they work together
 
-  <Child options={options} onClick={onClick} />;
-  ```
+- `React.memo` checks props → if same, **skip render**.
+- `useCallback` makes sure function props _look the same_ between renders.
+- `useMemo` makes sure heavy values/objects _look the same_ between renders.
 
-## 2) Expensive derived values
+Together they prevent unnecessary re-renders and heavy recalculations.
 
-If you compute something heavy (filter/sort/format/merge) from attributes or `useSelect` data, wrap it in `useMemo`.
-**Only recomputes when its dependencies change.**
+## 🚦 Interview-Style Talking Points
 
-## 3) Stable props for memoized children
+**Q1. Why do we need these hooks in React?**
+👉 Because React re-renders components a lot. That’s fine for small UIs, but wasteful if you recalc heavy data or recreate props every time. These tools cut down on useless work.
 
-If a child uses `React.memo`, it only helps if you pass **stable** props (arrays/objects/handlers memoized with `useMemo`/`useCallback`).
+**Q2. Can you explain `useMemo` in plain English?**
+👉 It’s like a **calculator with memory**. If I already calculated 2+2=4 and the numbers haven’t changed, I don’t need to recalc—it just gives me 4 again. That saves time for big calculations.
 
-## 4) `useSelect` and re-renders
+**Q3. What’s the difference between `useMemo` and `useCallback`?**
+👉 `useMemo` caches a **value**.
+👉 `useCallback` caches a **function**.
+Both avoid creating “new things” on every render, which helps React.memo work properly.
 
-- Select **exact primitives** (ids, booleans, counts).
-- Avoid returning fresh objects directly from `useSelect`. If you must combine values, combine _outside_ with `useMemo`.
+**Q4. How does `React.memo` actually help performance?**
+👉 It’s like saying: _“If the inputs didn’t change, just reuse the picture we already drew instead of redrawing it.”_ Props stay the same → no re-render → faster app.
+
+**Q5. Any caveats?**
+👉 Yes:
+
+- Don’t wrap **everything** in useMemo/useCallback—it adds complexity.
+- Only use them for **expensive calculations** or when child components re-render too often.
+- Overusing them can actually make code harder to read and slower (because React still has to compare dependencies).
+
+---
+
+# ⚡ Practical Gutenberg Examples
+
+### 1) `useMemo` — cache a value
+
+**Scenario:** You have a block that lists posts. Sorting or filtering the posts is expensive. Without `useMemo`, it re-sorts on every keystroke in the block editor.
 
 ```js
-const postId = useSelect(
-  (select) => select("core/editor").getCurrentPostId(),
-  []
-);
-// later
-const combined = useMemo(
-  () => ({ id: postId, label: `ID: ${postId}` }),
-  [postId]
-);
+import { useMemo } from "@wordpress/element";
+
+export default function Edit({ attributes }) {
+  const { posts } = attributes;
+
+  // Sorting posts alphabetically
+  const sortedPosts = useMemo(() => {
+    console.log("Sorting…");
+    return [...posts].sort((a, b) => a.title.localeCompare(b.title));
+  }, [posts]);
+
+  return (
+    <ul>
+      {sortedPosts.map((post) => (
+        <li key={post.id}>{post.title}</li>
+      ))}
+    </ul>
+  );
+}
 ```
 
-## 5) `React.memo` boundaries
-
-Memo the **leaf** or mid-level presentational components that get many props (or lists).
-Memoing the top `Edit` often has less impact because of editor state churn—focus on heavy subtrees.
+👉 Now the list only re-sorts if `posts` actually change — not every time you select or deselect the block.
 
 ---
 
-# Practical use cases (Gutenberg block patterns)
+### 2) `useCallback` — stable function reference
 
-## A) Memoize options for `<SelectControl>`
+**Scenario:** You pass an `onChange` handler to a child input. Without `useCallback`, the function reference changes every render, so the child thinks “props changed” → re-renders.
 
 ```js
-import { SelectControl } from "@wordpress/components";
-import { useMemo, useCallback } from "@wordpress/element";
+import { useCallback } from "@wordpress/element";
+import { TextControl } from "@wordpress/components";
 
 export default function Edit({ attributes, setAttributes }) {
-  const { color } = attributes;
+  const { title } = attributes;
 
-  const colorOptions = useMemo(
-    () => [
-      { label: "Red", value: "red" },
-      { label: "Green", value: "green" },
-      { label: "Blue", value: "blue" },
-    ],
-    []
-  );
-
-  const onChangeColor = useCallback(
-    (value) => {
-      setAttributes({ color: value });
+  // Stable handler
+  const onChangeTitle = useCallback(
+    (newValue) => {
+      setAttributes({ title: newValue });
     },
     [setAttributes]
   );
 
   return (
-    <SelectControl
-      label="Color"
-      value={color}
-      options={colorOptions}
-      onChange={onChangeColor}
+    <TextControl
+      label="Title"
+      value={title}
+      onChange={onChangeTitle} // stable reference
     />
   );
 }
 ```
 
-**Why it helps:** `options` and `onChange` stay stable; child doesn’t re-render from prop identity churn.
+👉 Prevents unnecessary re-renders of `TextControl` and keeps typing smooth.
 
-## B) Heavy compute from attributes
+---
 
-```js
-const sortedItems = useMemo(() => {
-  // Assume attributes.items can be large
-  return [...(attributes.items || [])].sort((a, b) =>
-    a.title.localeCompare(b.title)
-  );
-}, [attributes.items]);
-```
+### 3) `React.memo` — skip re-render if props didn’t change
 
-## C) Stable toolbar buttons & handlers
+**Scenario:** A block renders a list of child cards. Each card doesn’t need to re-render unless its props change.
 
 ```js
-import { BlockControls } from "@wordpress/block-editor";
-import { ToolbarGroup, ToolbarButton } from "@wordpress/components";
+import { memo } from "@wordpress/element";
 
-const onToggle = useCallback(() => {
-  setAttributes((prev) => ({ ...prev, enabled: !prev.enabled }));
-}, [setAttributes]);
+const Card = memo(function Card({ title }) {
+  console.log("Rendering card:", title);
+  return <div className="my-card">{title}</div>;
+});
 
-const toolbar = useMemo(
-  () => (
-    <BlockControls>
-      <ToolbarGroup>
-        <ToolbarButton icon="visibility" label="Toggle" onClick={onToggle} />
-      </ToolbarGroup>
-    </BlockControls>
-  ),
-  [onToggle]
-);
+export default function Edit({ attributes }) {
+  const { items } = attributes;
 
-return (
-  <>
-    {toolbar}
-    {/* ...rest */}
-  </>
-);
-```
-
-**Why it helps:** the whole toolbar subtree stays stable unless the handler changes.
-
-## D) Memoized list rows + `React.memo`
-
-```js
-import React, { useMemo, useCallback } from "@wordpress/element";
-
-const Row = React.memo(function Row({ item, onRemove }) {
-  // Pure presentational
   return (
-    <div className="row">
-      <span>{item.title}</span>
-      <button onClick={() => onRemove(item.id)}>Remove</button>
+    <div>
+      {items.map((item, i) => (
+        <Card key={i} title={item} />
+      ))}
     </div>
   );
-});
-
-export default function Edit({ attributes, setAttributes }) {
-  const { items = [] } = attributes;
-
-  const onRemove = useCallback(
-    (id) => {
-      setAttributes({ items: items.filter((i) => i.id !== id) });
-    },
-    [items, setAttributes]
-  );
-
-  const rows = useMemo(
-    () =>
-      items.map((item) => (
-        <Row key={item.id} item={item} onRemove={onRemove} />
-      )),
-    [items, onRemove]
-  );
-
-  return <div>{rows}</div>;
 }
 ```
 
-**Key idea:** `Row` is `memo`-ized; `rows` only rebuild when `items`/`onRemove` change.
-
-## E) Select only what you need (avoid fresh objects)
-
-**Avoid:**
-
-```js
-const data = useSelect((select) => {
-  return {
-    post: select("core/editor").getCurrentPost(),
-    user: select("core").getCurrentUser(),
-  };
-}, []);
-// new object every render → consumers re-render
-```
-
-**Prefer:**
-
-```js
-const postTitle = useSelect(
-  (select) => select("core/editor").getEditedPostAttribute("title"),
-  []
-);
-const userId = useSelect((select) => select("core").getCurrentUser()?.id, []);
-const data = useMemo(() => ({ postTitle, userId }), [postTitle, userId]);
-```
-
-## F) Batch attribute updates (reduce renders)
-
-```js
-// Good: single setAttributes
-setAttributes({ title: value, subtitle: otherValue });
-
-// If users type rapidly, debounce:
-const onChangeTitle = useCallback(
-  debounce((value) => {
-    setAttributes({ title: value });
-  }, 300),
-  [setAttributes]
-);
-```
-
-_(Use `lodash.debounce` available in WP packages or your own implementation.)_
-
----
-
-# When _not_ to use them
-
-- **Don’t memo everything.** Memoization has overhead. Use it for:
-
-  - Expensive calculations
-  - Props to `React.memo` children
-  - Arrays/objects/handlers passed to deep trees or repeated lists
-
-- **Don’t hide missing deps.** Always list real dependencies. If you skip them, you’ll get stale values (bugs that appear “randomly”).
-- **`React.memo` doesn’t stop renders from parents changing context/state.** It only skips if the **props** are the same.
-
----
-
-# Common pitfalls (and fixes)
-
-1. **Anonymous props inside JSX**
-
-```js
-<PanelBody initialOpen={ true } /> // fine (primitive)
-<Child style={{ padding: 8 }} />   // ❌ new object each render
-```
-
-Fix:
-
-```js
-const style = useMemo(() => ({ padding: 8 }), []);
-<Child style={style} />;
-```
-
-2. **Recomputing selectors**
-   If your `useSelect` returns a _new array/object_ from the store each time, it may still trigger re-renders. Prefer primitives or store selectors that already return memoized results; then assemble with `useMemo`.
-
-3. **Stale closures**
-   If you reference `items` inside a `useCallback` but don’t list it in deps, you’ll remove from an outdated list. Always include it (or use the functional `setAttributes(prev => ...)` pattern and derive from `prev`).
-
-4. **Over-memoizing `Edit`**
-   Memoize heavy children/components (lists, tables, tree views) rather than the top `Edit`.
-
----
-
-# Mini performance checklist for Gutenberg
-
-- [ ] In `useSelect`, select **primitives** or **stable IDs**.
-- [ ] Wrap **derived arrays/objects** in `useMemo`.
-- [ ] Wrap **handlers** in `useCallback`.
-- [ ] Memoize heavy child components with `React.memo`.
-- [ ] Batch `setAttributes`. Debounce rapid inputs.
-- [ ] Avoid creating new objects/arrays/functions in JSX.
-- [ ] Profile with React DevTools (“Highlight updates”) if unsure.
-
----
-
-# Quick cheat-sheet
-
-**`useMemo(factory, deps)`**
-
-- Use for: expensive calculations, stable arrays/objects/JSX.
-- Example:
-
-  ```js
-  const options = useMemo(
-    () => items.map((i) => ({ label: i.name, value: i.id })),
-    [items]
-  );
-  ```
-
-**`useCallback(fn, deps)`**
-
-- Use for: event handlers passed to children, callbacks used in `useEffect`/`useMemo`.
-- Example:
-
-  ```js
-  const onSelect = useCallback(
-    (id) => setAttributes({ selectedId: id }),
-    [setAttributes]
-  );
-  ```
-
-**`React.memo(Component, arePropsEqual?)`**
-
-- Use for: presentational children that re-render a lot.
-- Example:
-
-  ```js
-  const Tag = React.memo(function Tag({ label }) {
-    return <span>{label}</span>;
-  });
-  ```
-
-**Golden rules**
-
-- Memo values you **pass down**.
-- Include **all dependencies**.
-- Memo where there’s **real churn or cost**, not everywhere.
-
----
-
-# A realistic Gutenberg pattern (combined)
-
-```js
-import React, { useMemo, useCallback } from "@wordpress/element";
-import { InspectorControls } from "@wordpress/block-editor";
-import { PanelBody, SelectControl } from "@wordpress/components";
-
-const ColorSwatch = React.memo(function ColorSwatch({
-  value,
-  onChange,
-  options,
-}) {
-  // Pure UI; benefits from stable props
-  return (
-    <SelectControl
-      label="Accent color"
-      value={value}
-      options={options}
-      onChange={onChange}
-    />
-  );
-});
-
-export default function Edit({ attributes, setAttributes }) {
-  const { accent, items = [] } = attributes;
-
-  // Derived: turn items into select options (expensive if items is big)
-  const itemOptions = useMemo(
-    () =>
-      items.map((i) => ({
-        label: `${i.title} (${i.id})`,
-        value: i.id,
-      })),
-    [items]
-  );
-
-  // Stable handlers
-  const onChangeAccent = useCallback(
-    (value) => setAttributes({ accent: value }),
-    [setAttributes]
-  );
-
-  return (
-    <>
-      <InspectorControls>
-        <PanelBody title="Design" initialOpen={false}>
-          <ColorSwatch
-            value={accent}
-            onChange={onChangeAccent}
-            options={itemOptions}
-          />
-        </PanelBody>
-      </InspectorControls>
-
-      {/* …rest of your block that reads accent/items… */}
-    </>
-  );
-}
-```
+👉 If only one `item` changes, **only that Card re-renders**. The others are skipped.
