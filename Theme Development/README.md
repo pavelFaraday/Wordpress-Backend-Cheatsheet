@@ -79,5 +79,8 @@
 75. [Shortcodes in WordPress](75-shortcode.md)
 76. [WordPress Loops](76-WordPress_Loops.md)
 77. [WordPress Theme Development Interview Questions](77-WP_Theme_interview.md)
+    [Other WP functions](other_info.md)
 
-[Other WP functions](other_info.md)
+---
+
+1. [Minimal Required Files for WP Theme Development](_Minimal_Required_Files_For_Theme_Dev.md)
