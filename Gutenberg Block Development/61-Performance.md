@@ -52,10 +52,6 @@ Write blocks to be light and efficient, because slow code affects the entire edi
 
 ---
 
-Perfect 👍 Let’s rewrite this in **beginner-friendly words**:
-
----
-
 ## 🚀 How to Avoid Unnecessary Re-renders in Gutenberg Blocks
 
 ### 1) **Keep values and functions stable**
@@ -146,9 +142,7 @@ Keep your main block light and split big tasks into smaller, focused components.
 
 ---
 
-Great section 👍 Let me explain it in **simple beginner-friendly words**:
 
----
 
 ## 🌐 Data Access, Fetching, and SSR (Server-Side Rendering)
 

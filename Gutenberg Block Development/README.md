@@ -62,8 +62,8 @@
 58. [block.json in Gutenberg](58-Block_json.md)
 59. [Block Styles & Block Variations in Gutenberg](59-Block_Styles_&_Variations.md)
 60. [Server-Side Rendering API (`@wordpress/server-side-render`)](60-Server_Side_Rendering.md)
-61. [Performance & Best Practices in Gutenberg Block Development](61-Performance.md)
+61. [Performance & Best Practices in Gutenberg Block Development](61-Performance.md) ✅
 62. [Security & Sanitization in Gutenberg Block Development](62-Security_&_Sanitization.md) ✅
 63. [Deprecated & Migration](63-Deprecated_&_Migration.md) ✅
 64. [Editor Extensibility beyond blocks](64-Editor_Extensibility_beyond_blocks.md) ✅
-65. [`useMemo`, `useCallback`,`React.memo` in Gutenberg](65-useMemo_useCallback_React.memo.md)
+65. [`useMemo`, `useCallback`,`React.memo` in Gutenberg](65-useMemo_useCallback_React.memo.md) ✅
