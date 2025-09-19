@@ -83,4 +83,5 @@
 
 ---
 
-1. [Minimal Required Files for WP Theme Development](_Minimal_Required_Files_For_Theme_Dev.md)
+1. [Minimal Required Files for WP Theme Development](-Minimal_Required_Files_For_Theme_Dev.md)
+2. [`get_header()` & `get_footer()`](-get_footer-get_header.md)
