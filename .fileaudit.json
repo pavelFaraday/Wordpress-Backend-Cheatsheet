@@ -14,7 +14,10 @@
     "/Users/macuser/Wordpress/Wordpress-Backend-Cheatsheet/Theme Development/28-language_attributes.md",
     "/Users/macuser/Wordpress/Wordpress-Backend-Cheatsheet/Theme Development/-wp_body_open.md",
     "/Users/macuser/Wordpress/Wordpress-Backend-Cheatsheet/Theme Development/-get_footer-get_header.md",
-    "/Users/macuser/Wordpress/Wordpress-Backend-Cheatsheet/Theme Development/-Minimal_Required_Files_For_Theme_Dev.md"
+    "/Users/macuser/Wordpress/Wordpress-Backend-Cheatsheet/Theme Development/-Minimal_Required_Files_For_Theme_Dev.md",
+    "/Users/macuser/Wordpress/Wordpress-Backend-Cheatsheet/Theme Development/29-body_class.md",
+    "/Users/macuser/Wordpress/Wordpress-Backend-Cheatsheet/Theme Development/15-get_stylesheet_uri.md",
+    "/Users/macuser/Wordpress/Wordpress-Backend-Cheatsheet/Theme Development/17-get_template_directory_uri.md"
   ],
   "trash": []
 }

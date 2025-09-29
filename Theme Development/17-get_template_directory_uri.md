@@ -1,15 +1,18 @@
 ## 📌 `get_template_directory_uri()`
 
+**The `get_template_directory_uri()` function returns the URL to the parent theme's directory without a trailing slash. It helps link directly to theme files such as stylesheets, JavaScript files, images, and more.**
+
 `get_template_directory_uri()` is a useful function in WordPress that plays a significant role in theme development. It helps theme developers manage file paths and URLs effectively, especially when working with assets like CSS, JavaScript, images, or custom template files. Here's a detailed breakdown of the function, including its purpose, core concepts, and use cases in practice:
 
 ### 1. **Purpose of `get_template_directory_uri()`**
-- **Function Overview:** 
-  The `get_template_directory_uri()` function returns the URL to the parent theme's directory without a trailing slash. It helps link directly to theme files such as stylesheets, JavaScript files, images, and more.
+
+- **Function Overview:**
+  **The `get_template_directory_uri()` function returns the URL to the parent theme's directory without a trailing slash. It helps link directly to theme files such as stylesheets, JavaScript files, images, and more.**
 
 - **Use in Parent Themes:**
   It is specifically designed to point to the parent theme’s directory. If you're using a child theme and want to access the parent theme's files, this function is the most appropriate choice.
 
-- **Difference from Other Functions:** 
+- **Difference from Other Functions:**
   - **`get_stylesheet_directory_uri()`:** Returns the URL of the active theme's directory (whether it's a child theme or parent theme).
   - **`get_template_directory()`:** Similar to `get_template_directory_uri()`, but it returns the server path (not the URL) of the parent theme.
 
@@ -59,7 +62,10 @@ Here, a custom JavaScript file named `custom-script.js` from the parent theme's 
 To include images in your theme from the parent theme directory, you can use the function within HTML:
 
 ```html
-<img src="<?php echo get_template_directory_uri(); ?>/images/logo.png" alt="Logo">
+<img
+  src="<?php echo get_template_directory_uri(); ?>/images/logo.png"
+  alt="Logo"
+/>
 ```
 
 This ensures that the image is loaded correctly from the parent theme’s `/images/` folder.
@@ -76,7 +82,7 @@ This approach ensures that even when using a child theme, you can pull in specif
 
 ### 4. **Best Practices**
 
-- **Use `get_stylesheet_directory_uri()` for Child Themes:** ***If you're developing a child theme and want to reference files within the child theme itself, use `get_stylesheet_directory_uri()` instead of `get_template_directory_uri()`***.
+- **Use `get_stylesheet_directory_uri()` for Child Themes:** **_If you're developing a child theme and want to reference files within the child theme itself, use `get_stylesheet_directory_uri()` instead of `get_template_directory_uri()`_**.
 
 - **Avoid Hardcoding Paths:** Always use functions like `get_template_directory_uri()` rather than hardcoding paths in your theme files. This approach makes your code more flexible and reduces the risk of broken links when switching themes or moving sites.
 
@@ -97,7 +103,7 @@ Here’s a combined example of how you might use this function to enqueue both C
 function load_parent_theme_assets() {
     // Enqueue Parent Theme Stylesheet
     wp_enqueue_style('parent-style', get_template_directory_uri() . '/style.css');
-    
+
     // Enqueue JavaScript File
     wp_enqueue_script('parent-custom-script', get_template_directory_uri() . '/js/custom-script.js', array('jquery'), null, true);
 }
@@ -105,6 +111,49 @@ add_action('wp_enqueue_scripts', 'load_parent_theme_assets');
 ```
 
 This example demonstrates best practices in loading both CSS and JavaScript resources from the parent theme, ensuring that your theme remains well-organized and optimized.
+
+---
+
+## 📝 `get_template_directory_uri()` – Interview Cheat Sheet
+
+- **What it does**: Returns the **URL of the parent theme’s directory** (no trailing slash).
+- **Child theme behavior**: Always points to the **parent theme**, even if a child theme is active.
+- **Output type**: Returns a **URL**, not a server path.
+
+### 📦 Typical Uses
+
+- Enqueue parent theme CSS/JS:
+
+  ```php
+  wp_enqueue_style('parent-style', get_template_directory_uri() . '/style.css');
+  // http://wordpress-theme-development.local/wp-content/themes/aquila
+  wp_enqueue_script('parent-js', get_template_directory_uri() . '/js/main.js', [], null, true);
+  ```
+
+- Load images/assets:
+
+  ```php
+  <img src="<?php echo get_template_directory_uri(); ?>/images/logo.png" alt="Logo">
+  ```
+
+- Reference PHP template files (use `get_template_directory()` if you need a server path instead of URL).
+
+### 🔄 Related Functions
+
+- `get_stylesheet_uri()` → URL to active theme’s `style.css` (child or parent).
+- `get_stylesheet_directory_uri()` → URL to the active theme directory (child if active, else parent).
+- `get_template_directory()` → Server path of parent theme (not URL).
+
+### ✅ Best Practice
+
+- Use this function when you **specifically want parent theme assets**.
+- Use `get_stylesheet_directory_uri()` for child themes.
+- Never hardcode URLs → keeps themes portable and child-theme-friendly.
+
+✅ **One-liner for interview**:
+"`get_template_directory_uri()` returns the parent theme’s directory URL, making it the correct way to load parent assets (CSS, JS, images) while keeping themes flexible and child-theme-safe."
+
+---
 
 ### Summary
 

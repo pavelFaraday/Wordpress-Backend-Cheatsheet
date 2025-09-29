@@ -1,10 +1,11 @@
 ## 📌 `get_stylesheet_uri()`
 
-`get_stylesheet_uri()` is a commonly used function in WordPress that automatically retrieves the URI (Uniform Resource Identifier) of the active theme's stylesheet. This function is essential when enqueueing styles in WordPress or when you need to directly reference the main CSS file of your theme. The stylesheet file name must be 'style.css' which is appended to the stylesheet directory URI path.
+**`get_stylesheet_uri()` is a commonly used function in WordPress that automatically retrieves the URI (Uniform Resource Identifier) of the active theme's stylesheet.** This function is essential when enqueueing styles in WordPress or when you need to directly reference the main CSS file of your theme. The stylesheet file name must be 'style.css' which is appended to the stylesheet directory URI path.
 
 ### Detailed Information
 
 **Function Definition:**
+
 ```php
 function get_stylesheet_uri()
 ```
@@ -24,7 +25,9 @@ This function returns the URL to the primary stylesheet of your current theme, u
 3. **Localization:** This function can be used in a way that respects localization and translation, which is important if you’re creating themes for a global audience.
 
 ### Syntax
+
 Here's how you would typically use `get_stylesheet_uri()` in your theme files:
+
 ```php
 <link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>" type="text/css" media="all" />
 ```
@@ -33,6 +36,7 @@ Here's how you would typically use `get_stylesheet_uri()` in your theme files:
 
 1. **Enqueueing Styles in `functions.php`:**
    It is recommended to enqueue styles using the `wp_enqueue_style()` function instead of hardcoding them directly into your theme's header. Here's how you can use `get_stylesheet_uri()` for that purpose:
+
    ```php
    function theme_enqueue_styles() {
        wp_enqueue_style('theme-main-style', get_stylesheet_uri());
@@ -45,6 +49,7 @@ Here's how you would typically use `get_stylesheet_uri()` in your theme files:
 
 3. **Custom Header Inclusion:**
    You might want to manually include the stylesheet in the header for a specific condition. For example:
+
    ```php
    if (is_front_page()) {
        echo '<link rel="stylesheet" href="' . get_stylesheet_uri() . '" type="text/css" media="all" />';
@@ -63,11 +68,12 @@ Here's how you would typically use `get_stylesheet_uri()` in your theme files:
 ### Best Practices
 
 - **Always Enqueue Styles Properly:** Avoid directly linking to the stylesheet using `<link>` tags in the header. Instead, use `wp_enqueue_style()` with `get_stylesheet_uri()` to ensure your styles are correctly managed by WordPress.
-  
 - **Child Themes Compatibility:** Use `get_stylesheet_uri()` for referencing styles in child themes to maintain compatibility and avoid conflicts.
 
 ### Example of Enqueuing Multiple Stylesheets
+
 Here’s an example of how you can load additional CSS files alongside the main stylesheet in a WordPress theme:
+
 ```php
 function theme_enqueue_styles() {
     wp_enqueue_style('main-style', get_stylesheet_uri());
@@ -75,7 +81,35 @@ function theme_enqueue_styles() {
 }
 add_action('wp_enqueue_scripts', 'theme_enqueue_styles');
 ```
+
 This code ensures that the `custom.css` file is loaded after the main `style.css` file, maintaining a clear load order.
+
+---
+
+## 📝 `get_stylesheet_uri()` – Interview Cheat Sheet
+
+- **What it does**: Returns the **URL of the active theme’s main stylesheet** (`style.css`).
+- **Parent vs Child themes**: Always points to the **active theme** (child theme if present).
+- **Output type**: Returns a **URL**, not a server path.
+- **Common use**: Passed into `wp_enqueue_style()` in `functions.php`.
+
+```php
+function theme_enqueue_styles() {
+    wp_enqueue_style('theme-style', get_stylesheet_uri());
+}
+add_action('wp_enqueue_scripts', 'theme_enqueue_styles');
+```
+
+- **Why important**: Ensures styles load dynamically even if theme is switched or child theme used.
+- **Related functions**:
+
+  - `get_template_directory_uri()` → Parent theme directory (always parent).
+  - `get_stylesheet_directory_uri()` → Active theme directory (child or parent).
+
+✅ **One-liner for interview**:
+"`get_stylesheet_uri()` gives the URL of the active theme’s style.css, making it the standard way to enqueue the main stylesheet while staying compatible with child themes."
+
+---
 
 ### Summary
 
