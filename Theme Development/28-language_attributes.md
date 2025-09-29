@@ -91,6 +91,32 @@ For a site in Arabic, which is written right-to-left, it would generate:
 
 ---
 
+## 📝 `language_attributes()` — Super Short Summary
+
+* **What it is:** A WordPress **template tag** that outputs `lang` and `dir` attributes for the `<html>` tag.
+* **Purpose:** Defines page **language** (e.g., `en-US`) and **text direction** (`ltr` or `rtl`).
+* **Why it matters:**
+
+  * **Accessibility** → screen readers interpret content correctly.
+  * **Multilingual support** → adapts automatically for localized sites.
+  * **SEO** → search engines index pages in the right language.
+  * **Standards compliance** → valid, semantic HTML.
+* **Usage:** Placed in `header.php`:
+
+  ```php
+  <html <?php language_attributes(); ?>>
+  ```
+* **Parameter:** Optional `$doctype` (`html` default, `xhtml` alternative).
+* **Examples of output:**
+
+  * English: `<html lang="en-US" dir="ltr">`
+  * Arabic: `<html lang="ar" dir="rtl">`
+* **Best practice:** Always include it in themes; ensures localization-ready, SEO-friendly, and accessible markup.
+
+👉 In short: **`language_attributes()` makes your `<html>` tag smart — it tells browsers, search engines, and assistive tools what language and direction your site uses.**
+
+---
+
 ### **Conclusion**
 
 The `language_attributes()` function is essential for WordPress theme development. It ensures that your site's HTML structure properly defines the language and text direction, which improves accessibility, multilingual support, SEO, and overall user experience. Whether you are building a custom theme or maintaining a multilingual site, integrating this function is critical for modern WordPress development.
