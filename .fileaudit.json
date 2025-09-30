@@ -18,7 +18,8 @@
     "/Users/macuser/Wordpress/Wordpress-Backend-Cheatsheet/Theme Development/29-body_class.md",
     "/Users/macuser/Wordpress/Wordpress-Backend-Cheatsheet/Theme Development/15-get_stylesheet_uri.md",
     "/Users/macuser/Wordpress/Wordpress-Backend-Cheatsheet/Theme Development/17-get_template_directory_uri.md",
-    "/Users/macuser/Wordpress/Wordpress-Backend-Cheatsheet/Gutenberg Block Development/57-theme_json&global_styles.md"
+    "/Users/macuser/Wordpress/Wordpress-Backend-Cheatsheet/Gutenberg Block Development/57-theme_json&global_styles.md",
+    "/Users/macuser/Wordpress/Wordpress-Backend-Cheatsheet/Theme Development/11-wp_enqueue_style.md"
   ],
   "trash": []
 }
