@@ -20,7 +20,8 @@
     "/Users/macuser/Wordpress/Wordpress-Backend-Cheatsheet/Theme Development/17-get_template_directory_uri.md",
     "/Users/macuser/Wordpress/Wordpress-Backend-Cheatsheet/Gutenberg Block Development/57-theme_json&global_styles.md",
     "/Users/macuser/Wordpress/Wordpress-Backend-Cheatsheet/Theme Development/11-wp_enqueue_style.md",
-    "/Users/macuser/Wordpress/Wordpress-Backend-Cheatsheet/Gutenberg Block Development/56-SlotFill-API.md"
+    "/Users/macuser/Wordpress/Wordpress-Backend-Cheatsheet/Gutenberg Block Development/56-SlotFill-API.md",
+    "/Users/macuser/Wordpress/Wordpress-Backend-Cheatsheet/Theme Development/12-wp_enqueue_script.md"
   ],
   "trash": []
 }
