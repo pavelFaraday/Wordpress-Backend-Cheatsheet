@@ -1,4 +1,4 @@
-# SlotFill API (Plugin UI Extensions) in Gutenberg — The Ultimate Guide + Interview Prep
+# SlotFill API (Plugin UI Extensions) in Gutenberg
 
 ## What is SlotFill (in plain English)?
 
@@ -78,21 +78,20 @@ Here are the main “injection points” you get:
 
 **SlotFill** is a React portal-style extensibility pattern used by the WordPress Block Editor. Core exposes **Slots** (fixed “mount points” in the editor UI), and plugins render **Fills** to those Slots. Multiple Fills can target the same Slot; the editor handles layout/ordering.
 
-Gutenberg ships a set of **predefined SlotFills** for common areas: sidebar panels, the More (⋯) menu, pre-publish checks, block settings menu items, and more. You register your UI by calling **`registerPlugin`** (from `@wordpress/plugins`) and rendering the provided components (e.g., `<PluginSidebar/>`, `<PluginDocumentSettingPanel/>`). ([WordPress Developer Resources][2])
+Gutenberg ships a set of **predefined SlotFills** for common areas: sidebar panels, the More (⋯) menu, pre-publish checks, block settings menu items, and more. You register your UI by calling **`registerPlugin`** (from `@wordpress/plugins`) and rendering the provided components (e.g., `<PluginSidebar/>`, `<PluginDocumentSettingPanel/>`).
 
-> **WP 6.6 change**: the editor unified post and site editor slots under `wp.editor` (package `@wordpress/editor`). Many legacy `wp.editPost.*` SlotFills are **deprecated** in 6.6—use the `wp.editor.*` equivalents. (E.g., `wp.editPost.PluginSidebar` → `wp.editor.PluginSidebar`). ([Make WordPress][3], [GitHub][4], [WordPress.org][5])
 
 ---
 
 ## Core concepts & moving parts
 
 - **Slots & Fills**: Think “placeholders” (Slots) that accept “content injections” (Fills). Rendering is virtual/portaled so your UI appears in the intended editor location.
-- **`registerPlugin( name, { render, icon, scope } )`**: Attaches your React app to the editor and makes your SlotFills live. Your `render` returns any number of SlotFills. ([WordPress Developer Resources][6])
+- **`registerPlugin( name, { render, icon, scope } )`**: Attaches your React app to the editor and makes your SlotFills live. Your `render` returns any number of SlotFills.
 - **Predefined SlotFills** (selected highlights):
 
-  - `PluginSidebar` + `PluginSidebarMoreMenuItem` — togglable custom sidebar in post/site editor toolbars and the ⋯ menu. ([WordPress Developer Resources][7])
-  - `PluginDocumentSettingPanel` — a **panel inside the built-in “Post/Page” settings sidebar** (document tab). Namespaced by your plugin. ([WordPress Developer Resources][8])
-  - Others you’ll meet in practice: `PluginPostStatusInfo`, `PluginPrePublishPanel`, `PluginPostPublishPanel`, `PluginBlockSettingsMenuItem`, etc. (All unified under `wp.editor.*` since 6.6.) ([Make WordPress][3])
+  - `PluginSidebar` + `PluginSidebarMoreMenuItem` — togglable custom sidebar in post/site editor toolbars and the ⋯ menu. 
+  - `PluginDocumentSettingPanel` — a **panel inside the built-in “Post/Page” settings sidebar** (document tab). Namespaced by your plugin. 
+  - Others you’ll meet in practice: `PluginPostStatusInfo`, `PluginPrePublishPanel`, `PluginPostPublishPanel`, `PluginBlockSettingsMenuItem`
 
 ---
 
@@ -227,41 +226,41 @@ function SeoDocumentPanel() {
 registerPlugin("my-seo-doc-panel", { render: SeoDocumentPanel });
 ```
 
-- Panels are **namespaced** by your plugin name (from `registerPlugin`). When toggling them programmatically you must prefix the namespace. ([WordPress Developer Resources][8])
+- Panels are **namespaced** by your plugin name (from `registerPlugin`). When toggling them programmatically you must prefix the namespace. 
 - When to choose which:
 
   - **PluginSidebar** → bigger custom area & your own icon in toolbar/⋯ menu.
-  - **PluginDocumentSettingPanel** → lives among the built-in “Post/Page” settings. ([WordPress Developer Resources][7])
+  - **PluginDocumentSettingPanel** → lives among the built-in “Post/Page” settings. 
 
 ---
 
 ## Toolbar & menu injections
 
-- `<PluginSidebar/>` automatically adds a toolbar icon **and** a `<PluginSidebarMoreMenuItem/>` in the ⋯ menu to open it. You can also add your own customized More-menu label with `<PluginSidebarMoreMenuItem/>`. ([WordPress Developer Resources][7])
+- `<PluginSidebar/>` automatically adds a toolbar icon **and** a `<PluginSidebarMoreMenuItem/>` in the ⋯ menu to open it. You can also add your own customized More-menu label with `<PluginSidebarMoreMenuItem/>`. 
 - You can inject into other editor surfaces via unified SlotFills (6.6+): `PluginBlockSettingsMenuItem`, `PluginPrePublishPanel`, `PluginPostPublishPanel`, etc. Replace any `wp.editPost.*` usage with `wp.editor.*`. ([Make WordPress][3], [GitHub][4])
 
 ---
 
 ## Real-world use cases that impress interviewers
 
-1. **SEO & Readability**: live character counters, Open Graph preview, “noindex” toggle in a Document panel. (Great `PluginDocumentSettingPanel` fit.) ([WordPress Developer Resources][8])
-2. **Editorial workflow**: a custom sidebar with checklists (“requirements met”), smart defaults (auto‐fill excerpt from first paragraph), and a “Send to Legal” toggle—stored in post meta. ([WordPress Developer Resources][7])
-3. **Pre-publish guardrails**: `PluginPrePublishPanel` that blocks publishing if alt text is missing for images or word count < target. (Use selectors from `core/editor` and show actionable warnings.) ([Make WordPress][3])
-4. **Block-level actions**: `PluginBlockSettingsMenuItem` to run transformations or open custom modals for the selected block. (Unified under `wp.editor` in 6.6.) ([Make WordPress][3])
-5. **Site editor parity**: One code path that appears in both post and site editors thanks to the unified API in 6.6. Less duplication, fewer conditionals. ([Make WordPress][3])
+1. **SEO & Readability**: live character counters, Open Graph preview, “noindex” toggle in a Document panel. (Great `PluginDocumentSettingPanel` fit.) 
+2. **Editorial workflow**: a custom sidebar with checklists (“requirements met”), smart defaults (auto‐fill excerpt from first paragraph), and a “Send to Legal” toggle—stored in post meta. 
+3. **Pre-publish guardrails**: `PluginPrePublishPanel` that blocks publishing if alt text is missing for images or word count < target. (Use selectors from `core/editor` and show actionable warnings.)
+4. **Block-level actions**: `PluginBlockSettingsMenuItem` to run transformations or open custom modals for the selected block. (Unified under `wp.editor` in 6.6.)
+5. **Site editor parity**: One code path that appears in both post and site editors thanks to the unified API in 6.6. Less duplication, fewer conditionals.
 
 ---
 
 ## Quick cheat-sheet
 
 - **Pattern**: Slot (in core) ⇢ Fill (in your plugin).
-- **Register**: `wp.plugins.registerPlugin( 'my-namespace', { render, icon } )`. ([WordPress Developer Resources][6])
+- **Register**: `wp.plugins.registerPlugin( 'my-namespace', { render, icon } )`.
 - **Imports / handles (WP 6.6+)**: Use `wp.editor.*` components (script handle `wp-editor`) for SlotFills; avoid deprecated `wp.editPost.*`. ([Make WordPress][3], [GitHub][4])
 - **Popular SlotFills**:
 
-  - `PluginSidebar`, `PluginSidebarMoreMenuItem` (toolbar & ⋯ menu) ([WordPress Developer Resources][7])
-  - `PluginDocumentSettingPanel` (panel inside native doc sidebar) ([WordPress Developer Resources][8])
-  - `PluginPrePublishPanel`, `PluginPostPublishPanel`, `PluginPostStatusInfo`, `PluginBlockSettingsMenuItem` (all unified under `wp.editor`). ([Make WordPress][3])
+  - `PluginSidebar`, `PluginSidebarMoreMenuItem` (toolbar & ⋯ menu) 
+  - `PluginDocumentSettingPanel` (panel inside native doc sidebar) 
+  - `PluginPrePublishPanel`, `PluginPostPublishPanel`, `PluginPostStatusInfo`, `PluginBlockSettingsMenuItem` (all unified under `wp.editor`).
 
 - **Data**:
 
@@ -277,7 +276,7 @@ registerPlugin("my-seo-doc-panel", { render: SeoDocumentPanel });
 ## Common pitfalls & gotchas (with fixes)
 
 - **Using old namespaces** (`wp.editPost.PluginSidebar`) on WP ≥ 6.6 ⇒ **Fix**: import/use `wp.editor.PluginSidebar` instead. ([GitHub][4])
-- **Panel won’t open/toggle** ⇒ Your **panel name must be unique** and **namespaced** per `registerPlugin` docs; when using programmatic toggles, include the namespace. ([WordPress Developer Resources][8])
+- **Panel won’t open/toggle** ⇒ Your **panel name must be unique** and **namespaced** per `registerPlugin` docs; when using programmatic toggles, include the namespace. 
 - **Missing script dependencies** ⇒ Add `wp-plugins` (for `registerPlugin`) and `wp-editor` (for unified SlotFills). ([WordPress Developer Resources][6], [Stack Overflow][9])
 - **Meta not saving** ⇒ You didn’t `register_post_meta` with `show_in_rest: true`. ([WordPress Developer Resources][10])
 
@@ -287,7 +286,7 @@ registerPlugin("my-seo-doc-panel", { render: SeoDocumentPanel });
 
 1. **Core exposes Slots** in the sidebar area, publish panels, toolbar menus, etc.
 2. Your plugin **renders Fills** using helper components like `<PluginSidebar/>` or `<PluginDocumentSettingPanel/>`.
-3. You **register** these Fills with `registerPlugin`, and the editor mounts them in the appropriate Slot. The editor also wires conveniences (e.g., a toolbar button + ⋯ menu item for your sidebar). ([WordPress Developer Resources][7])
+3. You **register** these Fills with `registerPlugin`, and the editor mounts them in the appropriate Slot. The editor also wires conveniences (e.g., a toolbar button + ⋯ menu item for your sidebar). 
 
 ---
 
@@ -299,7 +298,7 @@ registerPlugin("my-seo-doc-panel", { render: SeoDocumentPanel });
   - Use **PluginDocumentSettingPanel** for settings that conceptually belong to the document (SEO, canonical URL, noindex). ([rtCamp][11])
 
 - **Unify for WP 6.6+**
-  Always import SlotFills from `@wordpress/editor` / `wp.editor` for forward compatibility; remove old `wp.editPost` imports. ([Make WordPress][3])
+  Always import SlotFills from `@wordpress/editor` / `wp.editor` for forward compatibility; remove old `wp.editPost` imports.
 
 - **State & performance**
   Prefer `useEntityProp( 'postType', postType, 'meta' )` (from `@wordpress/core-data`) or `select/dispatch('core/editor')` patterns; avoid ad-hoc REST calls for routine editor state. ([WordPress Developer Resources][10])
@@ -316,7 +315,7 @@ registerPlugin("my-seo-doc-panel", { render: SeoDocumentPanel });
 1. **MainDashboardButton** — adds a button to the editor’s top bar (main toolbar).
 2. **PluginSidebar** — registers a **custom sidebar** panel; also gets a toolbar toggle automatically.
 3. **PluginSidebarMoreMenuItem** — adds an item in the ⋯ **More menu** to open your custom sidebar.
-4. **PluginDocumentSettingPanel** — injects a **panel inside the native Document (post/page) sidebar**. ([WordPress Developer Resources][2])
+4. **PluginDocumentSettingPanel** — injects a **panel inside the native Document (post/page) sidebar**.
 5. **PluginPostStatusInfo** — adds content to the **Post Summary / Status** area in the sidebar.
 6. **PluginPrePublishPanel** — surfaces checks/information in the **Pre-publish** panel (before publishing). ([WordPress Developer Resources][3])
 7. **PluginPostPublishPanel** — adds content to the **Post-publish** panel (after publishing).
@@ -560,15 +559,15 @@ registerPlugin("demo-more-menu-item", { render: MyMoreMenuItem });
 **A.** In your component, use `select('core/editor').getCurrentPostType()` (or `useSelect`) and `wp.data.select('core').canUser()` to conditionally render fills. You can also conditionally enqueue the script in PHP for specific post types/capabilities.
 
 **Q8. How do you ensure parity between the Post and Site editors?**
-**A.** Use the unified `@wordpress/editor` SlotFills (6.6+) and avoid editor-specific conditionals. That way the same code attaches to both editors’ Slots. ([Make WordPress][3])
+**A.** Use the unified `@wordpress/editor` SlotFills (6.6+) and avoid editor-specific conditionals. That way the same code attaches to both editors’ Slots.
 
 ---
 
 ## References you can cite in an interview
 
 - Slot/Fill conceptual docs and API: **Block Editor Handbook**.
-- SlotFills catalog incl. `PluginSidebar`, `PluginDocumentSettingPanel`, etc. ([WordPress Developer Resources][2])
-- `@wordpress/plugins` and `registerPlugin` docs. ([WordPress Developer Resources][6])
+- SlotFills catalog incl. `PluginSidebar`, `PluginDocumentSettingPanel`, etc.
+- `@wordpress/plugins` and `registerPlugin` docs.
 - WP 6.6 unified extensibility & deprecations: dev note + examples of warnings. ([Make WordPress][3], [GitHub][4])
 
 ---
