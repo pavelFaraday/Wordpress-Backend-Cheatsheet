@@ -1,5 +1,41 @@
 # Internationalization & Localization of Gutenberg Blocks
 
+## Short Summary
+
+### 📌 Internationalization (i18n) & Localization (l10n) — Summary
+
+- **i18n** = prepare code for translation.
+- **l10n** = provide actual translations per locale (e.g., `ka_GE`).
+- Strings live in **PHP**, **JS**, and **block.json** — all must share the same **text domain**.
+
+### 🔑 Core Concepts
+
+- **Text domain** → unique slug (e.g., `pixels-land`).
+- **PHP translations** → `__()`, `_e()`, `_n()`, etc. + `load_plugin_textdomain()`.
+- **JS translations** → `@wordpress/i18n` (`__`, `_n`, `_x`) + `wp_set_script_translations()`.
+- **block.json** → add `"textdomain"`; `title`, `description`, `keywords` become translatable.
+- **Translation files** → `.po/.mo` for PHP, `.json` for JS (one per script handle).
+
+### ⚙️ Build Pipeline
+
+1. Write strings → use correct domain + translator comments.
+2. Generate POT → `wp i18n make-pot`.
+3. Translate → `.po` → `.mo` + `wp i18n make-json`.
+4. Load in code → `load_plugin_textdomain()` & `wp_set_script_translations()`.
+5. Test → switch Site Language & confirm translations.
+
+### 💡 Best Practices / Gotchas
+
+- Keep one **text domain** everywhere.
+- Never concatenate strings → use `sprintf()` + `_n()` for plurals.
+- Always add **translator comments** for placeholders.
+- Escape after translation (`esc_html__`, etc.).
+- Don’t forget `wp_set_script_translations()` for your editor JS handle.
+
+👉 In short: **Prepare all strings (PHP + JS + block.json), use one text domain, generate POT → PO/MO/JSON, load with WordPress APIs — and you’ve fully localized your Gutenberg block.**
+
+---
+
 ## Why i18n matters (in Gutenberg too)
 
 - **Internationalization (i18n)**: preparing your plugin/block so it _can_ be translated.
@@ -263,17 +299,6 @@ languages/
 
 ---
 
-# Practical use cases (Gutenberg-specific)
-
-- **Inspector Controls / Toolbar labels**: `__( 'Reserve', 'pixels-land' )`
-- **Notices & errors** shown in editor: `_n()` for plural counts, `sprintf` for dynamic bits.
-- **Block transforms palette**: translatable labels to keep UX consistent across locales.
-- **`block.json` metadata**: localized **title**, **description**, **keywords** for discoverability.
-- **Server-rendered (dynamic) blocks**: translate on PHP side (render callback).
-- **REST errors**: return translated messages if they are end-user facing (or return codes and translate on client, depending on API design).
-
----
-
 # Gotchas & best practices
 
 - **One text domain everywhere** (PHP, JS, block.json). Avoid typos/casing differences.
@@ -329,14 +354,14 @@ wp i18n make-json ./languages --no-purge
 
 ---
 
-# Interview-Style Talking Points (with strong model answers)
+## Interview-Style Talking Points (with strong model answers)
 
-### 1) _What’s the difference between i18n and l10n in WordPress, especially for Gutenberg?_
+#### 1) What’s the difference between i18n and l10n in WordPress, especially for Gutenberg?
 
 **Answer:**
 _i18n_ is preparing my plugin/block so every user-visible string is translatable across **PHP**, **JS**, and **block.json**. _l10n_ is providing the actual translations—`.po/.mo` for PHP and `.json` for JS. In Gutenberg, I load PHP translations via `load_plugin_textdomain()` and JS translations per-script via `wp_set_script_translations()`. I keep a single **text domain** across all layers to ensure a consistent lookup.
 
-### 2) _How do you translate strings in block JavaScript and load those translations?_
+#### 2) How do you translate strings in block JavaScript and load those translations
 
 **Answer:**
 I use `@wordpress/i18n` functions like `__`, `_n`, `_x`, with the correct **text domain**. I register my editor script to get a handle (e.g., `pixels-land-editor`) and then call:
@@ -347,12 +372,12 @@ wp_set_script_translations( 'pixels-land-editor', 'pixels-land', plugin_dir_path
 
 This makes WordPress load the locale **JSON** file for that handle. I generate those JSON files from my PO files via `wp i18n make-json`.
 
-### 3) _How do you handle translations in `block.json`?_
+#### 3) How do you handle translations in `block.json`?
 
 **Answer:**
 I set `"textdomain": "pixels-land"` in `block.json`. Fields like `title`, `description`, and `keywords` are extracted into the POT when I run `wp i18n make-pot`. Translators provide PO files; WordPress will use them so the block is listed and searchable with localized metadata.
 
-### 4) _Explain your end-to-end translation build pipeline._
+#### 4) Explain your end-to-end translation build pipeline.
 
 **Answer:**
 
@@ -362,12 +387,12 @@ I set `"textdomain": "pixels-land"` in `block.json`. Fields like `title`, `descr
 4. In code, I call `load_plugin_textdomain()` (PHP) and `wp_set_script_translations()` (JS).
 5. I test by switching the site language and verifying UI messages, editor labels, and notices.
 
-### 5) _When would you use `_n()` vs concatenation for plurals?_
+#### 5) When would you use `_n()` vs concatenation for plurals?
 
 **Answer:**
 Always `_n()` (or `_nx()` for context). Plural rules differ by language; `_n()` lets WordPress pick the correct form for the locale. Concatenation breaks translation and pluralization.
 
-### 6) _How do you ensure translators have enough context?_
+#### 6) How do you ensure translators have enough context?
 
 **Answer:**
 I add **translator comments** immediately above the string:
@@ -379,12 +404,12 @@ sprintf( __( 'Reserved by %s', 'pixels-land' ), $brand );
 
 In JS I do the same in comments near the call. If a word has multiple meanings, I use `_x()` to provide a context string.
 
-### 7) _What’s the difference between `wp_localize_script` and `wp_set_script_translations`?_
+#### 7) What’s the difference between `wp_localize_script` and `wp_set_script_translations`?
 
 **Answer:**
 `wp_localize_script()` passes arbitrary PHP data (e.g., settings) into JS as a global. It’s **not** for translations. `wp_set_script_translations()` is specifically for **loading translation JSON** for a given script handle and text domain.
 
-### 8) _Common pitfalls you watch out for?_
+#### 8) Common pitfalls you watch out for?
 
 **Answer:**
 
@@ -394,12 +419,12 @@ In JS I do the same in comments near the call. If a word has multiple meanings, 
 - Concatenated strings and missing translator comments.
 - Not escaping translated output appropriately (`esc_html__`, `esc_attr__`).
 
-### 9) _How do you test and debug missing translations?_
+#### 9) How do you test and debug missing translations?
 
 **Answer:**
 I switch **Site Language** in Settings and verify all UI text. For JS issues, I confirm the handle passed to `wp_set_script_translations()` matches the registered one, and that the JSON file exists under `languages/`. I also check that the exact source string (including punctuation) exists in the PO.
 
-### 10) _Any Gutenberg-specific best practices?_
+#### 10) Any Gutenberg-specific best practices?
 
 **Answer:**
 
