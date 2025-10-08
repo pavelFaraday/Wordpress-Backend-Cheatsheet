@@ -1,9 +1,44 @@
 # What “filters” are (in Gutenberg JS)
 
+### 📝 Purpose & Philosophy - Highlights
+
+Filters in Gutenberg are the JavaScript equivalent of PHP filters in WordPress. They let you intercept data at specific hook points and modify it before it’s used by the editor. That means you can change how blocks are registered, rendered, saved, or even styled—without rewriting the block itself.”\_
+**Highlight:** Extensibility → No need to fork core blocks; you can layer custom behavior.
+
 - A **filter** lets you **intercept and change data** before the block editor uses it—very similar to PHP filters.
 - Under the hood it’s the `@wordpress/hooks` package (also exposed globally as `wp.hooks`).
 - You register callbacks with `addFilter( hookName, namespace, callback, priority? )`.
-  Gutenberg triggers those with `applyFilters( hookName, value, ...args )`.
+- **Context**: Some filters run at **registration time** (`blocks.registerBlockType`), others during **rendering** (`editor.BlockEdit`) or **saving** (`blocks.getSaveContent.extraProps`).
+
+### Gutenberg JS Filters:
+
+> `import { addFilter } from "@wordpress/hooks";`
+
+- `blocks.registerBlockType`
+  - **When:** Right after a block is registered, before it’s used.
+  - **Use cases:** Add attributes, tweak supports, set default variations, enforce constraints.
+- `editor.BlockEdit`
+  - **When:** While rendering the block in the editor.
+  - **Use cases:** Add controls to Inspector, conditionally wrap the edit component, inject context.
+- `blocks.getSaveContent.extraProps`
+  - **When:** Right before Gutenberg serializes a block’s static save output.
+  - **Use cases:** Add classes, `data-*` attributes, ARIA attributes, inline styles.
+- `blocks.getBlockDefaultClassName`
+  - **When:** When WP generates the default wrapper class (e.g., `wp-block-quote`).
+  - **Use cases:** Standardize classes across themes; integrate with a design system.
+- `editor.BlockListBlock`
+  - **When:** While rendering the block container in the editor canvas.
+  - **Use cases:** Add outlines, debug labels, editor-only hints.
+- `blocks.getSaveElement`
+  - **When:** After a block’s `save()` returns an element, before serialization.
+  - **Use cases:** Wrap saved element, inject children, alter structure (use sparingly).
+
+### Memorable One-Liners for Interview
+
+- “Filters are the glue layer that lets plugins extend Gutenberg without forking blocks.”
+- “I use `blocks.registerBlockType` for attributes, `editor.BlockEdit` for editor UI, and `blocks.getSaveContent.extraProps` for front-end markup tweaks.”
+- “The biggest trap with filters is breaking block validation. Always think about migration paths.”
+- “Namespacing and guarding conditions are my golden rules—so my filters don’t step on anyone else’s.”
 
 ### Filters vs Actions (JS)
 
@@ -12,14 +47,20 @@
 
 ---
 
-# Core concepts you’ll be asked about
+---
 
-1. **Hook names are contracts.** You can only hook into names Gutenberg (or plugins) actually `applyFilters`. (e.g., `blocks.registerBlockType`, `editor.BlockEdit`, `blocks.getSaveContent.extraProps`.)
-2. **Namespace matters.** Use a unique slug like `my-plugin/feature` so your filter can be removed/overridden predictably.
-3. **Priority ordering.** Lower number = earlier. Default is `10`.
-4. **Editor lifecycle.** Some filters run at **registration time** (e.g., `blocks.registerBlockType`), others around **render/edit/save** (e.g., `editor.BlockEdit`, `blocks.getSaveContent.extraProps`).
-5. **Static vs dynamic blocks.** Filters that change saved markup (e.g., extra props) don’t make sense for blocks that render entirely server-side; prefer editor-side filters for those.
-6. **Validation & back-compat.** If you change a block’s saved output for existing posts, you can trigger “This block contains unexpected or invalid content.” Plan migrations or guard conditions.
+---
+
+## 📌 JS Filters — Core Concepts Summary
+
+- **Hook names = contracts** → You can only hook into filters Gutenberg exposes (e.g., `blocks.registerBlockType`, `editor.BlockEdit`, `blocks.getSaveContent.extraProps`).
+- **Namespace matters** → Always use a unique key like `my-plugin/feature` so your filter can be safely removed or overridden.
+- **Priority** → Lower number runs earlier (default = `10`).
+- **Lifecycle awareness** → Some filters run at block **registration**; others at **edit** or **save** time.
+- **Static vs dynamic blocks** → Don’t modify saved markup for dynamic (PHP-rendered) blocks; use editor-only filters instead.
+- **Validation / back-compat** → Changing saved output can break existing content (“Invalid block”); plan migrations or use conditional logic.
+
+👉 In short: **JS filters let you extend Gutenberg safely — know the right hook, namespace it, respect timing, and never break existing markup.**
 
 ---
 
@@ -356,16 +397,10 @@ addFilter("blocks.getSaveElement", "ns/wrap-save", (el, type, attrs) => {
 - **Pitfalls:** Invalidation from changed save output; global side-effects; forgetting namespacing; overusing editor filters (perf/UX).
 - **Best practice:** Small, focused HOCs; guard by `props.name`; feature-flag via attributes; keep saved changes backward-compatible.
 
-Perfect — let’s expand those **interview-style talking points** into something you could use to sound sharp and confident when asked about Gutenberg JS filters.
-
-## 🎯 Interview-Style Talking Points on Gutenberg JavaScript Filters
-
 ### 1. **Purpose & Philosophy**
 
 - _“Filters in Gutenberg are the JavaScript equivalent of PHP filters in WordPress. They let you intercept data at specific hook points and modify it before it’s used by the editor. That means you can change how blocks are registered, rendered, saved, or even styled—without rewriting the block itself.”_
 - Highlight: Extensibility → No need to fork core blocks; you can layer custom behavior.
-
----
 
 ### 2. **Core Concepts to Emphasize**
 
@@ -374,8 +409,6 @@ Perfect — let’s expand those **interview-style talking points** into somethi
 - **Namespacing**: Always use unique namespace (`my-plugin/feature`) so filters can be removed cleanly.
 - **Priority**: Filters execute in order; default = `10`. Useful for chaining logic.
 - **Context**: Some filters run at **registration time** (`blocks.registerBlockType`), others during **rendering** (`editor.BlockEdit`) or **saving** (`blocks.getSaveContent.extraProps`).
-
----
 
 ### 3. **Practical Use Cases You Can Drop in**
 
@@ -386,8 +419,6 @@ Perfect — let’s expand those **interview-style talking points** into somethi
 - **Editor-only enhancements** → outlines, debugging badges, block labels visible only in admin.
 - **Marketing/SEO tweaks** → auto-append `rel="nofollow"` to external links or enforce `loading="lazy"` on images.
 
----
-
 ### 4. **Best Practices**
 
 - **Guard filters by block name** — never blindly affect every block unless intentional.
@@ -395,8 +426,6 @@ Perfect — let’s expand those **interview-style talking points** into somethi
 - **Keep UI enhancements editor-only** — don’t clutter saved markup unnecessarily.
 - **Keep HOCs small & composable** — one filter = one clear responsibility.
 - **Test with legacy content** — make sure existing posts don’t break.
-
----
 
 ### 5. **Pitfalls & Tricky Questions**
 
