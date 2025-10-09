@@ -79,10 +79,9 @@
 75. [Shortcodes in WordPress](75-shortcode.md)
 76. [WordPress Loops](76-WordPress_Loops.md)
 77. [WordPress Theme Development Interview Questions](77-WP_Theme_interview.md)
-    [Other WP functions](other_info.md)
+78. [`wp_body_open()` action hook](78-wp_body_open.md)
+79. [Minimal Required Files for WP Theme Development](79-Minimal_Required_Files_For_Theme_Dev.md)
+80. [`get_header()` & `get_footer()`](80-get_footer-get_header.md)
+81. [Namespaces in PHP (Generally) & WP Theme Development](81-Namespaces.md)
 
----
-
-1. [Minimal Required Files for WP Theme Development](-Minimal_Required_Files_For_Theme_Dev.md)
-2. [`get_header()` & `get_footer()`](-get_footer-get_header.md)
-3. [`wp_body_open()` action hook](-wp_body_open.md)
+[Other WP functions](other_info.md)
