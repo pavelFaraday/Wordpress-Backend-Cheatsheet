@@ -82,7 +82,5 @@
 78. [`wp_body_open()` action hook](78-wp_body_open.md)
 79. [Minimal Required Files for WP Theme Development](79-Minimal_Required_Files_For_Theme_Dev.md)
 80. [`get_header()` & `get_footer()`](80-get_footer-get_header.md)
-81. [Namespaces in PHP (Generally) & WP Theme Development](81-Namespaces.md)
-82. [`spl_autoload_register` in php & WP](82-spl_autoloader.md)
-
-[Other WP functions](other_info.md)
+81. [Namespaces, `spl_autoloader`, Traits, PHP Singleton](81-Namespaces-Autoloaders-Traits-singleton.md)
+    [Other WP functions](other_info.md)
