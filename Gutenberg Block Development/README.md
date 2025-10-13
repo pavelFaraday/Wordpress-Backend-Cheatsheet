@@ -52,7 +52,7 @@
 48. [`useRef` hook in Gutenberg](48-useRef.md)
 49. [`usePrevious` hook in Gutenberg](49-usePrevious.md)
 50. [Context API in Gutenberg](50-ContextAPI.md)
-51. [Predefined Templates & Template Locking in Gutenberg](51-Predefined_Templates+Template_lock.md)
+51. [Templates](51-Templates.md)
 52. [Block Patterns](52-Block-Patterns.md)
 53. [PHP Filters for Gutenberg Blocks](53-PHP_filters.md)
 54. [JS Filters for Gutenberg Blocks](54-JS_Filters.md)
@@ -67,3 +67,4 @@
 63. [Deprecated & Migration](63-Deprecated_&_Migration.md)
 64. [Editor Extensibility beyond blocks](64-Editor_Extensibility_beyond_blocks.md)
 65. [`useMemo`, `useCallback`,`React.memo` in Gutenberg](65-useMemo_useCallback_React.memo.md)
+66. [Gutenberg Blocks VS Groups VS Patterns VS Templates](66-Blocks-Groups-Patterns-Templates.md)
