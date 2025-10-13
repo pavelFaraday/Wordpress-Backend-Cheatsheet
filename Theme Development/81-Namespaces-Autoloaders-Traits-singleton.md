@@ -440,6 +440,10 @@ $user2 = User::get_instance();
 var_dump($user1 === $user2); // true ✅
 ```
 
+### Singleton & Traits together
+
+![Singleton & Traits](Slides/singleton_traits.png)
+
 ### **Core Concepts**
 
 | Concept                 | Description                                    |
