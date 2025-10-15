@@ -1,242 +1,201 @@
-# Templates & Template Locking in Gutenberg
+# 🧱 Templates & Template Locking in Gutenberg (Simple Guide)
 
-## 📝 Templates in Gutenberg - Summary
+## 💡 What are Templates?
 
-- **What they are:** Predefined **block-based layouts** that control the structure of pages (e.g., single post, page, archive).
-- **Location:** Stored in block themes as `.html` files (`single.html`, `page.html`, `index.html`).
-- **Editable:** Can be customized visually in the **Site Editor**.
-- **Composition:** Combine **template parts** (header, footer) + **dynamic blocks** (Query Loop, Post Title, Content).
-- **Purpose:** Define consistent layout and design for specific content types.
-- **Overrides:** Users can create custom templates per page or post.
+Templates are **ready-made layouts** built with blocks.
+They control **how your posts and pages look** — like “page blueprints”.
 
-👉 In short: **Templates define how content is structured and displayed - reusable layouts made of blocks for specific site contexts.**
-
-## Why they exist (the purpose)
-
-Predefined **post type templates** and **template locking** give you:
-
-- **Editorial guardrails** – every new post starts with the same structure.
-- **Brand consistency** – authors can edit content but not break the layout.
-- **Speed** – no need to rebuild the same sections each time.
-- **Safer collaboration** – you decide what can be inserted, moved, or removed.
+👉 Example:
+Every “Blog Post” could use the same layout - title, image, content, author bio.
 
 ---
 
-## Core concepts (clear mental model)
+## 🗂 Where templates live
 
-### 1) Post type editor templates (PHP)
+In **block themes**:
 
-A **template** is an array that describes the **initial block tree** for a post type. It’s applied **only when creating a new post** for that type.
+```
+/templates/single.html
+/templates/page.html
+/parts/header.html
+/parts/footer.html
+```
 
-Shape (pseudocode):
+In **classic themes or plugins**:
+You can define them in PHP when you register a post type.
+
+---
+
+## 🎯 Why Templates exist
+
+Templates help you:
+
+- ✅ Keep a **consistent design** across posts.
+- ✅ Save time - no need to rebuild layout every time.
+- ✅ Prevent mistakes - authors can’t delete or move key blocks.
+- ✅ Control what can and can’t be edited.
+
+👉 Think of them as **"guardrails"** for editors.
+
+---
+
+## ⚙️ Core Ideas
+
+### 1️⃣ Post Type Templates (in PHP)
+
+You can define a **default block structure** for a post type.
+This layout appears **when you create a new post**.
+
+**Example:**
 
 ```php
-$template = [
-  [ 'block/name',           [ attributes... ], [ innerBlocks... ] ],
-  [ 'core/paragraph',       [ 'content' => 'Hello' ] ],
-  [ 'core/columns',         [], [
-      [ 'core/column', [], [ [ 'core/paragraph', [] ] ] ],
-      [ 'core/column', [], [ [ 'core/image', [] ] ] ],
-  ]],
-];
+register_post_type( 'team_profile', [
+  'show_in_rest'  => true,
+  'template' => [
+    [ 'core/heading', [ 'content' => 'Team Introduction' ] ],
+    [ 'core/paragraph', [ 'content' => 'Write something about your team...' ] ],
+    [ 'core/columns', {}, [
+      [ 'core/column', {}, [ [ 'core/image' ] ] ],
+      [ 'core/column', {}, [ [ 'core/paragraph', [ 'content' => 'Name' ] ] ] ],
+    ] ],
+  ],
+  'template_lock' => 'insert',
+] );
 ```
 
-Where to set:
+🟢 This means:
 
-- In `register_post_type( ..., [ 'template' => $template, 'template_lock' => 'all' ] )`
-- Or mutate an existing type (e.g., `post`) via `get_post_type_object( 'post' )` inside `init` and set `$pto->template` / `$pto->template_lock`.
-
-**Important gotchas**
-
-- Requires `show_in_rest => true` for the post type (Gutenberg editor).
-- Applies to **new** posts only (doesn’t retrofit existing content).
-- If custom blocks are referenced, they **must be registered** before the editor loads.
-
-### 2) Template locking (what is locked?)
-
-Controls **structure** editing, not content editing itself.
-
-At **post type** level (`template_lock` in PHP):
-
-- `false` (default): free editing
-- `'insert'`: can move/remove existing blocks, but **cannot insert new** ones
-- `'all'`: cannot insert, move, or remove blocks
-
-At **block layout** level (JS, with `<InnerBlocks>`):
-
-- `templateLock="false" | "insert" | "all" | "contentOnly"`
-
-  - `'contentOnly'` (InnerBlocks only): users edit **text/media only**; block UI chrome is hidden.
-
-At **individual block** level (UI/attributes):
-
-- Block attribute `lock` can disallow `move`/`remove`.
-- Users with permission can also lock blocks via the editor UI (three-dot menu → **Lock**).
-
-### 3) Other ways to “template”
-
-- **Block themes (FSE)**: `templates/*.html` and `parts/*.html` are site templates in block markup. You can use locked wrapper blocks inside to constrain editing.
-- **Patterns**: reusable section blueprints; can include locked blocks to prevent accidental structure changes.
+- Every new “Team Profile” starts with this structure.
+- Users can edit text and images but can’t **add new blocks**.
 
 ---
 
-## Mini real project: “Team Profiles” post type
+### 2️⃣ Template Locking
 
-### Goal
+Locking means **how much control editors have** inside the layout.
 
-Every **Team Profile** starts with:
+| Level           | Lock type     | What it does                             |
+| --------------- | ------------- | ---------------------------------------- |
+| `false`         | none          | Free editing                             |
+| `'insert'`      | Partial lock  | Can move/delete blocks but can’t add new |
+| `'all'`         | Full lock     | Can’t move, remove, or add               |
+| `'contentOnly'` | Hide block UI | Can only change text or images           |
 
-- A metadata block
-- An intro paragraph
-- A 3-column “Team Members” container with three predefined “Team Member” items
-  …and authors can only change text/images (no structure changes).
+**Used in two places:**
 
-### 1) Register the post type with a predefined template (PHP)
+- In PHP (`'template_lock' => 'insert'`)
+- In JavaScript with `<InnerBlocks templateLock="all" />`
+
+---
+
+### 3️⃣ Example: “Team Profiles” CPT
+
+**Goal:**
+Each “Team Profile” post has:
+
+- One metadata block
+- One intro paragraph
+- One “Team Members” container with 3 team members
+- Authors can only change content, not layout
+
+---
+
+### 🧩 Step 1: Register the CPT
 
 ```php
-<?php
-// plugin or mu-plugin file: team-profiles.php
-add_action( 'init', function () {
-    register_post_type( 'team_profile', [
-        'label'           => 'Team Profiles',
-        'public'          => true,
-        'show_in_rest'    => true,
-        'supports'        => [ 'title', 'editor', 'thumbnail' ],
-        // Post type editor template (initial block tree)
-        'template'        => [
-            [ 'blocks-course/metadata-block' ],
-            [ 'core/paragraph', [ 'content' => 'Write a short intro…' ] ],
-            // container with 3 inner team-member blocks
-            [ 'blocks-course/team-members', [ 'columns' => 3 ], [
-                [ 'blocks-course/team-member' ],
-                [ 'blocks-course/team-member' ],
-                [ 'blocks-course/team-member' ],
-            ]],
-        ],
-        // Editor-level locking for this post type
-        'template_lock'   => 'insert', // prevent inserting extra blocks, allow moving/removing
-    ] );
-} );
+register_post_type( 'team_profile', [
+  'label'         => 'Team Profiles',
+  'public'        => true,
+  'show_in_rest'  => true,
+  'template_lock' => 'insert',
+  'template'      => [
+    [ 'blocks-course/metadata-block' ],
+    [ 'core/paragraph', [ 'content' => 'Write short intro…' ] ],
+    [ 'blocks-course/team-members', [], [
+      [ 'blocks-course/team-member' ],
+      [ 'blocks-course/team-member' ],
+      [ 'blocks-course/team-member' ],
+    ] ],
+  ],
+] );
 ```
 
-> This mirrors the structure in your screenshot: a container **`blocks-course/team-members`** with three **`team-member`** children.
+---
 
-### 2) Make the container block strictly “content-only” (JS)
-
-Inside the container block’s `edit` function, lock inner layout fully but let authors edit content:
+### 🧩 Step 2: InnerBlocks - Lock layout (JS)
 
 ```js
-// blocks-course/team-members/edit.js
-import { InnerBlocks } from "@wordpress/block-editor";
-
-const TEMPLATE = [
-  ["blocks-course/team-member"],
-  ["blocks-course/team-member"],
-  ["blocks-course/team-member"],
-];
-
-export default function Edit() {
-  return (
-    <div className="team-members">
-      <InnerBlocks
-        template={TEMPLATE}
-        templateLock="contentOnly" // users can edit fields/media, not layout
-        allowedBlocks={["blocks-course/team-member"]}
-      />
-    </div>
-  );
-}
+<InnerBlocks
+  template={[
+    ["blocks-course/team-member"],
+    ["blocks-course/team-member"],
+    ["blocks-course/team-member"],
+  ]}
+  templateLock="contentOnly" // only text/media editable
+  allowedBlocks={["blocks-course/team-member"]}
+/>
 ```
 
-### 3) Optionally pin down each `team-member`
+---
 
-If each item has fixed sub-structure (e.g., image + name + role), define its own `InnerBlocks` with `templateLock="all"`:
+### 🧩 Step 3: Each Team Member (JS)
 
 ```js
-// blocks-course/team-member/edit.js
-import { InnerBlocks } from "@wordpress/block-editor";
-
-const ITEM_TEMPLATE = [
-  ["core/image"],
-  ["core/heading", { level: 4, placeholder: "Name" }],
-  ["core/paragraph", { placeholder: "Role / Short bio" }],
-];
-
-export default function Edit() {
-  return (
-    <div className="team-member">
-      <InnerBlocks template={ITEM_TEMPLATE} templateLock="all" />
-    </div>
-  );
-}
+<InnerBlocks
+  template={[
+    ["core/image"],
+    ["core/heading", { level: 4, placeholder: "Name" }],
+    ["core/paragraph", { placeholder: "Role / Bio" }],
+  ]}
+  templateLock="all" // full lock
+/>
 ```
 
-### 4) Practical policies you can enforce
+🟢 This way:
 
-- **Authors can’t add a 4th member** (post type `template_lock: insert` and container `allowedBlocks`).
-- **Authors can’t break item layout** (item has `templateLock="all"`).
-- **Brand stays tight** while text/media remains editable.
-
----
-
-## Advanced patterns & tips
-
-- **Mutating core “post” type**
-  If you don’t own the CPT, you can still do:
-
-  ```php
-  add_action( 'init', function () {
-      $pto = get_post_type_object( 'post' );
-      if ( $pto ) {
-          $pto->template = [ /* … */ ];
-          $pto->template_lock = 'insert';
-      }
-  } );
-  ```
-
-- **Conditional templates**
-  Use a filter like `use_block_editor_for_post_type` or inject templates dynamically based on user role/category. For more control, enqueue an editor script that switches templates depending on context and sets `InnerBlocks` props conditionally.
-
-- **Restrict what can be inserted globally**
-  `allowed_block_types_all` filter can whitelist blocks per post type or per post.
-
-- **Updating existing posts**
-  Templates don’t retro-apply. Provide an “Insert pattern” button or a small helper that injects missing sections via a custom sidebar control if you need to migrate old content.
-
-- **Performance/stability**
-  Register custom blocks **before** the editor loads (on `init`). If a block in your template fails to register, the editor will show placeholders or strip it.
+- Each profile has 3 members.
+- Authors can’t delete or add extra members.
+- They can only change text or photo.
 
 ---
 
-## Common pitfalls (and fixes)
+## 🪄 Quick Tips
 
-- **Template not appearing** → Ensure CPT has `show_in_rest => true`; clear caches; verify you’re creating a **new** post; confirm array shape `[ name, attrs, inner ]`.
-- **Users still rearrange blocks** → You probably used `template_lock => 'insert'` (allows move/remove). Use `'all'` at the post type level and/or `templateLock="all"` where needed.
-- **Custom block missing** → The block slug must match exactly (e.g., `'blocks-course/team-member'`) and be registered on `init` (PHP) + editor scripts enqueued.
-- **Need content-only editing** → Use `templateLock="contentOnly"` on the `InnerBlocks` **container** that wraps the section you want to protect.
+✅ Use `'show_in_rest' => true` - required for Gutenberg.
+✅ Templates only work on **new posts**, not old ones.
+✅ Register all custom blocks before the editor loads.
+✅ Use `'contentOnly'` for safest content editing.
+✅ Use `allowed_block_types_all` filter to limit which blocks can appear.
 
 ---
 
-## Quick cheat-sheet (copy/paste)
+## 🧰 Common Problems
 
-**Post type template (PHP)**
+| Problem                           | Reason                 | Fix                            |
+| --------------------------------- | ---------------------- | ------------------------------ |
+| Template not showing              | Missing `show_in_rest` | Add `'show_in_rest' => true`   |
+| Template works only on new posts  | Normal behavior        | Only affects new ones          |
+| Authors can move or delete blocks | Wrong lock type        | Use `'all'` or `'contentOnly'` |
+| Custom block missing              | Not registered yet     | Register it early in `init`    |
+
+---
+
+## ⚡ Quick Copy-Paste Cheatsheet
+
+**PHP**
 
 ```php
 register_post_type( 'my_cpt', [
   'show_in_rest'  => true,
   'template'      => [
-    [ 'core/heading',   { level: 2, content: 'Title' } ],
+    [ 'core/heading', { level: 2, content: 'Title' } ],
     [ 'core/paragraph', { placeholder: 'Intro…' } ],
-    [ 'core/columns', {}, [
-      [ 'core/column', {}, [ [ 'core/image' ] ] ],
-      [ 'core/column', {}, [ [ 'core/paragraph' ] ] ],
-    ]],
   ],
-  'template_lock' => 'insert', // false | 'insert' | 'all'
+  'template_lock' => 'insert',
 ] );
 ```
 
-**InnerBlocks with locking (JS)**
+**JS**
 
 ```js
 <InnerBlocks
@@ -244,25 +203,21 @@ register_post_type( 'my_cpt', [
     ["core/image"],
     ["core/heading", { level: 3, placeholder: "Heading" }],
   ]}
-  templateLock="all" // false | 'insert' | 'all' | 'contentOnly'
+  templateLock="all"
   allowedBlocks={["core/image", "core/heading"]}
 />
 ```
 
-**Lock a specific block (attribute)**
+---
 
-```json
-// in block markup or JSON attributes
-{ "lock": { "move": false, "remove": false } }
-```
+## 🔍 Summary
 
-**Mutate existing post type**
+| Concept                          | What it does                               |
+| -------------------------------- | ------------------------------------------ |
+| **Template**                     | Starting block layout for new posts        |
+| **Template parts**               | Reusable header/footer blocks              |
+| **Template Lock**                | Controls what users can change             |
+| **`templateLock="contentOnly"`** | Hides structure - only text/media editable |
 
-```php
-add_action( 'init', function () {
-  if ( $pto = get_post_type_object( 'post' ) ) {
-    $pto->template = [ [ 'core/paragraph', [ 'content' => 'Start here…' ] ] ];
-    $pto->template_lock = 'all';
-  }
-} );
-```
+👉 Templates = structure.
+👉 Template Locking = control.
