@@ -84,3 +84,4 @@
 80. [`get_header()` & `get_footer()`](80-get_footer-get_header.md)
 81. [Namespaces, `spl_autoloader`, Traits, PHP Singleton](81-Namespaces-Autoloaders-Traits-singleton.md)
     [Other WP functions](other_info.md)
+82. [WordPress Security](82-WP-security.md)

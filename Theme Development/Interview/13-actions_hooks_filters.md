@@ -66,7 +66,7 @@ function modify_post_title($title) {
 - ❗️ **Hooks**: **The <u>umbrella</u> term for both Actions and Filters. It signifies predefined points in WordPress where custom code can be attached.**
 - ❗️ **Actions**: To execute a specific code or function at a particular point in WordPress, like when a post is published, an admin page is loaded, or a comment is saved.
 - ❗️ **Filters**: **To modify or filter content/data**, such as changing the title of a post or adding custom data to a user’s profile information.
-x
+
 
 ### **3. Core Concepts**
 

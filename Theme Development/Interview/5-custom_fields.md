@@ -26,7 +26,7 @@ WordPress offers a built-in UI for custom fields in the post editor, but it's di
 
 #### 4. Displaying Custom Fields on the Front End
 
-To display the data from custom fields on your site, you'll need to edit your theme files. You can use the get_post_meta() function to retrieve and echo the custom field value in your template.
+To display the data from custom fields on your site, you'll need to edit your theme files. You can use the `get_post_meta()` function to retrieve and echo the custom field value in your template.
 
 **Example:**
 
