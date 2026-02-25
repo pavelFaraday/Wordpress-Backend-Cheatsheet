@@ -85,3 +85,4 @@
 81. [Namespaces, `spl_autoloader`, Traits, PHP Singleton](81-Namespaces-Autoloaders-Traits-singleton.md)
     [Other WP functions](other_info.md)
 82. [WordPress Security](82-WP-security.md)
+83. [WP Performance](83-performance_optimisation.md)
