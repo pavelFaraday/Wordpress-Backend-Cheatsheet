@@ -86,3 +86,4 @@
     [Other WP functions](other_info.md)
 82. [WordPress Security](82-WP-security.md)
 83. [WP Performance](83-performance_optimisation.md)
+84. [Wordpress SEO](84-WP_SEO.md)
