@@ -1,7 +1,7 @@
 # WordPress Security - Senior Interview Guide
 
-Security is layered architecture.
-Protect input. Protect permissions. Protect output. Protect infrastructure.
+> Security is layered architecture.
+> Protect input. Protect permissions. Protect output. Protect infrastructure.
 
 ###### 1️⃣ Authentication
 
@@ -27,41 +27,37 @@ Protect input. Protect permissions. Protect output. Protect infrastructure.
 
 ###### 1️⃣2️⃣ Hardening
 
-###### 1️⃣3️⃣ XML-RPC
+###### 1️⃣3️⃣ Brute Force Protection
 
-###### 1️⃣4️⃣ Brute Force Protection
+###### 1️⃣4️⃣ REST API Security
 
-###### 1️⃣5️⃣ REST API Security
+###### 1️⃣5️⃣ Capability Checks
 
-###### 1️⃣6️⃣ Capability Checks
+###### 1️⃣6️⃣ Secure AJAX
 
-###### 1️⃣7️⃣ Secure AJAX
+###### 1️⃣7️⃣ HTTPS & SSL
 
-###### 1️⃣8️⃣ HTTPS & SSL
+###### 1️⃣8️⃣ Password Hashing
 
-###### 1️⃣9️⃣ Password Hashing
+###### 1️⃣9️⃣ Secure Cookies
 
-###### 2️⃣0️⃣ Secure Cookies
+###### 2️⃣0️⃣ Session Management
 
-###### 2️⃣1️⃣ Session Management
+###### 2️⃣1️⃣ Principle of Least Privilege
 
-###### 2️⃣2️⃣ Principle of Least Privilege
+###### 2️⃣2️⃣ Security Headers
 
-###### 2️⃣3️⃣ Security Headers
+###### 2️⃣3️⃣ Error Handling
 
-###### 2️⃣4️⃣ CORS
+###### 2️⃣4️⃣ WAF & Security Plugins
 
-###### 2️⃣5️⃣ Error Handling
+###### 2️⃣5️⃣ Secure Coding Standards
 
-###### 2️⃣6️⃣ WAF & Security Plugins
+###### 2️⃣6️⃣ Update Safety
 
-###### 2️⃣7️⃣ Secure Coding Standards
+###### 2️⃣7️⃣ Backup Strategy
 
-###### 2️⃣8️⃣ Update Safety
-
-###### 2️⃣9️⃣ Backup Strategy
-
-###### 3️⃣0️⃣ Database Security
+###### 2️⃣8️⃣ Database Security
 
 ---
 
@@ -306,24 +302,7 @@ Reducing attack surface.
 
 ---
 
-# 🔐 1️⃣3️⃣ XML-RPC
-
-**What it means:**  
-Remote communication endpoint.
-
-**Where in WordPress:**
-
-- `xmlrpc.php`
-
-**How to Implement:**
-
-- Disable if unused
-- Block via server or firewall
-- Protect against brute force
-
----
-
-# 🔐 1️⃣4️⃣ Brute Force Protection
+# 🔐 1️⃣3️⃣ Brute Force Protection
 
 **What it means:**  
 Repeated login attempts.
@@ -342,7 +321,7 @@ Repeated login attempts.
 
 ---
 
-# 🔐 1️⃣5️⃣ REST API Security
+# 🔐 1️⃣4️⃣ REST API Security
 
 **What it means:**  
 Protecting API endpoints.
@@ -361,7 +340,7 @@ Protecting API endpoints.
 
 ---
 
-# 🔐 1️⃣6️⃣ Capability Checks
+# 🔐 1️⃣5️⃣ Capability Checks
 
 **What it means:**  
 Verifying user permissions.
@@ -380,7 +359,7 @@ Verifying user permissions.
 
 ---
 
-# 🔐 1️⃣7️⃣ Secure AJAX
+# 🔐 1️⃣6️⃣ Secure AJAX
 
 **What it means:**  
 Protecting asynchronous actions.
@@ -399,7 +378,7 @@ Protecting asynchronous actions.
 
 ---
 
-# 🔐 1️⃣8️⃣ HTTPS & SSL
+# 🔐 1️⃣7️⃣ HTTPS & SSL
 
 **What it means:**  
 Encrypted communication.
@@ -419,7 +398,7 @@ Encrypted communication.
 
 ---
 
-# 🔐 1️⃣9️⃣ Password Hashing
+# 🔐 1️⃣8️⃣ Password Hashing
 
 **What it means:**  
 Protecting stored passwords.
@@ -436,7 +415,7 @@ Protecting stored passwords.
 
 ---
 
-# 🔐 2️⃣0️⃣ Secure Cookies
+# 🔐 1️⃣9️⃣ Secure Cookies
 
 **What it means:**  
 Protecting session data.
@@ -453,7 +432,7 @@ Protecting session data.
 
 ---
 
-# 🔐 2️⃣1️⃣ Session Management
+# 🔐 2️⃣0️⃣ Session Management
 
 **What it means:**  
 Managing login sessions.
@@ -471,7 +450,7 @@ Managing login sessions.
 
 ---
 
-# 🔐 2️⃣2️⃣ Principle of Least Privilege
+# 🔐 2️⃣1️⃣ Principle of Least Privilege
 
 **What it means:**  
 Grant minimal required access.
@@ -490,7 +469,7 @@ Grant minimal required access.
 
 ---
 
-# 🔐 2️⃣3️⃣ Security Headers
+# 🔐 2️⃣2️⃣ Security Headers
 
 **What it means:**  
 Protecting browser communication.
@@ -509,25 +488,7 @@ Protecting browser communication.
 
 ---
 
-# 🔐 2️⃣4️⃣ CORS
-
-**What it means:**  
-Controlling cross-origin access.
-
-**Where in WordPress:**
-
-- REST API
-- Headless setups
-
-**How to Implement:**
-
-- Restrict allowed origins
-- Allow required methods only
-- Configure properly in server
-
----
-
-# 🔐 2️⃣5️⃣ Error Handling
+# 🔐 2️⃣3️⃣ Error Handling
 
 **What it means:**  
 Preventing sensitive data exposure.
@@ -546,7 +507,7 @@ Preventing sensitive data exposure.
 
 ---
 
-# 🔐 2️⃣6️⃣ WAF & Security Plugins
+# 🔐 2️⃣4️⃣ WAF & Security Plugins
 
 **What it means:**  
 External protection layer.
@@ -564,7 +525,7 @@ External protection layer.
 
 ---
 
-# 🔐 2️⃣7️⃣ Secure Coding Standards
+# 🔐 2️⃣5️⃣ Secure Coding Standards
 
 **What it means:**  
 Writing secure code by design.
@@ -582,7 +543,7 @@ Writing secure code by design.
 
 ---
 
-# 🔐 2️⃣8️⃣ Update Safety
+# 🔐 2️⃣6️⃣ Update Safety
 
 **What it means:**  
 Preventing vulnerabilities via outdated software.
@@ -601,7 +562,7 @@ Preventing vulnerabilities via outdated software.
 
 ---
 
-# 🔐 2️⃣9️⃣ Backup Strategy
+# 🔐 2️⃣7️⃣ Backup Strategy
 
 **What it means:**  
 Recovery plan.
@@ -620,7 +581,7 @@ Recovery plan.
 
 ---
 
-# 🔐 3️⃣0️⃣ Database Security
+# 🔐 2️⃣8️⃣ Database Security
 
 **What it means:**  
 Protecting database access.
@@ -636,21 +597,3 @@ Protecting database access.
 - Restrict privileges
 - Disable remote DB access
 - Use firewall
-
----
-
-# 🎯 Senior Security Mindset
-
-Security is layered.
-
-Protect:
-
-- Authentication
-- Authorization
-- Input
-- Output
-- Database
-- Transport
-- Infrastructure
-
-Security is architecture.
